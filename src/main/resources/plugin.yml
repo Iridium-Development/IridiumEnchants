@@ -1,0 +1,10 @@
+name: IridiumEnchants
+version: ${version}
+description: Custom Enchants for every gamemode
+main: com.iridium.iridiumenchants.IridiumEnchants
+api-version: '1.13'
+author: Peaches_MLG
+commands:
+  iridiumenchants:
+    aliases: [ "enchants", "ce", "customenchants" ]
+    description: Main plugin command
