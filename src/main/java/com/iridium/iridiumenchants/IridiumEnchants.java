@@ -1,11 +1,12 @@
 package com.iridium.iridiumenchants;
 
 import com.iridium.iridiumcore.IridiumCore;
-import com.iridium.iridiumenchants.commands.Command;
 import com.iridium.iridiumenchants.commands.CommandManager;
 import com.iridium.iridiumenchants.configs.Commands;
 import com.iridium.iridiumenchants.configs.Configuration;
+import com.iridium.iridiumenchants.configs.CustomEnchants;
 import com.iridium.iridiumenchants.configs.Messages;
+import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import lombok.Getter;
 
 @Getter
@@ -14,16 +15,27 @@ public class IridiumEnchants extends IridiumCore {
     private static IridiumEnchants instance;
 
     private CommandManager commandManager;
+    private CustomEnchantManager customEnchantManager;
 
     private Configuration configuration;
     private Messages messages;
     private Commands commands;
+    private CustomEnchants customEnchants;
 
     @Override
     public void onEnable() {
         instance = this;
         super.onEnable();
         this.commandManager = new CommandManager("iridiumenchants");
+        this.customEnchantManager = new CustomEnchantManager();
+        customEnchantManager.registerEnchants();
+
+        getLogger().info("----------------------------------------");
+        getLogger().info("");
+        getLogger().info(getDescription().getName() + " Enabled!");
+        getLogger().info("Version: " + getDescription().getVersion());
+        getLogger().info("");
+        getLogger().info("----------------------------------------");
     }
 
     @Override
@@ -41,13 +53,15 @@ public class IridiumEnchants extends IridiumCore {
         this.configuration = getPersist().load(Configuration.class);
         this.messages = getPersist().load(Messages.class);
         this.commands = getPersist().load(Commands.class);
+        this.customEnchants = getPersist().load(CustomEnchants.class);
     }
 
     @Override
-    public void saveConfig() {
+    public void saveConfigs() {
         getPersist().save(configuration);
         getPersist().save(messages);
         getPersist().save(commands);
+        getPersist().save(customEnchants);
     }
 
     @Override

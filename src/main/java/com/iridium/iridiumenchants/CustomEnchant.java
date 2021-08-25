@@ -1,0 +1,20 @@
+package com.iridium.iridiumenchants;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.bukkit.enchantments.EnchantmentTarget;
+
+import java.util.Map;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class CustomEnchant {
+    public String displayName;
+    public String description;
+    public EnchantmentTarget type;
+    public Trigger trigger;
+    public Map<Integer, Level> levels;
+    public Boolean enabled;
+}

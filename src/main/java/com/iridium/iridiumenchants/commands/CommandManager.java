@@ -3,7 +3,7 @@ package com.iridium.iridiumenchants.commands;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CooldownProvider;
 import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.TimeUtils;
+import com.iridium.iridiumenchants.utils.TimeUtils;
 import com.iridium.iridiumenchants.configs.Commands;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -88,7 +88,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender commandSender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
             //TODO
-//            IridiumEnchants.getInstance().getCommands().helpCommand.execute(commandSender, args);
+            IridiumEnchants.getInstance().getCommands().helpCommand.execute(commandSender, args);
             return true;
         }
 

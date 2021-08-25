@@ -1,4 +1,4 @@
-package com.iridium.iridiumenchants;
+package com.iridium.iridiumenchants.utils;
 
 import java.time.Duration;
 
