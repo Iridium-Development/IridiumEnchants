@@ -168,6 +168,8 @@ public class CustomEnchantManager {
             if (!trigger.isTrigger(customEnchant.trigger)) continue;
             Level level = customEnchant.levels.get(enchant.getValue());
             if (level == null) continue;
+            double random = Math.floor(Math.random() * 100) + 1;
+            if (random <= level.chance) continue;
             for (String effects : level.effects) {
                 String[] effectArgs = effects.toUpperCase().split(":");
                 if (effectArgs.length == 0) continue;
