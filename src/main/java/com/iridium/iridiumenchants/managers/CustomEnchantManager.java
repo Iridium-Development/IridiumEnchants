@@ -14,8 +14,11 @@ import com.iridium.iridiumenchants.Trigger;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -81,6 +84,14 @@ public class CustomEnchantManager {
         ).collect(Collectors.toList());
         lore.add(StringUtils.color(customEnchant.getDisplayName() + " " + toRomanNumerals(level)));
         itemMeta.setLore(lore);
+        if (!itemMeta.hasEnchants()) {
+            if (item.getType().equals(Material.FISHING_ROD)) {
+                itemMeta.addEnchant(Enchantment.ARROW_FIRE, 1, false);
+            } else {
+                itemMeta.addEnchant(Enchantment.LURE, 1, false);
+            }
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
         item.setItemMeta(itemMeta);
         return item;
     }
