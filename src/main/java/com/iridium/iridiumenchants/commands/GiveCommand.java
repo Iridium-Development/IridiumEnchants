@@ -83,12 +83,12 @@ public class GiveCommand extends Command {
         if (args.length == 2) {
             return Bukkit.getOnlinePlayers().stream()
                     .map(HumanEntity::getName)
-                    .filter(s -> s.contains(args[1]))
+                    .filter(s -> s.toLowerCase().contains(args[1].toLowerCase()))
                     .collect(Collectors.toList());
         }
         if (args.length == 3) {
             return IridiumEnchants.getInstance().getCustomEnchants().customEnchants.keySet().stream()
-                    .filter(s -> s.contains(args[2]))
+                    .filter(s -> s.toLowerCase().contains(args[2].toLowerCase()))
                     .collect(Collectors.toList());
         }
         if (args.length == 4) {
