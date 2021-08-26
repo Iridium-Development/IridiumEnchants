@@ -10,13 +10,11 @@ import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CustomEnchantManager {
@@ -66,7 +64,7 @@ public class CustomEnchantManager {
 
     public ItemStack applyEnchantment(ItemStack itemStack, String iridiumEnchant, CustomEnchant customEnchant, int level) {
         NBTItem nbtItem = new NBTItem(itemStack);
-        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
+        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants").getOrCreateCompound("enchants");
         int currentLevel = nbtCompound.hasKey(iridiumEnchant) ? nbtCompound.getInteger(iridiumEnchant) : 0;
         nbtCompound.setInteger(iridiumEnchant, level);
         ItemStack item = nbtItem.getItem();
@@ -90,10 +88,11 @@ public class CustomEnchantManager {
      */
     public Optional<String> getEnchantmentFromCrystal(ItemStack itemStack) {
         NBTItem nbtItem = new NBTItem(itemStack);
-        if (!nbtItem.hasKey("iridiumenchants.enchantment")) {
+        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
+        if (!nbtCompound.hasKey("enchantment")) {
             return Optional.empty();
         }
-        return Optional.of(nbtItem.getString("iridiumenchants.enchantment"));
+        return Optional.of(nbtCompound.getString("enchantment"));
     }
 
     /**
@@ -104,10 +103,11 @@ public class CustomEnchantManager {
      */
     public int getEnchantmentLevelFromCrystal(ItemStack itemStack) {
         NBTItem nbtItem = new NBTItem(itemStack);
-        if (!nbtItem.hasKey("iridiumenchants.level")) {
+        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
+        if (!nbtCompound.hasKey("level")) {
             return 0;
         }
-        return nbtItem.getInteger("iridiumenchants.level");
+        return nbtCompound.getInteger("level");
     }
 
     /**
@@ -124,9 +124,27 @@ public class CustomEnchantManager {
                 new Placeholder("type", WordUtils.capitalize(customEnchant.getType().name().toLowerCase())),
                 new Placeholder("description", customEnchant.getDescription())
         )));
-        nbtItem.setString("iridiumenchants.enchantment", iridiumEnchant);
-        nbtItem.setInteger("iridiumenchants.level", level);
+        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
+        nbtCompound.setString("enchantment", iridiumEnchant);
+        nbtCompound.setInteger("level", level);
         return nbtItem.getItem();
+    }
+
+    /**
+     * Gets all enchantments from an item
+     *
+     * @param itemStack the item
+     * @return all enchantments from this item
+     */
+    public Map<String, Integer> getEnchantmentsFromItem(ItemStack itemStack) {
+        Map<String, Integer> hashMap = new HashMap<>();
+        if (itemStack == null || itemStack.getType() == Material.AIR) return hashMap;
+        NBTItem nbtItem = new NBTItem(itemStack);
+        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants").getOrCreateCompound("enchants");
+        for (String key : nbtCompound.getKeys()) {
+            hashMap.put(key, nbtCompound.getInteger(key));
+        }
+        return hashMap;
     }
 
 }

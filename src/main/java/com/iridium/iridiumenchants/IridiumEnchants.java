@@ -8,9 +8,12 @@ import com.iridium.iridiumenchants.configs.CustomEnchants;
 import com.iridium.iridiumenchants.configs.Messages;
 import com.iridium.iridiumenchants.listeners.InventoryClickListener;
 import com.iridium.iridiumenchants.listeners.PlayerInteractListener;
+import com.iridium.iridiumenchants.listeners.PlayerJoinLeaveListener;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
+import com.iridium.iridiumenchants.managers.UserManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 @Getter
 public class IridiumEnchants extends IridiumCore {
@@ -19,6 +22,7 @@ public class IridiumEnchants extends IridiumCore {
 
     private CommandManager commandManager;
     private CustomEnchantManager customEnchantManager;
+    private UserManager userManager;
 
     private Configuration configuration;
     private Messages messages;
@@ -31,6 +35,11 @@ public class IridiumEnchants extends IridiumCore {
         super.onEnable();
         this.commandManager = new CommandManager("iridiumenchants");
         this.customEnchantManager = new CustomEnchantManager();
+        this.userManager = new UserManager();
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            userManager.getUser(player);
+        }
 
         getLogger().info("----------------------------------------");
         getLogger().info("");
@@ -49,6 +58,7 @@ public class IridiumEnchants extends IridiumCore {
     public void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinLeaveListener(), this);
     }
 
     @Override
