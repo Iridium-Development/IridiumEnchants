@@ -31,8 +31,8 @@ public class EnchantmentSelectGUI implements GUI {
 
     @Override
     public void addContent(Inventory inventory) {
-        for (int i = 0; i < player.getInventory().getStorageContents().length; i++) {
-            ItemStack itemStack = player.getInventory().getStorageContents()[i];
+        for (int i = 0; i < 36; i++) {
+            ItemStack itemStack = player.getInventory().getContents()[i];
             if (itemStack != null) {
                 if (customEnchant.type.includes(itemStack)) {
                     inventory.setItem(i, itemStack);

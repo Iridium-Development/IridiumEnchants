@@ -1,5 +1,6 @@
 package com.iridium.iridiumenchants;
 
+import com.iridium.iridiumenchants.effects.Effect;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -7,10 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class User {
     private final UUID uuid;
@@ -27,7 +27,14 @@ public class User {
     private void passive() {
         Player player = Bukkit.getPlayer(uuid);
         if (player != null) {
-            for (ItemStack itemStack : player.getInventory().getArmorContents()) {
+            List<ItemStack> itemStackList = Arrays.asList(
+                    player.getItemInHand(),
+                    player.getInventory().getBoots(),
+                    player.getInventory().getLeggings(),
+                    player.getInventory().getChestplate(),
+                    player.getInventory().getHelmet()
+            );
+            for (ItemStack itemStack : itemStackList) {
                 Map<String, Integer> enchants = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(itemStack);
                 for (Map.Entry<String, Integer> enchant : enchants.entrySet()) {
                     CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
@@ -43,8 +50,13 @@ public class User {
                     if (tickCycle % cycleTime != 0) continue;
                     Level level = customEnchant.levels.get(enchant.getValue());
                     if (level == null) continue;
-                    for (String effect : level.effects) {
-                        player.sendMessage(effect);
+                    for (String effects : level.effects) {
+                        String[] effectArgs = effects.toUpperCase().split(":");
+                        if (effectArgs.length == 0) continue;
+                        Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
+                        if (effect != null) {
+                            effect.apply(player, player, effectArgs);
+                        }
                     }
                 }
             }

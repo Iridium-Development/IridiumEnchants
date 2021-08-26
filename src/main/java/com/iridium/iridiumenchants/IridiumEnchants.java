@@ -6,6 +6,8 @@ import com.iridium.iridiumenchants.configs.Commands;
 import com.iridium.iridiumenchants.configs.Configuration;
 import com.iridium.iridiumenchants.configs.CustomEnchants;
 import com.iridium.iridiumenchants.configs.Messages;
+import com.iridium.iridiumenchants.effects.Effect;
+import com.iridium.iridiumenchants.effects.Potion;
 import com.iridium.iridiumenchants.listeners.InventoryClickListener;
 import com.iridium.iridiumenchants.listeners.PlayerInteractListener;
 import com.iridium.iridiumenchants.listeners.PlayerJoinLeaveListener;
@@ -14,6 +16,9 @@ import com.iridium.iridiumenchants.managers.UserManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 public class IridiumEnchants extends IridiumCore {
@@ -29,6 +34,8 @@ public class IridiumEnchants extends IridiumCore {
     private Commands commands;
     private CustomEnchants customEnchants;
 
+    private Map<String, Effect> effects;
+
     @Override
     public void onEnable() {
         instance = this;
@@ -40,6 +47,9 @@ public class IridiumEnchants extends IridiumCore {
         for (Player player : Bukkit.getOnlinePlayers()) {
             userManager.getUser(player);
         }
+
+        effects = new HashMap<>();
+        effects.put("POTION", new Potion());
 
         getLogger().info("----------------------------------------");
         getLogger().info("");
