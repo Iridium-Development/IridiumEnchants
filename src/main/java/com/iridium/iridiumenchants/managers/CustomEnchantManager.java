@@ -1,61 +1,25 @@
 package com.iridium.iridiumenchants.managers;
 
 import com.iridium.iridiumcore.Item;
+import com.iridium.iridiumcore.dependencies.nbtapi.NBTCompound;
 import com.iridium.iridiumcore.dependencies.nbtapi.NBTItem;
 import com.iridium.iridiumcore.utils.ItemStackUtils;
 import com.iridium.iridiumcore.utils.Placeholder;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
-import com.iridium.iridiumenchants.IridiumEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import org.apache.commons.lang.WordUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CustomEnchantManager {
-
-    private Map<String, IridiumEnchant> customEnchants;
-
-    /**
-     * Register CustomEnchants to spigot
-     */
-    public void registerEnchants() {
-        customEnchants = new HashMap<>();
-
-        try {
-            Field field = Enchantment.class.getDeclaredField("acceptingNew");
-            field.setAccessible(true);
-            field.set(null, true);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        for (Map.Entry<String, CustomEnchant> entrySet : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
-            IridiumEnchant iridiumEnchant = new IridiumEnchant(entrySet.getKey().toLowerCase().replace(" ", "_"), entrySet.getValue());
-            customEnchants.put(entrySet.getKey().toLowerCase().replace(" ", "_"), iridiumEnchant);
-            if (Arrays.stream(Enchantment.values()).anyMatch(enchantment -> enchantment.getKey().equals(iridiumEnchant.getKey()))) {
-                Enchantment.registerEnchantment(iridiumEnchant);
-            }
-        }
-    }
-
-    /**
-     * Get an IridiumEnchant from a key
-     *
-     * @param string The enchantment key
-     * @return The IridiumEnchant
-     */
-    public Optional<IridiumEnchant> getEnchantment(String string) {
-        return Optional.ofNullable(customEnchants.get(string.toLowerCase().replace(" ", "_")));
-    }
 
     /**
      * Converts the level to roman numerals
@@ -100,20 +64,22 @@ public class CustomEnchantManager {
         return String.valueOf(level);
     }
 
-    public void applyEnchantment(ItemStack itemStack, IridiumEnchant iridiumEnchant, int level) {
-        ItemMeta itemMeta = itemStack.getItemMeta();
+    public ItemStack applyEnchantment(ItemStack itemStack, String iridiumEnchant, CustomEnchant customEnchant, int level) {
+        NBTItem nbtItem = new NBTItem(itemStack);
+        NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
+        int currentLevel = nbtCompound.hasKey(iridiumEnchant) ? nbtCompound.getInteger(iridiumEnchant) : 0;
+        nbtCompound.setInteger(iridiumEnchant, level);
+        ItemStack item = nbtItem.getItem();
+        ItemMeta itemMeta = item.getItemMeta();
         List<String> lore = itemMeta.getLore();
         if (lore == null) lore = new ArrayList<>();
-        int existingLevel = itemMeta.getEnchantLevel(iridiumEnchant);
-        if (existingLevel != 0) {
-            lore = lore.stream().filter(s ->
-                    ChatColor.stripColor(s).equalsIgnoreCase(iridiumEnchant.getCustomEnchant().getDisplayName() + " " + toRomanNumerals(level))
-            ).collect(Collectors.toList());
-        }
-        lore.add(StringUtils.color(iridiumEnchant.getCustomEnchant().getDisplayName() + " " + toRomanNumerals(level)));
+        lore = lore.stream().filter(s ->
+                !ChatColor.stripColor(s).equalsIgnoreCase(iridiumEnchant + " " + toRomanNumerals(currentLevel))
+        ).collect(Collectors.toList());
+        lore.add(StringUtils.color(customEnchant.getDisplayName() + " " + toRomanNumerals(level)));
         itemMeta.setLore(lore);
-        itemMeta.addEnchant(iridiumEnchant, level, true);
-        itemStack.setItemMeta(itemMeta);
+        item.setItemMeta(itemMeta);
+        return item;
     }
 
     /**
@@ -122,12 +88,12 @@ public class CustomEnchantManager {
      * @param itemStack The crystal itemstack
      * @return an IridiumEnchant
      */
-    public Optional<IridiumEnchant> getEnchantmentFromCrystal(ItemStack itemStack) {
+    public Optional<String> getEnchantmentFromCrystal(ItemStack itemStack) {
         NBTItem nbtItem = new NBTItem(itemStack);
         if (!nbtItem.hasKey("iridiumenchants.enchantment")) {
             return Optional.empty();
         }
-        return getEnchantment(nbtItem.getString("iridiumenchants.enchantment"));
+        return Optional.of(nbtItem.getString("iridiumenchants.enchantment"));
     }
 
     /**
@@ -151,14 +117,14 @@ public class CustomEnchantManager {
      * @param level          The level of the enchant
      * @return The Enchantment Crystal ItemStack
      */
-    public ItemStack getEnchantmentCrystal(IridiumEnchant iridiumEnchant, int level) {
+    public ItemStack getEnchantmentCrystal(String iridiumEnchant, CustomEnchant customEnchant, int level) {
         Item item = IridiumEnchants.getInstance().getConfiguration().enchantmentCrystal;
         NBTItem nbtItem = new NBTItem(ItemStackUtils.makeItem(item, Arrays.asList(
-                new Placeholder("enchant", WordUtils.capitalize(iridiumEnchant.getKey().toString().replace("minecraft:", "").replace("_", " ")) + " " + toRomanNumerals(level)),
-                new Placeholder("type", WordUtils.capitalize(iridiumEnchant.getCustomEnchant().getType().name().toLowerCase())),
-                new Placeholder("description", iridiumEnchant.getCustomEnchant().getDescription())
+                new Placeholder("enchant", WordUtils.capitalize(iridiumEnchant) + " " + toRomanNumerals(level)),
+                new Placeholder("type", WordUtils.capitalize(customEnchant.getType().name().toLowerCase())),
+                new Placeholder("description", customEnchant.getDescription())
         )));
-        nbtItem.setString("iridiumenchants.enchantment", iridiumEnchant.getKey().toString().replace("minecraft:", ""));
+        nbtItem.setString("iridiumenchants.enchantment", iridiumEnchant);
         nbtItem.setInteger("iridiumenchants.level", level);
         return nbtItem.getItem();
     }

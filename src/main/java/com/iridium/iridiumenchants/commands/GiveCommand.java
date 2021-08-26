@@ -1,16 +1,19 @@
 package com.iridium.iridiumenchants.commands;
 
 import com.iridium.iridiumcore.utils.StringUtils;
-import com.iridium.iridiumenchants.IridiumEnchant;
+import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Command which reloads all configuration files.
@@ -34,7 +37,6 @@ public class GiveCommand extends Command {
      */
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        // /ce give <player> <Enchant> <Level>
         if (args.length != 4) {
             sender.sendMessage(StringUtils.color(syntax.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
@@ -44,8 +46,11 @@ public class GiveCommand extends Command {
             sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notAPlayer.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
         }
-        Optional<IridiumEnchant> iridiumEnchant = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantment(args[2]);
-        if (!iridiumEnchant.isPresent()) {
+        Optional<Map.Entry<String, CustomEnchant>> customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet().stream()
+                .filter(stringCustomEnchantEntry ->
+                        stringCustomEnchantEntry.getKey().equalsIgnoreCase(args[2])
+                ).findFirst();
+        if (!customEnchant.isPresent()) {
             sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notAnEnchantment.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
         }
@@ -56,11 +61,11 @@ public class GiveCommand extends Command {
             sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notANumber.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
         }
-        if (!iridiumEnchant.get().getCustomEnchant().getLevels().containsKey(level)) {
+        if (!customEnchant.get().getValue().getLevels().containsKey(level)) {
             sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().invalidEnchantmentLevel.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
         }
-        player.getInventory().addItem(IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentCrystal(iridiumEnchant.get(), level));
+        player.getInventory().addItem(IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentCrystal(customEnchant.get().getKey(), customEnchant.get().getValue(), level));
         return true;
     }
 
@@ -75,8 +80,30 @@ public class GiveCommand extends Command {
      */
     @Override
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
-        // We currently don't want to tab-completion here
-        // Return a new List so it isn't a list of online players
+        if (args.length == 2) {
+            return Bukkit.getOnlinePlayers().stream()
+                    .map(HumanEntity::getName)
+                    .filter(s -> s.contains(args[1]))
+                    .collect(Collectors.toList());
+        }
+        if (args.length == 3) {
+            return IridiumEnchants.getInstance().getCustomEnchants().customEnchants.keySet().stream()
+                    .filter(s -> s.contains(args[2]))
+                    .collect(Collectors.toList());
+        }
+        if (args.length == 4) {
+            Optional<Map.Entry<String, CustomEnchant>> customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet().stream()
+                    .filter(stringCustomEnchantEntry ->
+                            stringCustomEnchantEntry.getKey().equalsIgnoreCase(args[2])
+                    ).findFirst();
+            return customEnchant
+                    .map(entry ->
+                            entry.getValue().levels.keySet()
+                                    .stream()
+                                    .map(String::valueOf)
+                                    .collect(Collectors.toList())
+                    ).orElse(Collections.emptyList());
+        }
         return Collections.emptyList();
     }
 

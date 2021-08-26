@@ -2,27 +2,24 @@ package com.iridium.iridiumenchants.gui;
 
 import com.iridium.iridiumcore.GUI;
 import com.iridium.iridiumcore.utils.StringUtils;
-import com.iridium.iridiumenchants.IridiumEnchant;
+import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import lombok.AllArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
+@AllArgsConstructor
 public class EnchantmentSelectGUI implements GUI {
 
     private final Player player;
-    private final IridiumEnchant iridiumEnchant;
-
-    public EnchantmentSelectGUI(Player player, IridiumEnchant iridiumEnchant) {
-        this.player = player;
-        this.iridiumEnchant = iridiumEnchant;
-    }
+    private final CustomEnchant customEnchant;
+    private final String enchantKey;
 
     @NotNull
     @Override
@@ -37,7 +34,7 @@ public class EnchantmentSelectGUI implements GUI {
         for (int i = 0; i < player.getInventory().getStorageContents().length; i++) {
             ItemStack itemStack = player.getInventory().getStorageContents()[i];
             if (itemStack != null) {
-                if (iridiumEnchant.getCustomEnchant().type.includes(itemStack)) {
+                if (customEnchant.type.includes(itemStack)) {
                     inventory.setItem(i, itemStack);
                 }
             }
@@ -47,12 +44,13 @@ public class EnchantmentSelectGUI implements GUI {
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
         ItemStack itemStack = player.getInventory().getContents()[event.getSlot()];
-        if (iridiumEnchant.getCustomEnchant().type.includes(itemStack)) {
+        if (customEnchant.type.includes(itemStack)) {
             //Double check they still have the enchantment crystal in their hand
-            Optional<IridiumEnchant> iridiumEnchantOptional = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(event.getWhoClicked().getItemInHand());
-            if (iridiumEnchantOptional.isPresent() && iridiumEnchantOptional.get() == iridiumEnchant) {
+            Optional<String> iridiumEnchant = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(event.getWhoClicked().getItemInHand());
+            if (iridiumEnchant.isPresent() && iridiumEnchant.get().equals(enchantKey)) {
                 int level = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentLevelFromCrystal(event.getWhoClicked().getItemInHand());
-                IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(itemStack, iridiumEnchant, level);
+                ItemStack item = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(itemStack, enchantKey, customEnchant, level);
+                player.getInventory().setItem(event.getSlot(), item);
                 event.getWhoClicked().closeInventory();
                 int amount = event.getWhoClicked().getItemInHand().getAmount();
                 if (amount > 1) {

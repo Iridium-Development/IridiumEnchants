@@ -31,7 +31,6 @@ public class IridiumEnchants extends IridiumCore {
         super.onEnable();
         this.commandManager = new CommandManager("iridiumenchants");
         this.customEnchantManager = new CustomEnchantManager();
-        customEnchantManager.registerEnchants();
 
         getLogger().info("----------------------------------------");
         getLogger().info("");

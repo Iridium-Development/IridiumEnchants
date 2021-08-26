@@ -1,5 +1,6 @@
 package com.iridium.iridiumenchants.listeners;
 
+import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.gui.EnchantmentSelectGUI;
 import org.bukkit.Bukkit;
@@ -23,8 +24,11 @@ public class PlayerInteractListener implements Listener {
                 Bukkit.broadcastMessage(enchantment.getName());
             }
             if (itemStack.getType() == Material.AIR) return;
-            IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(itemStack).ifPresent(iridiumEnchant ->
-                    player.openInventory(new EnchantmentSelectGUI(player, iridiumEnchant).getInventory())
+            IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(itemStack).ifPresent(iridiumEnchant -> {
+                        CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(iridiumEnchant);
+                        if (customEnchant == null) return;
+                        player.openInventory(new EnchantmentSelectGUI(player, customEnchant, iridiumEnchant).getInventory());
+                    }
             );
         }
     }
