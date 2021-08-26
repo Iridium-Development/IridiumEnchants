@@ -42,6 +42,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         Commands commands = IridiumEnchants.getInstance().getCommands();
         registerCommand(commands.helpCommand);
         registerCommand(commands.reloadCommand);
+        registerCommand(commands.giveCommand);
     }
 
     /**

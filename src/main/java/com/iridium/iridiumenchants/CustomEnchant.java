@@ -3,7 +3,6 @@ package com.iridium.iridiumenchants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.bukkit.enchantments.EnchantmentTarget;
 
 import java.util.Map;
 
@@ -13,7 +12,7 @@ import java.util.Map;
 public class CustomEnchant {
     public String displayName;
     public String description;
-    public EnchantmentTarget type;
+    public Type type;
     public Trigger trigger;
     public Map<Integer, Level> levels;
     public Boolean enabled;

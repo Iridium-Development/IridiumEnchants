@@ -10,7 +10,7 @@ public class IridiumEnchant extends Enchantment {
     private final CustomEnchant customEnchant;
 
     public IridiumEnchant(@NotNull String key, @NotNull CustomEnchant customEnchant) {
-        super(NamespacedKey.minecraft(key.toLowerCase().replace(" ", "")));
+        super(NamespacedKey.minecraft(key));
         this.customEnchant = customEnchant;
     }
 
@@ -33,7 +33,7 @@ public class IridiumEnchant extends Enchantment {
     @NotNull
     @Override
     public EnchantmentTarget getItemTarget() {
-        return customEnchant.type;
+        return EnchantmentTarget.ALL;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ReloadCommand extends Command {
      * The default constructor.
      */
     public ReloadCommand() {
-        super(Collections.singletonList("reload"), "Reload the plugin configurations", "iridiumfactions.reload", false, Duration.ZERO);
+        super(Collections.singletonList("reload"), "Reload the plugin configurations", "iridiumenchants.reload", false, Duration.ZERO);
     }
 
     /**

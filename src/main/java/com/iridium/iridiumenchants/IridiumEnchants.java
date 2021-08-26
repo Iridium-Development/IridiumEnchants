@@ -6,8 +6,11 @@ import com.iridium.iridiumenchants.configs.Commands;
 import com.iridium.iridiumenchants.configs.Configuration;
 import com.iridium.iridiumenchants.configs.CustomEnchants;
 import com.iridium.iridiumenchants.configs.Messages;
+import com.iridium.iridiumenchants.listeners.InventoryClickListener;
+import com.iridium.iridiumenchants.listeners.PlayerInteractListener;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 
 @Getter
 public class IridiumEnchants extends IridiumCore {
@@ -45,7 +48,8 @@ public class IridiumEnchants extends IridiumCore {
 
     @Override
     public void registerListeners() {
-        super.registerListeners();
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
     }
 
     @Override
