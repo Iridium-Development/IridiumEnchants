@@ -74,5 +74,8 @@ public class CustomEnchants {
                     .put(2, new Level(100, Collections.singletonList("EXPLODE:2:FALSE:FALSE:TARGET")))
                     .put(3, new Level(100, Collections.singletonList("EXPLODE:3:FALSE:FALSE:TARGET")))
                     .build(), true))
+            .put("Blazingtouch", new CustomEnchant("&7BlazingTouch", "Automatically smelts the ores you mine", Type.PICKAXE, "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("SMELT")))
+                    .build(), true))
             .build();
 }

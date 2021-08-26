@@ -1,10 +1,11 @@
 package com.iridium.iridiumenchants.effects;
 
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
 
 public class Explode implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
         int power;
         try {
             power = Integer.parseInt(args[1]);

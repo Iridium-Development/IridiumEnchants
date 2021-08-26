@@ -43,7 +43,7 @@ public class User {
                         cycleTime = 1;
                     }
                     return tickCycle % cycleTime == 0;
-                }, player, player);
+                }, player, player, null);
             }
         }
         tickCycle++;

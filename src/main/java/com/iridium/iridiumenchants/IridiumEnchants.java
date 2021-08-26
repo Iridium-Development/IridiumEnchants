@@ -7,10 +7,7 @@ import com.iridium.iridiumenchants.configs.Configuration;
 import com.iridium.iridiumenchants.configs.CustomEnchants;
 import com.iridium.iridiumenchants.configs.Messages;
 import com.iridium.iridiumenchants.effects.*;
-import com.iridium.iridiumenchants.listeners.EntityDamageListener;
-import com.iridium.iridiumenchants.listeners.InventoryClickListener;
-import com.iridium.iridiumenchants.listeners.PlayerInteractListener;
-import com.iridium.iridiumenchants.listeners.PlayerJoinLeaveListener;
+import com.iridium.iridiumenchants.listeners.*;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import lombok.Getter;
@@ -53,6 +50,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("FEED", new Feed());
         effects.put("FIRE", new Fire());
         effects.put("EXPLODE", new Explode());
+        effects.put("SMELT", new Smelt());
 
         getLogger().info("----------------------------------------");
         getLogger().info("");
@@ -73,6 +71,7 @@ public class IridiumEnchants extends IridiumCore {
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinLeaveListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
     }
 
     @Override

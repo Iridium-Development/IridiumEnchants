@@ -15,6 +15,7 @@ import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -159,7 +160,7 @@ public class CustomEnchantManager {
      * @param player    the specified Player
      * @param target    The specified target
      */
-    public void applyEffectsFromItem(ItemStack itemStack, Trigger trigger, LivingEntity player, LivingEntity target) {
+    public void applyEffectsFromItem(ItemStack itemStack, Trigger trigger, LivingEntity player, LivingEntity target, Event event) {
         Map<String, Integer> enchants = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(itemStack);
         for (Map.Entry<String, Integer> enchant : enchants.entrySet()) {
             CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
@@ -172,7 +173,7 @@ public class CustomEnchantManager {
                 if (effectArgs.length == 0) continue;
                 Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
                 if (effect != null) {
-                    effect.apply(player, target, effectArgs);
+                    effect.apply(player, target, effectArgs, event);
                 }
             }
         }

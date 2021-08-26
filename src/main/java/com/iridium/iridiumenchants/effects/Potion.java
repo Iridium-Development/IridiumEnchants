@@ -1,17 +1,18 @@
 package com.iridium.iridiumenchants.effects;
 
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffectType;
 
 public class Potion implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
         if (args.length < 4) return;
         PotionEffectType potionEffectType = PotionEffectType.getByName(args[1]);
         if (potionEffectType == null) return;
         int amplifier;
         try {
-            amplifier = Integer.parseInt(args[2])-1;
+            amplifier = Integer.parseInt(args[2]) - 1;
         } catch (NumberFormatException exception) {
             amplifier = 0;
         }

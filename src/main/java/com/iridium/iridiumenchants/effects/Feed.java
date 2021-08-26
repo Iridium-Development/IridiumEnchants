@@ -2,11 +2,11 @@ package com.iridium.iridiumenchants.effects;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.event.Event;
 
 public class Feed implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
         if (args.length < 2) return;
         int amount;
         try {

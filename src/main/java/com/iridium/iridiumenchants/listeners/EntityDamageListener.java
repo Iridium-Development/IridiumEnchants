@@ -29,7 +29,7 @@ public class EntityDamageListener implements Listener {
                         player.getInventory().getHelmet()
                 );
                 for (ItemStack itemStack : itemStackList) {
-                    IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("PLAYER_DAMAGE"), player, (LivingEntity) event.getEntity());
+                    IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("PLAYER_DAMAGE"), player, (LivingEntity) event.getEntity(), event);
                 }
             }
             if (event.getEntity() instanceof Player) {
@@ -43,7 +43,7 @@ public class EntityDamageListener implements Listener {
                         player.getInventory().getHelmet()
                 );
                 for (ItemStack itemStack : itemStackList) {
-                    IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("DEFENCE"), player, (LivingEntity) event.getDamager());
+                    IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("DEFENCE"), player, (LivingEntity) event.getDamager(), event);
                 }
             }
         }
@@ -61,7 +61,7 @@ public class EntityDamageListener implements Listener {
                         player.getInventory().getHelmet()
                 );
                 for (ItemStack itemStack : itemStackList) {
-                    IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("PLAYER_DAMAGE_PROJECTILE"), player, (LivingEntity) event.getEntity());
+                    IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("PLAYER_DAMAGE_PROJECTILE"), player, (LivingEntity) event.getEntity(), event);
                 }
             }
         }
