@@ -54,5 +54,10 @@ public class CustomEnchants {
                     .put(2, new Level(100, Collections.singletonList("POTION:WITHER:2:5")))
                     .put(3, new Level(100, Collections.singletonList("POTION:WITHER:3:5")))
                     .build(), true))
+            .put("Ignition", new CustomEnchant("&7Ignition", "Sets your attacker on fire", Type.CHESTPLATE, "DEFENCE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("FIRE:40:TARGET")))
+                    .put(2, new Level(100, Collections.singletonList("FIRE:80:TARGET")))
+                    .put(3, new Level(100, Collections.singletonList("FIRE:100:TARGET")))
+                    .build(), true))
             .build();
 }
