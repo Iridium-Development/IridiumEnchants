@@ -7,6 +7,7 @@ import com.iridium.iridiumenchants.configs.Configuration;
 import com.iridium.iridiumenchants.configs.CustomEnchants;
 import com.iridium.iridiumenchants.configs.Messages;
 import com.iridium.iridiumenchants.effects.Effect;
+import com.iridium.iridiumenchants.effects.Feed;
 import com.iridium.iridiumenchants.effects.Potion;
 import com.iridium.iridiumenchants.listeners.InventoryClickListener;
 import com.iridium.iridiumenchants.listeners.PlayerInteractListener;
@@ -50,6 +51,7 @@ public class IridiumEnchants extends IridiumCore {
 
         effects = new HashMap<>();
         effects.put("POTION", new Potion());
+        effects.put("FEED", new Feed());
 
         getLogger().info("----------------------------------------");
         getLogger().info("");
