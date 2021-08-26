@@ -51,6 +51,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("FIRE", new Fire());
         effects.put("EXPLODE", new Explode());
         effects.put("SMELT", new Smelt());
+        effects.put("INFUSION", new Infusion());
 
         getLogger().info("----------------------------------------");
         getLogger().info("");

@@ -77,5 +77,10 @@ public class CustomEnchants {
             .put("Blazingtouch", new CustomEnchant("&7BlazingTouch", "Automatically smelts the ores you mine", Type.PICKAXE, "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(100, Collections.singletonList("SMELT")))
                     .build(), true))
+            .put("Infusion", new CustomEnchant("&7Infusion", "Breaks all blocks in the nearby area", Type.PICKAXE, "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("INFUSION:1:FALSE")))
+                    .put(2, new Level(100, Collections.singletonList("INFUSION:2:FALSE")))
+                    .put(3, new Level(100, Collections.singletonList("INFUSION:3:FALSE")))
+                    .build(), true))
             .build();
 }

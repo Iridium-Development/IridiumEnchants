@@ -5,6 +5,7 @@ import com.iridium.iridiumcore.Item;
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class Configuration {
@@ -20,4 +21,5 @@ public class Configuration {
             .put(XMaterial.DEEPSLATE_GOLD_ORE, XMaterial.GOLD_INGOT)
             .put(XMaterial.SAND, XMaterial.GLASS)
             .build();
+    public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST);
 }
