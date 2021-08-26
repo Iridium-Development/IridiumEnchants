@@ -44,5 +44,15 @@ public class CustomEnchants {
                     .put(2, new Level(100, Collections.singletonList("POTION:INCREASE_DAMAGE:2:5")))
                     .put(3, new Level(100, Collections.singletonList("POTION:INCREASE_DAMAGE:3:5")))
                     .build(), true))
+            .put("Poison", new CustomEnchant("&7Poison", "Gives your opponent poison effect", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("POTION:POISON:1:5")))
+                    .put(2, new Level(100, Collections.singletonList("POTION:POISON:2:5")))
+                    .put(3, new Level(100, Collections.singletonList("POTION:POISON:3:5")))
+                    .build(), true))
+            .put("Wither", new CustomEnchant("&7Wither", "Gives your opponent wither effect", Type.AXE, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("POTION:WITHER:1:5")))
+                    .put(2, new Level(100, Collections.singletonList("POTION:WITHER:2:5")))
+                    .put(3, new Level(100, Collections.singletonList("POTION:WITHER:3:5")))
+                    .build(), true))
             .build();
 }

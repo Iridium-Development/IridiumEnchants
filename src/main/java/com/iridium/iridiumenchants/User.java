@@ -1,16 +1,14 @@
 package com.iridium.iridiumenchants;
 
-import com.iridium.iridiumenchants.effects.Effect;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 public class User {
     private final UUID uuid;
@@ -35,30 +33,17 @@ public class User {
                     player.getInventory().getHelmet()
             );
             for (ItemStack itemStack : itemStackList) {
-                Map<String, Integer> enchants = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(itemStack);
-                for (Map.Entry<String, Integer> enchant : enchants.entrySet()) {
-                    CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
-                    if (customEnchant == null) continue;
-                    String[] trigger = customEnchant.trigger.toUpperCase().split(":");
-                    if (!trigger[0].equals("PASSIVE")) continue;
+                IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> {
+                    String[] args = trigger.toUpperCase().split(":");
+                    if (!args[0].equals("PASSIVE")) return false;
                     int cycleTime;
                     try {
-                        cycleTime = trigger.length > 1 ? Integer.parseInt(trigger[1]) : 1;
+                        cycleTime = args.length > 1 ? Integer.parseInt(args[1]) : 1;
                     } catch (NumberFormatException exception) {
                         cycleTime = 1;
                     }
-                    if (tickCycle % cycleTime != 0) continue;
-                    Level level = customEnchant.levels.get(enchant.getValue());
-                    if (level == null) continue;
-                    for (String effects : level.effects) {
-                        String[] effectArgs = effects.toUpperCase().split(":");
-                        if (effectArgs.length == 0) continue;
-                        Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
-                        if (effect != null) {
-                            effect.apply(player, player, effectArgs);
-                        }
-                    }
-                }
+                    return tickCycle % cycleTime == 0;
+                }, player, player);
             }
         }
         tickCycle++;

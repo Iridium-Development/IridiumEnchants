@@ -9,6 +9,7 @@ import com.iridium.iridiumenchants.configs.Messages;
 import com.iridium.iridiumenchants.effects.Effect;
 import com.iridium.iridiumenchants.effects.Feed;
 import com.iridium.iridiumenchants.effects.Potion;
+import com.iridium.iridiumenchants.listeners.EntityDamageListener;
 import com.iridium.iridiumenchants.listeners.InventoryClickListener;
 import com.iridium.iridiumenchants.listeners.PlayerInteractListener;
 import com.iridium.iridiumenchants.listeners.PlayerJoinLeaveListener;
@@ -71,6 +72,7 @@ public class IridiumEnchants extends IridiumCore {
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinLeaveListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDamageListener(), this);
     }
 
     @Override

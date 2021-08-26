@@ -8,9 +8,13 @@ import com.iridium.iridiumcore.utils.Placeholder;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.Level;
+import com.iridium.iridiumenchants.effects.Effect;
+import com.iridium.iridiumenchants.Trigger;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -145,6 +149,33 @@ public class CustomEnchantManager {
             hashMap.put(key, nbtCompound.getInteger(key));
         }
         return hashMap;
+    }
+
+    /**
+     * Applies all effects from an ItemStack with a given trigger
+     *
+     * @param itemStack The specified ItemStack
+     * @param trigger   the specified Trigger
+     * @param player    the specified Player
+     * @param target    The specified target
+     */
+    public void applyEffectsFromItem(ItemStack itemStack, Trigger trigger, LivingEntity player, LivingEntity target) {
+        Map<String, Integer> enchants = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(itemStack);
+        for (Map.Entry<String, Integer> enchant : enchants.entrySet()) {
+            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
+            if (customEnchant == null) continue;
+            if (!trigger.isTrigger(customEnchant.trigger)) continue;
+            Level level = customEnchant.levels.get(enchant.getValue());
+            if (level == null) continue;
+            for (String effects : level.effects) {
+                String[] effectArgs = effects.toUpperCase().split(":");
+                if (effectArgs.length == 0) continue;
+                Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
+                if (effect != null) {
+                    effect.apply(player, target, effectArgs);
+                }
+            }
+        }
     }
 
 }
