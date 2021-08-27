@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants.listeners;
 
-import com.iridium.iridiumcore.GUI;
+import com.iridium.iridiumcore.gui.GUI;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;

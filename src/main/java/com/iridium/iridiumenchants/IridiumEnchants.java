@@ -4,10 +4,7 @@ import com.iridium.iridiumcore.IridiumCore;
 import com.iridium.iridiumenchants.Support.BuildSupport;
 import com.iridium.iridiumenchants.Support.FriendlySupport;
 import com.iridium.iridiumenchants.commands.CommandManager;
-import com.iridium.iridiumenchants.configs.Commands;
-import com.iridium.iridiumenchants.configs.Configuration;
-import com.iridium.iridiumenchants.configs.CustomEnchants;
-import com.iridium.iridiumenchants.configs.Messages;
+import com.iridium.iridiumenchants.configs.*;
 import com.iridium.iridiumenchants.effects.*;
 import com.iridium.iridiumenchants.listeners.*;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
@@ -32,6 +29,7 @@ public class IridiumEnchants extends IridiumCore {
     private Messages messages;
     private Commands commands;
     private CustomEnchants customEnchants;
+    private Inventories inventories;
 
     private Map<String, Effect> effects;
 
@@ -82,6 +80,7 @@ public class IridiumEnchants extends IridiumCore {
         this.messages = getPersist().load(Messages.class);
         this.commands = getPersist().load(Commands.class);
         this.customEnchants = getPersist().load(CustomEnchants.class);
+        this.inventories = getPersist().load(Inventories.class);
     }
 
     @Override
@@ -90,6 +89,7 @@ public class IridiumEnchants extends IridiumCore {
         getPersist().save(messages);
         getPersist().save(commands);
         getPersist().save(customEnchants);
+        getPersist().save(inventories);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants.gui;
 
-import com.iridium.iridiumcore.GUI;
+import com.iridium.iridiumcore.gui.GUI;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
