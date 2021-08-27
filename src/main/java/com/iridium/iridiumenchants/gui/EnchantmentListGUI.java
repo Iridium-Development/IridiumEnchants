@@ -1,7 +1,5 @@
 package com.iridium.iridiumenchants.gui;
 
-import com.iridium.iridiumcore.Background;
-import com.iridium.iridiumcore.Item;
 import com.iridium.iridiumcore.gui.PagedGUI;
 import com.iridium.iridiumcore.utils.ItemStackUtils;
 import com.iridium.iridiumcore.utils.Placeholder;
@@ -18,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
