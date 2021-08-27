@@ -18,7 +18,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant>> {
     private final int page;
@@ -61,6 +63,6 @@ public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant
 
     @Override
     public Collection<Map.Entry<String, CustomEnchant>> getPageObjects() {
-        return IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet();
+        return IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
     }
 }
