@@ -97,5 +97,8 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("AURA:ENEMY:10:POTION:WITHER:2:5:TARGET")))
                     .put(3, new Level(10, Collections.singletonList("AURA:ENEMY:10:POTION:WITHER:3:5:TARGET")))
                     .build(), true))
+            .put("ThunderousBlow", new CustomEnchant("&7ThunderousBlow", "Chance to strike your opponent with lightning", Type.AXE, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("LIGHTNING:TARGET")))
+                    .build(), true))
             .build();
 }
