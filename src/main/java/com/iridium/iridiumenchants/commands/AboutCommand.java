@@ -18,7 +18,7 @@ public class AboutCommand extends Command {
     public boolean execute(CommandSender sender, String[] args) {
         sender.sendMessage(StringUtils.color("&7Plugin Name: &eIridiumEnchants"));
         sender.sendMessage(StringUtils.color("&7Plugin Version: &e" + IridiumEnchants.getInstance().getDescription().getVersion()));
-        sender.sendMessage(StringUtils.color("&7Plugin Author: &bPeaches_MLG"));
+        sender.sendMessage(StringUtils.color("&7Plugin Author: &ePeaches_MLG"));
 
         return true;
     }
