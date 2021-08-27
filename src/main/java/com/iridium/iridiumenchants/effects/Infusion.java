@@ -2,7 +2,7 @@ package com.iridium.iridiumenchants.effects;
 
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.IridiumEnchants;
-import org.bukkit.Bukkit;
+import com.iridium.iridiumenchants.listeners.BlockBreakListener;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Infusion implements Effect {
 
-    private List<BlockBreakEvent> events = new ArrayList<>();
+    private final List<BlockBreakEvent> events = new ArrayList<>();
 
     @Override
     public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
@@ -26,6 +26,7 @@ public class Infusion implements Effect {
                 events.remove(blockBreakEvent);
                 return;
             }
+            blockBreakEvent.setDropItems(false);
             int radius;
             try {
                 radius = Integer.parseInt(args[1]);
@@ -36,14 +37,16 @@ public class Infusion implements Effect {
             for (Block block : getSquare(blockBreakEvent.getBlock().getLocation(), radius)) {
                 XMaterial material = XMaterial.matchXMaterial(block.getType());
                 if (IridiumEnchants.getInstance().getConfiguration().infusionBlacklist.contains(material)) continue;
-                BlockBreakEvent breakEvent = new BlockBreakEvent(block, (Player) player);
-                events.add(breakEvent);
-                Bukkit.getPluginManager().callEvent(breakEvent);
-                if (blockBreakEvent.isCancelled()) continue;
-                if (instantMine) {
-                    block.setType(Material.AIR);
-                } else {
-                    block.breakNaturally(((Player) player).getItemInHand());
+                if (IridiumEnchants.getInstance().getBuildSupport().canBuild(((Player) player), block.getLocation())) {
+                    BlockBreakEvent breakEvent = new BlockBreakEvent(block, (Player) player);
+                    events.add(breakEvent);
+                    new BlockBreakListener().onBlockBreak(breakEvent);
+                    if (breakEvent.isCancelled()) continue;
+                    if (instantMine) {
+                        block.setType(Material.AIR);
+                    } else {
+                        block.breakNaturally(((Player) player).getItemInHand());
+                    }
                 }
             }
         }

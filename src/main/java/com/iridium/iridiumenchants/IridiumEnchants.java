@@ -1,6 +1,8 @@
 package com.iridium.iridiumenchants;
 
 import com.iridium.iridiumcore.IridiumCore;
+import com.iridium.iridiumenchants.Support.BuildSupport;
+import com.iridium.iridiumenchants.Support.FriendlySupport;
 import com.iridium.iridiumenchants.commands.CommandManager;
 import com.iridium.iridiumenchants.configs.Commands;
 import com.iridium.iridiumenchants.configs.Configuration;
@@ -12,6 +14,8 @@ import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -33,6 +37,9 @@ public class IridiumEnchants extends IridiumCore {
 
     private Map<String, Effect> effects;
 
+    private BuildSupport buildSupport;
+    private FriendlySupport friendlySupport;
+
     @Override
     public void onEnable() {
         instance = this;
@@ -45,13 +52,8 @@ public class IridiumEnchants extends IridiumCore {
             userManager.getUser(player);
         }
 
-        effects = new HashMap<>();
-        effects.put("POTION", new Potion());
-        effects.put("FEED", new Feed());
-        effects.put("FIRE", new Fire());
-        effects.put("EXPLODE", new Explode());
-        effects.put("SMELT", new Smelt());
-        effects.put("INFUSION", new Infusion());
+        registerEffects();
+        registerSupport();
 
         getLogger().info("----------------------------------------");
         getLogger().info("");
@@ -94,6 +96,21 @@ public class IridiumEnchants extends IridiumCore {
     @Override
     public void saveData() {
         super.saveData();
+    }
+
+    public void registerSupport() {
+        this.buildSupport = (player, location) -> true;
+        this.friendlySupport = (player, livingEntity) -> false;
+    }
+
+    public void registerEffects() {
+        effects = new HashMap<>();
+        effects.put("POTION", new Potion());
+        effects.put("FEED", new Feed());
+        effects.put("FIRE", new Fire());
+        effects.put("EXPLODE", new Explode());
+        effects.put("SMELT", new Smelt());
+        effects.put("INFUSION", new Infusion());
     }
 
     public static IridiumEnchants getInstance() {
