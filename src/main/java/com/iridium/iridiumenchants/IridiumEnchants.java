@@ -14,10 +14,7 @@ import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -100,5 +100,10 @@ public class CustomEnchants {
             .put("ThunderousBlow", new CustomEnchant("&7ThunderousBlow", "Chance to strike your opponent with lightning", Type.AXE, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(10, Collections.singletonList("LIGHTNING:TARGET")))
                     .build(), true))
+            .put("Blunder", new CustomEnchant("&7Blunder", "Gives your opponent weakness effect", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("POTION:WEAKNESS:1:5:TARGET")))
+                    .put(2, new Level(10, Collections.singletonList("POTION:WEAKNESS:2:5:TARGET")))
+                    .put(3, new Level(10, Collections.singletonList("POTION:WEAKNESS:3:5:TARGET")))
+                    .build(), true))
             .build();
 }
