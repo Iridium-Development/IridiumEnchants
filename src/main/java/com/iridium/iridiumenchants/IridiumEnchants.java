@@ -73,6 +73,7 @@ public class IridiumEnchants extends IridiumCore {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinLeaveListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
     }
 
     @Override
@@ -111,6 +112,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("INFUSION", new Infusion());
         effects.put("AURA", new Aura());
         effects.put("LIGHTNING", new Lightning());
+        effects.put("EXPERIENCE", new Experience());
     }
 
     public static IridiumEnchants getInstance() {

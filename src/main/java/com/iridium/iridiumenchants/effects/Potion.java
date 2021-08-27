@@ -23,8 +23,10 @@ public class Potion implements Effect {
             duration = 1;
         }
         if (args.length == 5 && args[4].equalsIgnoreCase("target")) {
+            if(target==null)return;
             target.addPotionEffect(potionEffectType.createEffect(duration * 20, amplifier));
         } else {
+            if(player==null)return;
             player.addPotionEffect(potionEffectType.createEffect(duration * 20, amplifier));
         }
     }
