@@ -113,6 +113,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("AURA", new Aura());
         effects.put("LIGHTNING", new Lightning());
         effects.put("EXPERIENCE", new Experience());
+        effects.put("HEAL", new Heal());
     }
 
     public static IridiumEnchants getInstance() {

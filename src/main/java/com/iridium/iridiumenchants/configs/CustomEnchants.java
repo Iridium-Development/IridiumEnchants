@@ -125,5 +125,10 @@ public class CustomEnchants {
                     .put(2, new Level(100, Collections.singletonList("AURA:ALLY:10:POTION:REGENERATION:2:5:TARGET")))
                     .put(3, new Level(100, Collections.singletonList("AURA:ALLY:10:POTION:REGENERATION:3:5:TARGET")))
                     .build(), true))
+            .put("Lifesteal", new CustomEnchant("&7Lifesteal", "Chance to heal yourself when you attack an enemy", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("HEAL:1")))
+                    .put(2, new Level(10, Collections.singletonList("HEAL:2")))
+                    .put(3, new Level(10, Collections.singletonList("HEAL:3")))
+                    .build(), true))
             .build();
 }
