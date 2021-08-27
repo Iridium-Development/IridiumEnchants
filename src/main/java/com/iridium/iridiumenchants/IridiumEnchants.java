@@ -111,6 +111,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("EXPLODE", new Explode());
         effects.put("SMELT", new Smelt());
         effects.put("INFUSION", new Infusion());
+        effects.put("AURA", new Aura());
     }
 
     public static IridiumEnchants getInstance() {
