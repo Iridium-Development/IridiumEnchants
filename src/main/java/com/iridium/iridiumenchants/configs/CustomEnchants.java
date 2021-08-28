@@ -150,5 +150,10 @@ public class CustomEnchants {
                     .put(2, new Level(7, Collections.singletonList("Elite"), Collections.singletonList("DAMAGE_MODIFIER:0")))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("DAMAGE_MODIFIER:0")))
                     .build(), true))
+            .put("Decapitate", new CustomEnchant("&7Decapitate", "Chance to drop an enemies head upon killing them", Type.AXE, "PLAYER_KILL", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(30, Collections.singletonList("Common"), Collections.singletonList("DROP_HEAD:TARGET")))
+                    .put(2, new Level(50, Collections.singletonList("Common"), Collections.singletonList("DROP_HEAD:TARGET")))
+                    .put(3, new Level(100, Collections.singletonList("Common"), Collections.singletonList("DROP_HEAD:TARGET")))
+                    .build(), true))
             .build();
 }
