@@ -60,10 +60,10 @@ public class EnchantmentTierGUI implements GUI {
         Player player = (Player) event.getWhoClicked();
         IridiumEnchants.getInstance().getConfiguration().tiers.entrySet().stream().filter(tier -> tier.getValue().item.slot == event.getSlot()).findFirst().ifPresent(tier -> {
             if (player.getLevel() < tier.getValue().experienceCost) {
-                player.sendMessage(IridiumEnchants.getInstance().getMessages().notEnoughExperience
+                player.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notEnoughExperience
                         .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
                         .replace("%tier%", tier.getKey())
-                );
+                ));
                 return;
             }
             player.setLevel(player.getLevel() - tier.getValue().experienceCost);
