@@ -183,5 +183,10 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:FAST_DIGGING:2:5")))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:FAST_DIGGING:3:5")))
                     .build(), true))
+            .put("Rage", new CustomEnchant("&7Rage", "Chance to gain strength when attacking a player", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("Common"), Collections.singletonList("POTION:DAMAGE_INCREASE:1:5")))
+                    .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_INCREASE:2:5")))
+                    .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_INCREASE:3:5")))
+                    .build(), true))
             .build();
 }
