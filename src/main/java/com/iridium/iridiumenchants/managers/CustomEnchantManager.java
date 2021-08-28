@@ -183,7 +183,7 @@ public class CustomEnchantManager {
             if (random > level.chance) continue;
             boolean canApplyEffects = true;
             for (String conditions : level.conditions) {
-                String[] conditionArgs = conditions.toUpperCase().split(":");
+                String[] conditionArgs = conditions.toUpperCase().split(" ");
                 if (conditionArgs.length == 0) continue;
                 Condition condition = IridiumEnchants.getInstance().getConditons().get(conditionArgs[0]);
                 if (condition != null) {

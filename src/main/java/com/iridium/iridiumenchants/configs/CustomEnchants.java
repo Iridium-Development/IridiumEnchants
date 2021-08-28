@@ -5,6 +5,7 @@ import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.Level;
 import com.iridium.iridiumenchants.Type;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 
@@ -34,10 +35,15 @@ public class CustomEnchants {
                     .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("FEED:2"), Collections.singletonList("ISWEARING")))
                     .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("FEED:3"), Collections.singletonList("ISWEARING")))
                     .build(), true))
-            .put("Jacket", new CustomEnchant("&7Jacket", "Gives you an unlimited absorbtion effect", Type.LEGGINGS, "PASSIVE:20", ImmutableMap.<Integer, Level>builder()
-                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("POTION:ABSORPTION:1:5"), Collections.singletonList("ISWEARING")))
-                    .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("POTION:ABSORPTION:2:5"), Collections.singletonList("ISWEARING")))
-                    .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("POTION:ABSORPTION:3:5"), Collections.singletonList("ISWEARING")))
+            .put("Jacket", new CustomEnchant("&7Jacket", "Gives you extra health", Type.LEGGINGS, "PASSIVE:20", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("POTION:HEALTH_BOOST:1:5"), Collections.singletonList("ISWEARING")))
+                    .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("POTION:HEALTH_BOOST:2:5"), Collections.singletonList("ISWEARING")))
+                    .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("POTION:HEALTH_BOOST:3:5"), Collections.singletonList("ISWEARING")))
+                    .build(), true))
+            .put("Resistance", new CustomEnchant("&7Resistance", "Gives you a permanent resistance effect when below half health", Type.CHESTPLATE, "PASSIVE:20", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("POTION:DAMAGE_RESISTANCE:1:5"), Arrays.asList("ISWEARING", "PLAYER_HEALTH <= 10")))
+                    .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_RESISTANCE:2:5"), Arrays.asList("ISWEARING", "PLAYER_HEALTH <= 10")))
+                    .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_RESISTANCE:3:5"), Arrays.asList("ISWEARING", "PLAYER_HEALTH <= 10")))
                     .build(), true))
             .put("Haste", new CustomEnchant("&7Haste", "Gives you an unlimited Haste effect", Type.PICKAXE, "PASSIVE:20", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("POTION:FAST_DIGGING:1:5"), Collections.emptyList()))
@@ -188,10 +194,10 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:FAST_DIGGING:2:5"), Collections.emptyList()))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:FAST_DIGGING:3:5"), Collections.emptyList()))
                     .build(), true))
-            .put("Rage", new CustomEnchant("&7Rage", "Chance to gain strength when attacking a player", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
-                    .put(1, new Level(10, Collections.singletonList("Common"), Collections.singletonList("POTION:DAMAGE_INCREASE:1:5"), Collections.emptyList()))
-                    .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_INCREASE:2:5"), Collections.emptyList()))
-                    .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_INCREASE:3:5"), Collections.emptyList()))
+            .put("Rage", new CustomEnchant("&7Rage", "Chance to gain strength when attacking a player if they are below 2.5 health", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("Common"), Collections.singletonList("POTION:DAMAGE_INCREASE:1:5"), Collections.singletonList("TARGET_HEALTH <= 5")))
+                    .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_INCREASE:2:5"), Collections.singletonList("TARGET_HEALTH <= 5")))
+                    .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_INCREASE:3:5"), Collections.singletonList("TARGET_HEALTH <= 5")))
                     .build(), true))
             .build();
 }
