@@ -10,6 +10,7 @@ import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.Level;
 import com.iridium.iridiumenchants.Trigger;
+import com.iridium.iridiumenchants.conditions.Condition;
 import com.iridium.iridiumenchants.effects.Effect;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
@@ -180,12 +181,23 @@ public class CustomEnchantManager {
             if (level == null) continue;
             double random = Math.random() * 100;
             if (random > level.chance) continue;
-            for (String effects : level.effects) {
-                String[] effectArgs = effects.toUpperCase().split(":");
-                if (effectArgs.length == 0) continue;
-                Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
-                if (effect != null) {
-                    effect.apply(player, target, effectArgs, event);
+            boolean canApplyEffects = true;
+            for (String conditions : level.conditions) {
+                String[] conditionArgs = conditions.toUpperCase().split(":");
+                if (conditionArgs.length == 0) continue;
+                Condition condition = IridiumEnchants.getInstance().getConditons().get(conditionArgs[0]);
+                if (condition != null) {
+                    if (!condition.apply(player, target, conditionArgs, itemStack)) canApplyEffects = false;
+                }
+            }
+            if (canApplyEffects) {
+                for (String effects : level.effects) {
+                    String[] effectArgs = effects.toUpperCase().split(":");
+                    if (effectArgs.length == 0) continue;
+                    Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
+                    if (effect != null) {
+                        effect.apply(player, target, effectArgs, event);
+                    }
                 }
             }
         }

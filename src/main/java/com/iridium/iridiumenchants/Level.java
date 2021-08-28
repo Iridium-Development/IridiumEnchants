@@ -13,4 +13,5 @@ public class Level {
     public double chance;
     public List<String> tiers;
     public List<String> effects;
+    public List<String> conditions;
 }

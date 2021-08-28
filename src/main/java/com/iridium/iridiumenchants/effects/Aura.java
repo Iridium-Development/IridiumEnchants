@@ -1,7 +1,7 @@
 package com.iridium.iridiumenchants.effects;
 
 import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.Support.FriendlySupport;
+import com.iridium.iridiumenchants.support.FriendlySupport;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;

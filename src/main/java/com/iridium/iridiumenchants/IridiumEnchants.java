@@ -1,14 +1,15 @@
 package com.iridium.iridiumenchants;
 
 import com.iridium.iridiumcore.IridiumCore;
-import com.iridium.iridiumenchants.Support.BuildSupport;
-import com.iridium.iridiumenchants.Support.FriendlySupport;
 import com.iridium.iridiumenchants.commands.CommandManager;
+import com.iridium.iridiumenchants.conditions.*;
 import com.iridium.iridiumenchants.configs.*;
 import com.iridium.iridiumenchants.effects.*;
 import com.iridium.iridiumenchants.listeners.*;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.UserManager;
+import com.iridium.iridiumenchants.support.BuildSupport;
+import com.iridium.iridiumenchants.support.FriendlySupport;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -32,6 +33,7 @@ public class IridiumEnchants extends IridiumCore {
     private Inventories inventories;
 
     private Map<String, Effect> effects;
+    private Map<String, Condition> conditons;
 
     private BuildSupport buildSupport;
     private FriendlySupport friendlySupport;
@@ -49,6 +51,7 @@ public class IridiumEnchants extends IridiumCore {
         }
 
         registerEffects();
+        registerConditions();
         registerSupport();
 
         getLogger().info("----------------------------------------");
@@ -118,6 +121,14 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("DAMAGE_MODIFIER", new DamageModifier());
         effects.put("DROP_HEAD", new DropHead());
         effects.put("MULTISHOT", new Multishot());
+    }
+
+    public void registerConditions() {
+        conditons = new HashMap<>();
+        conditons.put("PLAYER_HEALTH", new PlayerHealth());
+        conditons.put("TARGET_HEALTH", new TargetHealth());
+        conditons.put("ISWEARING", new IsWearing());
+        conditons.put("ISHOLDING", new IsHolding());
     }
 
     public static IridiumEnchants getInstance() {

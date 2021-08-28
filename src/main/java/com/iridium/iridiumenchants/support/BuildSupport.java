@@ -1,4 +1,4 @@
-package com.iridium.iridiumenchants.Support;
+package com.iridium.iridiumenchants.support;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
