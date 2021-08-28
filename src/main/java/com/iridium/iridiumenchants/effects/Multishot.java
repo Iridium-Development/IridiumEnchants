@@ -1,5 +1,6 @@
 package com.iridium.iridiumenchants.effects;
 
+import com.iridium.iridiumenchants.IridiumEnchants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
@@ -36,6 +37,7 @@ public class Multishot implements Effect {
 
         final double speed = velocity.length();
         final Vector direction = new Vector(velocity.getX() / speed, velocity.getY() / speed, velocity.getZ() / speed);
+        IridiumEnchants.getInstance().getAntiCheatSupport().exemptPlayer(player);
         for (int i = 0; i < amount; i++) {
             ItemStack item = new ItemStack(Material.ARROW);
             if (player.getInventory().containsAtLeast(item, 1) || !entityShootBowEvent.shouldConsumeItem()) {
@@ -53,5 +55,6 @@ public class Multishot implements Effect {
                 Bukkit.getPluginManager().callEvent(newEntityShootBowEvent);
             }
         }
+        IridiumEnchants.getInstance().getAntiCheatSupport().unExemptPlayer(player);
     }
 }

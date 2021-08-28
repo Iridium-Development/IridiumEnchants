@@ -8,6 +8,7 @@ import com.iridium.iridiumenchants.effects.*;
 import com.iridium.iridiumenchants.listeners.*;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.UserManager;
+import com.iridium.iridiumenchants.support.AntiCheatSupport;
 import com.iridium.iridiumenchants.support.BuildSupport;
 import com.iridium.iridiumenchants.support.FriendlySupport;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class IridiumEnchants extends IridiumCore {
 
     private BuildSupport buildSupport;
     private FriendlySupport friendlySupport;
+    private AntiCheatSupport antiCheatSupport;
 
     @Override
     public void onEnable() {
@@ -108,6 +110,15 @@ public class IridiumEnchants extends IridiumCore {
     public void registerSupport() {
         this.buildSupport = (player, location) -> true;
         this.friendlySupport = (player, livingEntity) -> false;
+        this.antiCheatSupport = new AntiCheatSupport() {
+            @Override
+            public void exemptPlayer(Player player) {
+            }
+
+            @Override
+            public void unExemptPlayer(Player player) {
+            }
+        };
     }
 
     public void registerEffects() {

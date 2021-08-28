@@ -33,6 +33,7 @@ public class Infusion implements Effect {
                 radius = 1;
             }
             boolean instantMine = args[2].equalsIgnoreCase("true");
+            IridiumEnchants.getInstance().getAntiCheatSupport().exemptPlayer((Player) player);
             for (Block block : getSquare(blockBreakEvent.getBlock().getLocation(), radius)) {
                 XMaterial material = XMaterial.matchXMaterial(block.getType());
                 if (IridiumEnchants.getInstance().getConfiguration().infusionBlacklist.contains(material)) continue;
@@ -48,6 +49,7 @@ public class Infusion implements Effect {
                     }
                 }
             }
+            IridiumEnchants.getInstance().getAntiCheatSupport().unExemptPlayer((Player) player);
         }
     }
 
