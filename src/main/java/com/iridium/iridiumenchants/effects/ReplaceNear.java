@@ -32,9 +32,12 @@ public class ReplaceNear implements Effect {
         }
         Optional<XMaterial> originalMaterial = XMaterial.matchXMaterial(args[2].toUpperCase());
         Optional<XMaterial> newMaterial = XMaterial.matchXMaterial(args[3].toUpperCase());
+        IridiumEnchants.getInstance().getLogger().info(args[2] + " "+args[3]);
         if (!originalMaterial.isPresent() || !newMaterial.isPresent()) return;
+        IridiumEnchants.getInstance().getLogger().info("1");
         if (args.length == 5 && args[4].equalsIgnoreCase("target")) {
             if (target == null) return;
+            IridiumEnchants.getInstance().getLogger().info("2");
             replaceNear(target, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial());
 
         } else {
