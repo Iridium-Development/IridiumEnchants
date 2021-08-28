@@ -20,9 +20,7 @@ public class Aura implements Effect {
         }
         String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
         for (Entity entity : player.getNearbyEntities(range, range, range)) {
-            IridiumEnchants.getInstance().getLogger().info(entity.getName());
             if (!(entity instanceof LivingEntity)) continue;
-            IridiumEnchants.getInstance().getLogger().info(Arrays.toString(newArgs));
             LivingEntity livingEntity = (LivingEntity) entity;
             if (auraType.isValid(player, livingEntity, IridiumEnchants.getInstance().getFriendlySupport())) {
                 Effect effect = IridiumEnchants.getInstance().getEffects().get(newArgs[0]);

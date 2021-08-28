@@ -12,6 +12,7 @@ import com.iridium.iridiumenchants.support.BuildSupport;
 import com.iridium.iridiumenchants.support.FriendlySupport;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -65,6 +66,9 @@ public class IridiumEnchants extends IridiumCore {
     @Override
     public void onDisable() {
         super.onDisable();
+        for (BlockState blockState : ReplaceNear.blockStates.keySet()) {
+            blockState.update(true, false);
+        }
     }
 
     @Override
@@ -121,6 +125,8 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("DAMAGE_MODIFIER", new DamageModifier());
         effects.put("DROP_HEAD", new DropHead());
         effects.put("MULTISHOT", new Multishot());
+        effects.put("REPLACE_NEAR", new ReplaceNear());
+        effects.put("COAT", new Coat());
     }
 
     public void registerConditions() {

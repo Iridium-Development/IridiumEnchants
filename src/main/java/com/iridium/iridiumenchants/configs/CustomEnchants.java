@@ -204,5 +204,11 @@ public class CustomEnchants {
                     .put(2, new Level(25, Collections.singletonList("Elite"), Collections.singletonList("HEAL:2"), Collections.emptyList()))
                     .put(3, new Level(25, Collections.singletonList("Legendary"), Collections.singletonList("HEAL:3"), Collections.emptyList()))
                     .build(), true))
+            .put("Frosty", new CustomEnchant("&7Frosty", "Makes the ground freeze around you", Type.BOOTS, "PASSIVE:5", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Legendary"), Arrays.asList("REPLACE_NEAR:3:WATER:PACKED_ICE", "COAT:SNOW:3"), Collections.singletonList("ISWEARING")))
+                    .build(), true))
+            .put("Magma", new CustomEnchant("&7Magma", "Turns lava to Magma", Type.BOOTS, "PASSIVE:5", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("REPLACE_NEAR:3:LAVA:MAGMA"), Collections.singletonList("ISWEARING")))
+                    .build(), true))
             .build();
 }
