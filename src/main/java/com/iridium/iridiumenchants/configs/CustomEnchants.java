@@ -199,5 +199,10 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_INCREASE:2:5"), Collections.singletonList("TARGET_HEALTH <= 5")))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_INCREASE:3:5"), Collections.singletonList("TARGET_HEALTH <= 5")))
                     .build(), true))
+            .put("SoulReaper", new CustomEnchant("&7SoulReaper", "Chance to steal your opponents health", Type.BOW, "PLAYER_DAMAGE_PROJECTILE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(25, Collections.singletonList("Common"), Collections.singletonList("HEAL:1"), Collections.emptyList()))
+                    .put(2, new Level(25, Collections.singletonList("Elite"), Collections.singletonList("HEAL:2"), Collections.emptyList()))
+                    .put(3, new Level(25, Collections.singletonList("Legendary"), Collections.singletonList("HEAL:3"), Collections.emptyList()))
+                    .build(), true))
             .build();
 }
