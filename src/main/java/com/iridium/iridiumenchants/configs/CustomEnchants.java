@@ -130,5 +130,15 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("HEAL:2")))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("HEAL:3")))
                     .build(), true))
+            .put("Impact", new CustomEnchant("&7Impact", "Chance to deal double damage", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(5, Collections.singletonList("Common"), Collections.singletonList("DAMAGE_MODIFIER:2")))
+                    .put(2, new Level(7, Collections.singletonList("Elite"), Collections.singletonList("DAMAGE_MODIFIER:2")))
+                    .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("DAMAGE_MODIFIER:2")))
+                    .build(), true))
+            .put("Evade", new CustomEnchant("&7Evade", "Chance to evade an attack", Type.CHESTPLATE, "DEFENCE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(5, Collections.singletonList("Common"), Collections.singletonList("DAMAGE_MODIFIER:0")))
+                    .put(2, new Level(7, Collections.singletonList("Elite"), Collections.singletonList("DAMAGE_MODIFIER:0")))
+                    .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("DAMAGE_MODIFIER:0")))
+                    .build(), true))
             .build();
 }
