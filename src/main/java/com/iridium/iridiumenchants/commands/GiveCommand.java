@@ -7,12 +7,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.time.Duration;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -65,7 +63,18 @@ public class GiveCommand extends Command {
             sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().invalidEnchantmentLevel.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
         }
-        player.getInventory().addItem(IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentCrystal(customEnchant.get().getKey(), customEnchant.get().getValue(), level));
+        Collection<ItemStack> itemStacks = player.getInventory().addItem(IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentCrystal(customEnchant.get().getKey(), customEnchant.get().getValue(), level)).values();
+        for (ItemStack itemStack : itemStacks) {
+            player.getWorld().dropItem(player.getLocation(), itemStack);
+        }
+        if (sender instanceof Player) {
+            sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().gavePlayerEnchantment
+                    .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
+                    .replace("%player%", player.getName())
+                    .replace("%enchant%", args[2])
+                    .replace("%level%", IridiumEnchants.getInstance().getCustomEnchantManager().toRomanNumerals(Integer.parseInt(args[3])))
+            ));
+        }
         return true;
     }
 

@@ -17,4 +17,7 @@ public class Messages {
     public String notAnEnchantment = "%prefix% &7That enchantment doesn't exist.";
     public String notANumber = "%prefix% &7That is not a valid number.";
     public String invalidEnchantmentLevel = "%prefix% &7That enchantment does not have that level.";
+    public String notEnoughExperience = "%prefix% &7You don't have enough experience to purchase a %tier% enchantment.";
+    public String gotEnchantmentFromTier = "%prefix% &7You purchased a &e%tier% &7enchantment and received a &e%enchant% %level% &7crystal.";
+    public String gavePlayerEnchantment = "%prefix% &7You gave %player% a &e%enchant% %level% &7crystal.";
 }

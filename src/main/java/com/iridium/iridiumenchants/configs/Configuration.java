@@ -3,6 +3,7 @@ package com.iridium.iridiumenchants.configs;
 import com.google.common.collect.ImmutableMap;
 import com.iridium.iridiumcore.Item;
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
+import com.iridium.iridiumcore.dependencies.xseries.XSound;
 import com.iridium.iridiumenchants.Tier;
 
 import java.util.Arrays;
@@ -11,9 +12,8 @@ import java.util.Map;
 
 public class Configuration {
     public String prefix = "&e&lIridiumEnchants &8»";
-
+    public XSound tierPurchaseSound = XSound.ENTITY_PLAYER_LEVELUP;
     public boolean tierGUI = true;
-
     public Item enchantmentCrystal = new Item(XMaterial.NETHER_STAR, 1, "&e&l%enchant%", Arrays.asList("&7Type: %type%", "&7Description: %description%"));
 
     public Map<XMaterial, XMaterial> smelt = ImmutableMap.<XMaterial, XMaterial>builder()
@@ -28,8 +28,8 @@ public class Configuration {
             .build();
     public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST);
     public Map<String, Tier> tiers = ImmutableMap.<String, Tier>builder()
-            .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&7Click to purchase a random common enchantment", "", "&e&lCOST: &7%cost%")), 20))
-            .put("Elite", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 13, 1, "&e&lELITE ENCHANTMENT", Arrays.asList("&7Click to purchase a random elite enchantment", "", "&e&lCOST: &7%cost%")), 40))
-            .put("Legendary", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 15, 1, "&6&lLEGENDARY ENCHANTMENT", Arrays.asList("&7Click to purchase a random legendary enchantment", "", "&e&lCOST: &7%cost%")), 60))
+            .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&7Click to purchase a random common enchantment", "", "&e&lCOST: &7%cost% levels")), 20))
+            .put("Elite", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 13, 1, "&e&lELITE ENCHANTMENT", Arrays.asList("&7Click to purchase a random elite enchantment", "", "&e&lCOST: &7%cost% levels")), 40))
+            .put("Legendary", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 15, 1, "&6&lLEGENDARY ENCHANTMENT", Arrays.asList("&7Click to purchase a random legendary enchantment", "", "&e&lCOST: &7%cost% levels")), 60))
             .build();
 }

@@ -9,13 +9,12 @@ import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.Level;
-import com.iridium.iridiumenchants.effects.Effect;
 import com.iridium.iridiumenchants.Trigger;
+import com.iridium.iridiumenchants.effects.Effect;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemFlag;
@@ -33,7 +32,7 @@ public class CustomEnchantManager {
      * @param level the level
      * @return the roman numeral
      */
-    public static String toRomanNumerals(int level) {
+    public String toRomanNumerals(int level) {
         if (level <= 0) {
             return "I";
         }
