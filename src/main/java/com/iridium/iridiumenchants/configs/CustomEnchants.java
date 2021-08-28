@@ -178,5 +178,10 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:SLOW:1:5:TARGET")))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:SLOW:1:5:TARGET")))
                     .build(), true))
+            .put("BloodLust", new CustomEnchant("&7BloodLust", "Chance to gain haste when attacking a player", Type.SWORD, "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("Common"), Collections.singletonList("POTION:FAST_DIGGING:1:5")))
+                    .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("POTION:FAST_DIGGING:2:5")))
+                    .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("POTION:FAST_DIGGING:3:5")))
+                    .build(), true))
             .build();
 }
