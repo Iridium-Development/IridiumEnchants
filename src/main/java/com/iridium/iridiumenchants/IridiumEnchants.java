@@ -138,6 +138,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("MULTISHOT", new Multishot());
         effects.put("REPLACE_NEAR", new ReplaceNear());
         effects.put("COAT", new Coat());
+        effects.put("TELEPATHY", new Telepathy());
     }
 
     public void registerConditions() {

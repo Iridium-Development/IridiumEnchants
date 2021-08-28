@@ -233,5 +233,8 @@ public class CustomEnchants {
                     .put(2, new Level(15, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_INCREASE:2:5:TARGET"), Collections.emptyList()))
                     .put(3, new Level(15, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_INCREASE:3:5:TARGET"), Collections.emptyList()))
                     .build(), true))
+            .put("Telepathy", new CustomEnchant("&7Telepathy", "Puts all blocks you break into your inventory", Type.TOOL, "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("TELEPATHY"), Collections.emptyList()))
+                    .build(), true))
             .build();
 }
