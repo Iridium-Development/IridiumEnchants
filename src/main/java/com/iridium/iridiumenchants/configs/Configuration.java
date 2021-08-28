@@ -30,6 +30,6 @@ public class Configuration {
     public Map<String, Tier> tiers = ImmutableMap.<String, Tier>builder()
             .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&7Click to purchase a random common enchantment", "", "&e&lCOST: &7%cost%")), 20))
             .put("Elite", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 13, 1, "&e&lELITE ENCHANTMENT", Arrays.asList("&7Click to purchase a random elite enchantment", "", "&e&lCOST: &7%cost%")), 40))
-            .put("Legendary", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 15, 1, "&6&lLEGENDARY ENCHANTMENT", Arrays.asList("&7Click to purchase a random common enchantment", "", "&e&lCOST: &7%cost%")), 60))
+            .put("Legendary", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 15, 1, "&6&lLEGENDARY ENCHANTMENT", Arrays.asList("&7Click to purchase a random legendary enchantment", "", "&e&lCOST: &7%cost%")), 60))
             .build();
 }
