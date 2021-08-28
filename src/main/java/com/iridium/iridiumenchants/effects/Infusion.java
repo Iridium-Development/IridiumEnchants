@@ -2,7 +2,7 @@ package com.iridium.iridiumenchants.effects;
 
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.listeners.BlockBreakListener;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -40,7 +40,7 @@ public class Infusion implements Effect {
                 if (IridiumEnchants.getInstance().getBuildSupport().canBuild(((Player) player), block.getLocation())) {
                     BlockBreakEvent breakEvent = new BlockBreakEvent(block, (Player) player);
                     events.add(breakEvent);
-                    new BlockBreakListener().onBlockBreak(breakEvent);
+                    Bukkit.getPluginManager().callEvent(breakEvent);
                     if (breakEvent.isCancelled()) continue;
                     if (instantMine) {
                         block.setType(Material.AIR);

@@ -3,8 +3,9 @@ package com.iridium.iridiumenchants.commands;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CooldownProvider;
 import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.utils.TimeUtils;
 import com.iridium.iridiumenchants.configs.Commands;
+import com.iridium.iridiumenchants.gui.EnchantmentTierGUI;
+import com.iridium.iridiumenchants.utils.TimeUtils;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -90,7 +91,9 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
-            //TODO
+            if (commandSender instanceof Player) {
+                ((Player) commandSender).openInventory(new EnchantmentTierGUI().getInventory());
+            }
             IridiumEnchants.getInstance().getCommands().helpCommand.execute(commandSender, args);
             return true;
         }

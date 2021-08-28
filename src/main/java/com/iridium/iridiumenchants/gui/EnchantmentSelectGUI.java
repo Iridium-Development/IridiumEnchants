@@ -24,7 +24,7 @@ public class EnchantmentSelectGUI implements GUI {
     @NotNull
     @Override
     public Inventory getInventory() {
-        Inventory inventory = Bukkit.getServer().createInventory(this, 36, StringUtils.color("&8CustomEnchants"));
+        Inventory inventory = Bukkit.getServer().createInventory(this, 36, StringUtils.color(IridiumEnchants.getInstance().getInventories().enchantmentSelectGUITitle));
         addContent(inventory);
         return inventory;
     }

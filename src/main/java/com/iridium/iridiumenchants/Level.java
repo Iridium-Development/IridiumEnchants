@@ -11,5 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Level {
     public double chance;
+    public List<String> tiers;
     public List<String> effects;
 }
