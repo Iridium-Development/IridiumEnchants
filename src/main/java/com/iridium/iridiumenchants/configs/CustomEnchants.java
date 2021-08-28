@@ -223,5 +223,15 @@ public class CustomEnchants {
                     .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("EXPLODE:3:TRUE:TRUE"), Collections.emptyList()))
                     .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("EXPLODE:5:TRUE:TRUE"), Collections.emptyList()))
                     .build(), true))
+            .put("Piercing", new CustomEnchant("&7Piercing", "Chance to deal double damage", Type.BOW, "PLAYER_DAMAGE_PROJECTILE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(10, Collections.singletonList("Common"), Collections.singletonList("DAMAGE_MODIFIER:2"), Collections.emptyList()))
+                    .put(2, new Level(15, Collections.singletonList("Elite"), Collections.singletonList("DAMAGE_MODIFIER:2"), Collections.emptyList()))
+                    .put(3, new Level(25, Collections.singletonList("Legendary"), Collections.singletonList("DAMAGE_MODIFIER:2"), Collections.emptyList()))
+                    .build(), true))
+            .put("Venomous", new CustomEnchant("&7Venomous", "Chance to poison your opponent", Type.BOW, "PLAYER_DAMAGE_PROJECTILE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(15, Collections.singletonList("Common"), Collections.singletonList("POTION:DAMAGE_INCREASE:1:5:TARGET"), Collections.emptyList()))
+                    .put(2, new Level(15, Collections.singletonList("Elite"), Collections.singletonList("POTION:DAMAGE_INCREASE:2:5:TARGET"), Collections.emptyList()))
+                    .put(3, new Level(15, Collections.singletonList("Legendary"), Collections.singletonList("POTION:DAMAGE_INCREASE:3:5:TARGET"), Collections.emptyList()))
+                    .build(), true))
             .build();
 }
