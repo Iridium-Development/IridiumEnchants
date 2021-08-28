@@ -11,7 +11,11 @@ import java.util.Map;
 
 public class Configuration {
     public String prefix = "&e&lIridiumEnchants &8»";
+
+    public boolean tierGUI = true;
+
     public Item enchantmentCrystal = new Item(XMaterial.NETHER_STAR, 1, "&e&l%enchant%", Arrays.asList("&7Type: %type%", "&7Description: %description%"));
+
     public Map<XMaterial, XMaterial> smelt = ImmutableMap.<XMaterial, XMaterial>builder()
             .put(XMaterial.IRON_ORE, XMaterial.IRON_INGOT)
             .put(XMaterial.DEEPSLATE_IRON_ORE, XMaterial.IRON_INGOT)

@@ -91,10 +91,11 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
-            if (commandSender instanceof Player) {
+            if (commandSender instanceof Player && IridiumEnchants.getInstance().getConfiguration().tierGUI) {
                 ((Player) commandSender).openInventory(new EnchantmentTierGUI().getInventory());
+            } else {
+                IridiumEnchants.getInstance().getCommands().helpCommand.execute(commandSender, args);
             }
-            IridiumEnchants.getInstance().getCommands().helpCommand.execute(commandSender, args);
             return true;
         }
 
