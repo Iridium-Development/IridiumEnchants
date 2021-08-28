@@ -30,32 +30,35 @@ public class ReplaceNear implements Effect {
         } catch (NumberFormatException exception) {
             radius = 1;
         }
+        int time;
+        try {
+            time = Integer.parseInt(args[4]);
+        } catch (NumberFormatException exception) {
+            time = 20;
+        }
         Optional<XMaterial> originalMaterial = XMaterial.matchXMaterial(args[2].toUpperCase());
         Optional<XMaterial> newMaterial = XMaterial.matchXMaterial(args[3].toUpperCase());
-        IridiumEnchants.getInstance().getLogger().info(args[2] + " "+args[3]);
         if (!originalMaterial.isPresent() || !newMaterial.isPresent()) return;
-        IridiumEnchants.getInstance().getLogger().info("1");
-        if (args.length == 5 && args[4].equalsIgnoreCase("target")) {
+        if (args.length == 6 && args[5].equalsIgnoreCase("target")) {
             if (target == null) return;
-            IridiumEnchants.getInstance().getLogger().info("2");
-            replaceNear(target, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial());
+            replaceNear(target, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
 
         } else {
             if (player == null) return;
-            replaceNear(player, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial());
+            replaceNear(player, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
         }
     }
 
-    public void replaceNear(LivingEntity livingEntity, int radius, Material currentMaterial, Material newMaterial) {
+    public void replaceNear(LivingEntity livingEntity, int radius, Material currentMaterial, Material newMaterial, int time) {
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
                     Location location = livingEntity.getLocation().add(x, y, z).getBlock().getLocation();
                     Block block = location.getBlock();
-                    blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, 20));
+                    blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, time));
                     if (block.getType() == currentMaterial) {
                         BlockState blockState = block.getState();
-                        blockStates.put(blockState, 20);
+                        blockStates.put(blockState, time);
                         block.setType(newMaterial, false);
                     }
                 }
