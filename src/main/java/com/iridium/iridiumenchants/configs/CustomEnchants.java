@@ -79,6 +79,11 @@ public class CustomEnchants {
                     .put(2, new Level(10, Collections.singletonList("Elite"), Collections.singletonList("EXPLODE:2:FALSE:FALSE:TARGET")))
                     .put(3, new Level(10, Collections.singletonList("Legendary"), Collections.singletonList("EXPLODE:3:FALSE:FALSE:TARGET")))
                     .build(), true))
+            .put("Multishot", new CustomEnchant("&7Multishot", "Shoots multiple arrows", Type.BOW, "BOW_FIRE", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("MULTISHOT:1")))
+                    .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("MULTISHOT:2")))
+                    .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("MULTISHOT:3")))
+                    .build(), true))
             .put("Blazingtouch", new CustomEnchant("&7BlazingTouch", "Automatically smelts the ores you mine", Type.PICKAXE, "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("SMELT")))
                     .build(), true))
@@ -152,8 +157,8 @@ public class CustomEnchants {
                     .build(), true))
             .put("Decapitate", new CustomEnchant("&7Decapitate", "Chance to drop an enemies head upon killing them", Type.AXE, "PLAYER_KILL", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(30, Collections.singletonList("Common"), Collections.singletonList("DROP_HEAD:TARGET")))
-                    .put(2, new Level(50, Collections.singletonList("Common"), Collections.singletonList("DROP_HEAD:TARGET")))
-                    .put(3, new Level(100, Collections.singletonList("Common"), Collections.singletonList("DROP_HEAD:TARGET")))
+                    .put(2, new Level(50, Collections.singletonList("Elite"), Collections.singletonList("DROP_HEAD:TARGET")))
+                    .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("DROP_HEAD:TARGET")))
                     .build(), true))
             .build();
 }

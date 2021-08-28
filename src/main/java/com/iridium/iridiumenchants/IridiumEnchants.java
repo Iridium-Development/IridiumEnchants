@@ -72,6 +72,7 @@ public class IridiumEnchants extends IridiumCore {
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityShootBowListener(), this);
     }
 
     @Override
@@ -116,6 +117,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("HEAL", new Heal());
         effects.put("DAMAGE_MODIFIER", new DamageModifier());
         effects.put("DROP_HEAD", new DropHead());
+        effects.put("MULTISHOT", new Multishot());
     }
 
     public static IridiumEnchants getInstance() {
