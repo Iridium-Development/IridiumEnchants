@@ -64,7 +64,7 @@ public class ReplaceNear implements Effect {
         for (BlockState blockState : new ArrayList<>(blockStates.keySet())) {
             blockStates.put(blockState, blockStates.get(blockState) - 1);
             if (blockStates.get(blockState) == 0) {
-                blockState.update(true, false);
+                blockState.update(true, true);
                 blockStates.remove(blockState);
             }
         }
