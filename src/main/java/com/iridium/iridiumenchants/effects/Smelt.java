@@ -2,6 +2,7 @@ package com.iridium.iridiumenchants.effects;
 
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -14,7 +15,7 @@ public class Smelt implements Effect {
     public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
         if (player instanceof Player && event instanceof BlockBreakEvent) {
             BlockBreakEvent blockBreakEvent = (BlockBreakEvent) event;
-            blockBreakEvent.setDropItems(false);
+            blockBreakEvent.setCancelled(true);
             Block block = blockBreakEvent.getBlock();
             for (ItemStack drop : block.getDrops(((Player) player).getItemInHand())) {
                 XMaterial xMaterial = XMaterial.matchXMaterial(drop);
@@ -23,6 +24,7 @@ public class Smelt implements Effect {
                     block.getLocation().getWorld().dropItem(block.getLocation(), itemStack);
                 }
             }
+            block.setType(Material.AIR);
         }
     }
 }

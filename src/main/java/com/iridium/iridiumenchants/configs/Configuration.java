@@ -26,7 +26,7 @@ public class Configuration {
             .put(XMaterial.DEEPSLATE_GOLD_ORE, XMaterial.GOLD_INGOT)
             .put(XMaterial.SAND, XMaterial.GLASS)
             .build();
-    public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST);
+    public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST, XMaterial.WATER, XMaterial.LAVA);
     public Map<String, Tier> tiers = ImmutableMap.<String, Tier>builder()
             .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&7Click to purchase a random common enchantment", "", "&e&lCOST: &7%cost% levels")), 20))
             .put("Elite", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 13, 1, "&e&lELITE ENCHANTMENT", Arrays.asList("&7Click to purchase a random elite enchantment", "", "&e&lCOST: &7%cost% levels")), 40))

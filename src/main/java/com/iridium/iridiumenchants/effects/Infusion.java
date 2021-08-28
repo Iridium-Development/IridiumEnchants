@@ -26,7 +26,6 @@ public class Infusion implements Effect {
                 events.remove(blockBreakEvent);
                 return;
             }
-            blockBreakEvent.setDropItems(false);
             int radius;
             try {
                 radius = Integer.parseInt(args[1]);

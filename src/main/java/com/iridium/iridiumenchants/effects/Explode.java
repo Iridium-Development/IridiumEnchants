@@ -15,9 +15,9 @@ public class Explode implements Effect {
         boolean fire = args[2].equalsIgnoreCase("true");
         boolean breakBlocks = args[3].equalsIgnoreCase("true");
         if (args.length == 5 && args[4].equalsIgnoreCase("target")) {
-            target.getWorld().createExplosion(target.getLocation(), power, fire, breakBlocks);
+            target.getWorld().createExplosion(target.getLocation().getX(), target.getLocation().getY(), target.getLocation().getZ(), power, fire, breakBlocks);
         } else {
-            player.getWorld().createExplosion(player.getLocation(), power, fire, breakBlocks);
+            player.getWorld().createExplosion(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), power, fire, breakBlocks);
         }
     }
 }
