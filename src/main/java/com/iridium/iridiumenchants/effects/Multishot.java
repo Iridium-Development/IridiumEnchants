@@ -3,6 +3,7 @@ package com.iridium.iridiumenchants.effects;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -50,6 +51,7 @@ public class Multishot implements Effect {
                         direction.getZ() + (Math.random() - 0.5D) / 3.5D).normalize()
                         .multiply(speed));
                 arrow.setShooter(p);
+                arrow.setPickupStatus(entityShootBowEvent.shouldConsumeItem() ? AbstractArrow.PickupStatus.ALLOWED : AbstractArrow.PickupStatus.CREATIVE_ONLY);
                 EntityShootBowEvent newEntityShootBowEvent = new EntityShootBowEvent(p, entityShootBowEvent.getBow(), item, arrow, entityShootBowEvent.getHand(), entityShootBowEvent.getForce(), entityShootBowEvent.shouldConsumeItem());
                 events.add(newEntityShootBowEvent);
                 Bukkit.getPluginManager().callEvent(newEntityShootBowEvent);
