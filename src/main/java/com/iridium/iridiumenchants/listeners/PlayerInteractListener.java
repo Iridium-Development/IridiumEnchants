@@ -3,7 +3,6 @@ package com.iridium.iridiumenchants.listeners;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.gui.EnchantmentSelectGUI;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +17,6 @@ public class PlayerInteractListener implements Listener {
         if (event.getAction() != Action.PHYSICAL) {
             Player player = event.getPlayer();
             ItemStack itemStack = player.getItemInHand();
-            if (itemStack.getType() == Material.AIR) return;
             IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(itemStack).ifPresent(iridiumEnchant -> {
                         CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(iridiumEnchant);
                         if (customEnchant == null) return;

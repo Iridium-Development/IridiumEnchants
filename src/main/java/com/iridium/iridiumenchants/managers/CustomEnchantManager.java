@@ -103,6 +103,7 @@ public class CustomEnchantManager {
      * @return an IridiumEnchant
      */
     public Optional<String> getEnchantmentFromCrystal(ItemStack itemStack) {
+        if (itemStack == null || itemStack.getType() == Material.AIR) return Optional.empty();
         NBTItem nbtItem = new NBTItem(itemStack);
         NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
         if (!nbtCompound.hasKey("enchantment")) {
@@ -118,6 +119,7 @@ public class CustomEnchantManager {
      * @return The enchantment level;
      */
     public int getEnchantmentLevelFromCrystal(ItemStack itemStack) {
+        if (itemStack == null || itemStack.getType() == Material.AIR) return 0;
         NBTItem nbtItem = new NBTItem(itemStack);
         NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");
         if (!nbtCompound.hasKey("level")) {
