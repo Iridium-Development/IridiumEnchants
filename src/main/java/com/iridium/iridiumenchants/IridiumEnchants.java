@@ -1,12 +1,14 @@
 package com.iridium.iridiumenchants;
 
 import com.iridium.iridiumcore.IridiumCore;
-import com.iridium.iridiumenchants.commands.CommandManager;
+import com.iridium.iridiumenchants.commands.customenchants.CommandManager;
+import com.iridium.iridiumenchants.commands.gkits.GkitsCommandManager;
 import com.iridium.iridiumenchants.conditions.*;
 import com.iridium.iridiumenchants.configs.*;
 import com.iridium.iridiumenchants.effects.*;
 import com.iridium.iridiumenchants.listeners.*;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
+import com.iridium.iridiumenchants.managers.GkitsManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import com.iridium.iridiumenchants.support.AntiCheatSupport;
 import com.iridium.iridiumenchants.support.BuildSupport;
@@ -25,14 +27,17 @@ public class IridiumEnchants extends IridiumCore {
     private static IridiumEnchants instance;
 
     private CommandManager commandManager;
+    private GkitsCommandManager gkitsCommandManager;
     private CustomEnchantManager customEnchantManager;
     private UserManager userManager;
+    private GkitsManager gkitsManager;
 
     private Configuration configuration;
     private Messages messages;
     private Commands commands;
     private CustomEnchants customEnchants;
     private Inventories inventories;
+    private GKits gKits;
 
     private Map<String, Effect> effects;
     private Map<String, Condition> conditions;
@@ -46,8 +51,10 @@ public class IridiumEnchants extends IridiumCore {
         instance = this;
         super.onEnable();
         this.commandManager = new CommandManager("iridiumenchants");
+        this.gkitsCommandManager = new GkitsCommandManager("gkits");
         this.customEnchantManager = new CustomEnchantManager();
         this.userManager = new UserManager();
+        this.gkitsManager = new GkitsManager();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             userManager.getUser(player);
@@ -95,6 +102,7 @@ public class IridiumEnchants extends IridiumCore {
         this.commands = getPersist().load(Commands.class);
         this.customEnchants = getPersist().load(CustomEnchants.class);
         this.inventories = getPersist().load(Inventories.class);
+        this.gKits = getPersist().load(GKits.class);
     }
 
     @Override
@@ -104,6 +112,7 @@ public class IridiumEnchants extends IridiumCore {
         getPersist().save(commands);
         getPersist().save(customEnchants);
         getPersist().save(inventories);
+        getPersist().save(gKits);
     }
 
     @Override

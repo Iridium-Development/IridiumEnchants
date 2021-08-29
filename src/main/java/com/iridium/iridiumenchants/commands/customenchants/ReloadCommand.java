@@ -1,7 +1,8 @@
-package com.iridium.iridiumenchants.commands;
+package com.iridium.iridiumenchants.commands.customenchants;
 
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.commands.Command;
 import org.bukkit.command.CommandSender;
 
 import java.time.Duration;

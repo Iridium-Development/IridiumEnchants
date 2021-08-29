@@ -8,3 +8,5 @@ commands:
   iridiumenchants:
     aliases: [ "enchants", "ce", "customenchants" ]
     description: Main plugin command
+  gkits:
+    description: Gkits command

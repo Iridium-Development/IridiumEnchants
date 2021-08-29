@@ -1,8 +1,9 @@
-package com.iridium.iridiumenchants.commands;
+package com.iridium.iridiumenchants.commands.customenchants;
 
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CooldownProvider;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.commands.Command;
 import com.iridium.iridiumenchants.configs.Commands;
 import com.iridium.iridiumenchants.gui.EnchantmentTierGUI;
 import com.iridium.iridiumenchants.utils.TimeUtils;

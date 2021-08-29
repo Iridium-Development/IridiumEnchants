@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants.configs;
 
-import com.iridium.iridiumenchants.commands.*;
+import com.iridium.iridiumenchants.commands.customenchants.*;
 
 public class Commands {
     public HelpCommand helpCommand = new HelpCommand();

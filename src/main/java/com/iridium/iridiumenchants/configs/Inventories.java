@@ -16,6 +16,10 @@ public class Inventories {
     @JsonIgnore
     private final Background background = new Background(ImmutableMap.<Integer, Item>builder().build());
     @JsonIgnore
+    private final AnimatedBackground plainAnimatedBackground = new AnimatedBackground(ImmutableMap.<Integer, Background>builder()
+            .put(1, background)
+            .build());
+    @JsonIgnore
     private final AnimatedBackground animatedBackground = new AnimatedBackground(ImmutableMap.<Integer, Background>builder()
             .put(0, new Background(ImmutableMap.<Integer, Item>builder()
                     .put(9, new Item(XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
@@ -79,6 +83,8 @@ public class Inventories {
     public String enchantmentSelectGUITitle = "&7IridiumEnchants";
 
     public AnimatedBackgroundGUI enchantsTierGUI = new AnimatedBackgroundGUI(27, "&7Iridium Enchants", animatedBackground, 5);
+
+    public AnimatedBackgroundGUI gkitsGUI = new AnimatedBackgroundGUI(27, "&7GKits", plainAnimatedBackground, 5);
 
     public Item nextPage = new Item(XMaterial.LIME_STAINED_GLASS_PANE, 1, "&a&lNext Page", Collections.emptyList());
     public Item previousPage = new Item(XMaterial.RED_STAINED_GLASS_PANE, 1, "&c&lPrevious Page", Collections.emptyList());
