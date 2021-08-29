@@ -185,7 +185,7 @@ public class CustomEnchantManager {
             for (String conditions : level.conditions) {
                 String[] conditionArgs = conditions.toUpperCase().split(" ");
                 if (conditionArgs.length == 0) continue;
-                Condition condition = IridiumEnchants.getInstance().getConditons().get(conditionArgs[0]);
+                Condition condition = IridiumEnchants.getInstance().getConditions().get(conditionArgs[0]);
                 if (condition != null) {
                     if (!condition.apply(player, target, conditionArgs, itemStack)) canApplyEffects = false;
                 }

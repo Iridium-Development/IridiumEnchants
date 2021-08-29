@@ -35,7 +35,7 @@ public class IridiumEnchants extends IridiumCore {
     private Inventories inventories;
 
     private Map<String, Effect> effects;
-    private Map<String, Condition> conditons;
+    private Map<String, Condition> conditions;
 
     private BuildSupport buildSupport;
     private FriendlySupport friendlySupport;
@@ -142,11 +142,11 @@ public class IridiumEnchants extends IridiumCore {
     }
 
     public void registerConditions() {
-        conditons = new HashMap<>();
-        conditons.put("PLAYER_HEALTH", new PlayerHealth());
-        conditons.put("TARGET_HEALTH", new TargetHealth());
-        conditons.put("ISWEARING", new IsWearing());
-        conditons.put("ISHOLDING", new IsHolding());
+        conditions = new HashMap<>();
+        conditions.put("PLAYER_HEALTH", new PlayerHealth());
+        conditions.put("TARGET_HEALTH", new TargetHealth());
+        conditions.put("ISWEARING", new IsWearing());
+        conditions.put("ISHOLDING", new IsHolding());
     }
 
     public static IridiumEnchants getInstance() {
