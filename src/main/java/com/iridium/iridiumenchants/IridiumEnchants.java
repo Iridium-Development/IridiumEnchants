@@ -85,6 +85,7 @@ public class IridiumEnchants extends IridiumCore {
         Bukkit.getPluginManager().registerEvents(new CraftItemListener(), this);
         Bukkit.getPluginManager().registerEvents(new PrepareAnvilListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerCommandListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EnchantItemListener(), this);
     }
 
     @Override

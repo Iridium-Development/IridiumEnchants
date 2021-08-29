@@ -14,6 +14,9 @@ public class Configuration {
     public String prefix = "&e&lIridiumEnchants &8»";
     public XSound tierPurchaseSound = XSound.ENTITY_PLAYER_LEVELUP;
     public boolean tierGUI = true;
+    public boolean enchantmentTable = true;
+    public int enchantingTableMin = 1;
+    public int enchantingTableMax = 3;
     public Item enchantmentCrystal = new Item(XMaterial.NETHER_STAR, 1, "&e&l%enchant%", Arrays.asList("&7Type: %type%", "&7Description: %description%"));
 
     public Map<XMaterial, XMaterial> smelt = ImmutableMap.<XMaterial, XMaterial>builder()

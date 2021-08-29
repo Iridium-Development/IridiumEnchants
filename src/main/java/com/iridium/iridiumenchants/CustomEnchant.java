@@ -16,4 +16,5 @@ public class CustomEnchant {
     public String trigger;
     public Map<Integer, Level> levels;
     public Boolean enabled;
+    public Boolean enchantmentTable;
 }
