@@ -69,6 +69,13 @@ public class Inventories {
                     "&7Type: %enchant_type%",
                     "&7Description: %enchant_description%"
             )));
+
+    public SingleItemGUI enchantsTierListGUI = new SingleItemGUI(54, "&7%tier% Custom Enchants List", background, new Item(
+            XMaterial.NETHER_STAR, 1, "&e&l%enchant_name% %enchant_level%",
+            Arrays.asList(
+                    "&7Type: %enchant_type%",
+                    "&7Description: %enchant_description%"
+            )));
     public String enchantmentSelectGUITitle = "&7IridiumEnchants";
 
     public AnimatedBackgroundGUI enchantsTierGUI = new AnimatedBackgroundGUI(27, "&7Iridium Enchants", animatedBackground, 5);

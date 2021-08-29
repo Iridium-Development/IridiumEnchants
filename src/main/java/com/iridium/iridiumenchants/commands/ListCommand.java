@@ -1,12 +1,17 @@
 package com.iridium.iridiumenchants.commands;
 
+import com.iridium.iridiumcore.utils.StringUtils;
+import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.gui.EnchantmentListGUI;
+import com.iridium.iridiumenchants.gui.EnchantmentTierListGUI;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Command which reloads all configuration files.
@@ -31,7 +36,16 @@ public class ListCommand extends Command {
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        player.openInventory(new EnchantmentListGUI(1).getInventory());
+        if (args.length == 1) {
+            player.openInventory(new EnchantmentListGUI(1).getInventory());
+        } else {
+            Optional<String> tier = IridiumEnchants.getInstance().getConfiguration().tiers.keySet().stream().filter(s -> s.equalsIgnoreCase(args[1])).findAny();
+            if (tier.isPresent()) {
+                player.openInventory(new EnchantmentTierListGUI(1, tier.get()).getInventory());
+            } else {
+                sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().noTier.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
+            }
+        }
         return true;
     }
 
@@ -48,7 +62,9 @@ public class ListCommand extends Command {
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
         // We currently don't want to tab-completion here
         // Return a new List so it isn't a list of online players
-        return Collections.emptyList();
+        return IridiumEnchants.getInstance().getConfiguration().tiers.keySet().stream()
+                .filter(s -> s.toLowerCase().contains(args[1].toLowerCase()))
+                .collect(Collectors.toList());
     }
 
 }

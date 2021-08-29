@@ -28,8 +28,8 @@ public class Configuration {
             .build();
     public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST, XMaterial.WATER, XMaterial.LAVA);
     public Map<String, Tier> tiers = ImmutableMap.<String, Tier>builder()
-            .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&7Click to purchase a random common enchantment", "", "&e&lCOST: &7%cost% levels")), 20))
-            .put("Elite", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 13, 1, "&e&lELITE ENCHANTMENT", Arrays.asList("&7Click to purchase a random elite enchantment", "", "&e&lCOST: &7%cost% levels")), 40))
-            .put("Legendary", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 15, 1, "&6&lLEGENDARY ENCHANTMENT", Arrays.asList("&7Click to purchase a random legendary enchantment", "", "&e&lCOST: &7%cost% levels")), 60))
+            .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&e&lCOST: &7%cost% levels", "", "&e&l[!] &7Left Click to purchase a random common enchantment", "&e&l[!] &7Right Click to view all common enchantments")), 20))
+            .put("Elite", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 13, 1, "&e&lELITE ENCHANTMENT", Arrays.asList("&e&lCOST: &7%cost% levels", "", "&e&l[!] &7Left Click to purchase a random elite enchantment", "&e&l[!] &7Right Click to view all elite enchantments")), 40))
+            .put("Legendary", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 15, 1, "&6&lLEGENDARY ENCHANTMENT", Arrays.asList("&e&lCOST: &7%cost% levels", "", "&e&l[!] &7Left Click to purchase a random legendary enchantment", "&e&l[!] &7Right Click to view all legendary enchantments")), 60))
             .build();
 }

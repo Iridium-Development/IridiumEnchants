@@ -13,6 +13,7 @@ import com.iridium.iridiumenchants.Tier;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
@@ -59,6 +60,10 @@ public class EnchantmentTierGUI implements GUI {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         IridiumEnchants.getInstance().getConfiguration().tiers.entrySet().stream().filter(tier -> tier.getValue().item.slot == event.getSlot()).findFirst().ifPresent(tier -> {
+            if (event.getClick() == ClickType.RIGHT) {
+                event.getWhoClicked().openInventory(new EnchantmentTierListGUI(1, tier.getKey()).getInventory());
+                return;
+            }
             if (player.getLevel() < tier.getValue().experienceCost) {
                 player.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notEnoughExperience
                         .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
