@@ -83,6 +83,7 @@ public class IridiumEnchants extends IridiumCore {
         Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityShootBowListener(), this);
         Bukkit.getPluginManager().registerEvents(new CraftItemListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PrepareAnvilListener(), this);
     }
 
     @Override
