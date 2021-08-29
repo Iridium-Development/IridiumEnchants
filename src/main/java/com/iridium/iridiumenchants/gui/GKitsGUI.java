@@ -10,6 +10,7 @@ import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
@@ -55,9 +56,13 @@ public class GKitsGUI implements GUI {
         Player player = (Player) event.getWhoClicked();
         for (Map.Entry<String, GKit> gkit : IridiumEnchants.getInstance().getGKits().gkits.entrySet()) {
             if (gkit.getValue().guiItem.slot == event.getSlot()) {
-                IridiumEnchants.getInstance().getGkitsManager().getItemsFromGkit(gkit.getValue()).forEach(itemStack ->
-                        player.getInventory().addItem(itemStack).values().forEach(item ->
-                                player.getWorld().dropItem(player.getLocation(), item)));
+                if (event.getClick() == ClickType.RIGHT) {
+                    event.getWhoClicked().openInventory(new GKitsPreviewGUI(gkit).getInventory());
+                } else {
+                    IridiumEnchants.getInstance().getGkitsManager().getItemsFromGkit(gkit.getValue()).forEach(itemStack ->
+                            player.getInventory().addItem(itemStack).values().forEach(item ->
+                                    player.getWorld().dropItem(player.getLocation(), item)));
+                }
             }
         }
     }
