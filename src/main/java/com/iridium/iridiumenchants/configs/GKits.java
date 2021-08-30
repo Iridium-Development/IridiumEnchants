@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class GKits {
     public Map<String, GKit> gkits = ImmutableMap.<String, GKit>builder()
-            .put("Frosty", new GKit(259200, new Item(XMaterial.SNOWBALL, 11, 1, "&b&lFrosty Kit", Arrays.asList("&cCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&c&l[!] &7Left click to redeem this Gkit", "&c&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
+            .put("Frosty", new GKit(259200, new Item(XMaterial.SNOWBALL, 11, 1, "&b&lFrosty Kit", Arrays.asList("&bCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&b&l[!] &7Left click to redeem this Gkit", "&b&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
                     .put(1, new GKit.GKitItem(XMaterial.DIAMOND_HELMET, 1, "&b&lFrosty Helmet", ImmutableMap.<String, Integer>builder()
                             .put(Enchantment.PROTECTION_ENVIRONMENTAL.getName(), 4)
                             .put(Enchantment.DURABILITY.getName(), 3)
@@ -76,7 +76,7 @@ public class GKits {
                             .put("Thunder", 1)
                             .build()))
                     .build()))
-            .put("Valentines", new GKit(259200, new Item(XMaterial.BOW, 15, 1, "&d&lValentine's Kit", Arrays.asList("&cCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&c&l[!] &7Left click to redeem this Gkit", "&c&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
+            .put("Valentines", new GKit(259200, new Item(XMaterial.BOW, 15, 1, "&d&lValentine's Kit", Arrays.asList("&dCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&d&l[!] &7Left click to redeem this Gkit", "&d&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
                     .put(1, new GKit.GKitItem(XMaterial.DIAMOND_HELMET, 1, "&d&lValentine's Helmet", ImmutableMap.<String, Integer>builder()
                             .put(Enchantment.PROTECTION_ENVIRONMENTAL.getName(), 4)
                             .put(Enchantment.DURABILITY.getName(), 3)
