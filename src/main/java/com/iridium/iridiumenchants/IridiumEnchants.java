@@ -78,6 +78,9 @@ public class IridiumEnchants extends IridiumCore {
         for (BlockState blockState : ReplaceNear.blockStates.keySet()) {
             blockState.update(true, false);
         }
+        for (BlockState blockState : Coat.blockStates.keySet()) {
+            blockState.update(true, false);
+        }
     }
 
     @Override
