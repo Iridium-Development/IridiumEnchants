@@ -6,12 +6,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 public class User {
     private final UUID uuid;
+    private final HashMap<String, LocalDateTime> gkitsCooldown;
     @Getter
     private final BukkitTask bukkitTask;
     // the cycle number the passive task is on
@@ -19,7 +22,16 @@ public class User {
 
     public User(UUID uuid) {
         this.uuid = uuid;
+        this.gkitsCooldown = new HashMap<>();
         bukkitTask = Bukkit.getScheduler().runTaskTimer(IridiumEnchants.getInstance(), this::passive, 0, 0);
+    }
+
+    public void applyCooldown(String gkit, int seconds) {
+        gkitsCooldown.put(gkit, LocalDateTime.now().plusSeconds(seconds));
+    }
+
+    public LocalDateTime getCooldown(String gkit) {
+        return gkitsCooldown.getOrDefault(gkit, LocalDateTime.now());
     }
 
     private void passive() {

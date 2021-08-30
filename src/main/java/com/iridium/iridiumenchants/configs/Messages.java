@@ -21,4 +21,5 @@ public class Messages {
     public String gotEnchantmentFromTier = "%prefix% &7You purchased a &e%tier% &7enchantment and received a &e%enchant% %level% &7crystal.";
     public String gavePlayerEnchantment = "%prefix% &7You gave %player% a &e%enchant% %level% &7crystal.";
     public String noTier = "%prefix% &7No tier by that name exists.";
+    public String gkitOnCooldown = "%prefix% &7The %gkit% Gkit is on cooldown for %days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds";
 }

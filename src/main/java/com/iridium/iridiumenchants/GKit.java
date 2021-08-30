@@ -10,6 +10,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GKit {
+    public int cooldown;
     public Item guiItem;
     public Map<Integer, GKitItem> items;
 
