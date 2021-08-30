@@ -1,6 +1,8 @@
 package com.iridium.iridiumenchants.listeners;
 
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.effects.Coat;
+import com.iridium.iridiumenchants.effects.ReplaceNear;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -15,6 +17,20 @@ public class BlockBreakListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onBlockBreak(BlockBreakEvent event) {
+        ReplaceNear.blockStates.keySet().stream()
+                .filter(blockState -> blockState.getBlock().equals(event.getBlock()))
+                .findAny().ifPresent(blockState -> {
+            event.setCancelled(true);
+            blockState.update(true, false);
+            ReplaceNear.blockStates.remove(blockState);
+        });
+        Coat.blockStates.keySet().stream()
+                .filter(blockState -> blockState.getBlock().equals(event.getBlock()))
+                .findAny().ifPresent(blockState -> {
+            event.setCancelled(true);
+            blockState.update(true, false);
+            Coat.blockStates.remove(blockState);
+        });
         Player player = event.getPlayer();
 
         List<ItemStack> itemStackList = Arrays.asList(
