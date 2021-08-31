@@ -68,7 +68,7 @@ public class IridiumEnchants extends IridiumCore {
                 Bukkit.getServer().getOnlinePlayers().forEach((player) -> {
                     InventoryHolder inventoryHolder = player.getOpenInventory().getTopInventory().getHolder();
                     if (inventoryHolder instanceof GUI) {
-                        ((GUI)inventoryHolder).addContent(player.getOpenInventory().getTopInventory());
+                        ((GUI) inventoryHolder).addContent(player.getOpenInventory().getTopInventory());
                     }
 
                 });
