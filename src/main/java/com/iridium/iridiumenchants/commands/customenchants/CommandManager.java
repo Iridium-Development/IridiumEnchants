@@ -117,7 +117,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             // Check permissions
             if (!((commandSender.hasPermission(command.permission) || command.permission
                     .equalsIgnoreCase("") || command.permission
-                    .equalsIgnoreCase("iridiumfactions.")))) {
+                    .equalsIgnoreCase("IridiumEnchants.")))) {
                 // No permissions
                 commandSender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().noPermission
                         .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
@@ -163,7 +163,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                     if (alias.toLowerCase().startsWith(args[0].toLowerCase()) && (
                             (commandSender.hasPermission(command.permission)
                                     || command.permission.equalsIgnoreCase("") || command.permission
-                                    .equalsIgnoreCase("IridiumFactions.")))) {
+                                    .equalsIgnoreCase("IridiumEnchants.")))) {
                         result.add(alias);
                     }
                 }
@@ -175,7 +175,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         for (Command command : commands) {
             if (command.aliases.contains(args[0]) && (
                     commandSender.hasPermission(command.permission) || command.permission.equalsIgnoreCase("")
-                            || command.permission.equalsIgnoreCase("IridiumFactions."))) {
+                            || command.permission.equalsIgnoreCase("IridiumEnchants."))) {
                 return command.onTabComplete(commandSender, cmd, label, args);
             }
         }

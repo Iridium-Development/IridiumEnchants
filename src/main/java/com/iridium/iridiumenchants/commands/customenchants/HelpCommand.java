@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Command which shows users a list of all IridiumFactions commands.
+ * Command which shows users a list of all IridiumEnchants commands.
  */
 public class HelpCommand extends Command {
 
@@ -31,7 +31,7 @@ public class HelpCommand extends Command {
     /**
      * Executes the command for the specified {@link CommandSender} with the provided arguments.
      * Not called when the command execution was invalid (no permission, no player or command disabled).
-     * Shows a list of all IridiumSkyblock commands.
+     * Shows a list of all IridiumEnchants commands.
      *
      * @param sender    The CommandSender which executes this command
      * @param arguments The arguments used with this command. They contain the sub-command
