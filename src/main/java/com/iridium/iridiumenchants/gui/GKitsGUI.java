@@ -82,6 +82,12 @@ public class GKitsGUI implements GUI {
                 if (event.getClick() == ClickType.RIGHT) {
                     event.getWhoClicked().openInventory(new GKitsPreviewGUI(gkit).getInventory());
                 } else {
+                    if (!player.hasPermission(gkit.getValue().permission) && !gkit.getValue().permission.isEmpty()) {
+                        player.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().noPermission
+                                .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
+                        ));
+                        return;
+                    }
                     LocalDateTime cooldown = user.getCooldown(gkit.getKey());
                     if (LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) > 0) {
                         long days = LocalDateTime.now().until(cooldown, ChronoUnit.DAYS);

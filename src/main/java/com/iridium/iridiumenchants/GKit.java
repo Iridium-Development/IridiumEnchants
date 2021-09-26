@@ -11,6 +11,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class GKit {
     public int cooldown;
+    public String permission;
     public Item guiItem;
     public Map<Integer, GKitItem> items;
 
