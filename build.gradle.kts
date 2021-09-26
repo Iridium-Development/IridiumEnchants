@@ -45,7 +45,7 @@ dependencies {
     }
     compileOnly("com.wasteofplastic:ASkyblock:3.0.9.4")
     compileOnly("com.github.TownyAdvanced", "Towny", "0.96.7.0")
-    compileOnly("com.sk89q:WorldGuard:7.0.6:dist@jar")
+    compileOnly("com.sk89q:WorldGuard:7.0.5")
     compileOnly("com.sk89q:WorldEdit:7.2.6")
 
     // Enable lombok annotation processing
