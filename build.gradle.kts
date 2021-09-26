@@ -14,7 +14,7 @@ repositories {
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     maven("https://ci.ender.zone/plugin/repository/everything/")
     maven("https://jitpack.io")
-    maven("https://nexus.savagelabs.net/repository/maven-releases/")
+    maven("https://nexus.iridiumdevelopment.net/repository/maven-releases/")
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://repo.rosewooddev.io/repository/public/")
     maven("https://repo.jeff-media.de/maven2/")
@@ -36,6 +36,17 @@ dependencies {
     compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1-SNAPSHOT") {
         exclude("org.spigotmc")
     }
+    compileOnly("com.iridium:IridiumSkyblock:3.1.1")
+    compileOnly("com.massivecraft.massivesuper:MassiveSuper:2.14.0")
+    compileOnly("com.massivecraft.massivesuper:Factions:2.14.0")
+    compileOnly("com.massivecraft:Factions:1.6.9.5-U0.5.23") {
+        exclude("com.darkblade12")
+        exclude("org.kitteh")
+    }
+    compileOnly("com.wasteofplastic:ASkyblock:3.0.9.4")
+    compileOnly("com.github.TownyAdvanced", "Towny", "0.96.7.0")
+    compileOnly("com.sk89q:WorldGuard:7.0.6:dist@jar")
+    compileOnly("com.sk89q:WorldEdit:7.2.6")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.20")

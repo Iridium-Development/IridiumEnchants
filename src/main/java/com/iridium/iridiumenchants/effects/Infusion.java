@@ -2,6 +2,7 @@ package com.iridium.iridiumenchants.effects;
 
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.listeners.BlockBreakListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -33,14 +34,13 @@ public class Infusion implements Effect {
                 radius = 1;
             }
             boolean instantMine = args[2].equalsIgnoreCase("true");
-            IridiumEnchants.getInstance().getAntiCheatSupport().exemptPlayer((Player) player);
             for (Block block : getSquare(blockBreakEvent.getBlock().getLocation(), radius)) {
                 XMaterial material = XMaterial.matchXMaterial(block.getType());
                 if (IridiumEnchants.getInstance().getConfiguration().infusionBlacklist.contains(material)) continue;
-                if (IridiumEnchants.getInstance().getBuildSupport().canBuild(((Player) player), block.getLocation())) {
+                if (IridiumEnchants.getInstance().canBuild(((Player) player), block.getLocation())) {
                     BlockBreakEvent breakEvent = new BlockBreakEvent(block, (Player) player);
                     events.add(breakEvent);
-                    Bukkit.getPluginManager().callEvent(breakEvent);
+                    new BlockBreakListener().onBlockBreak(breakEvent);
                     if (breakEvent.isCancelled()) continue;
                     if (instantMine) {
                         block.setType(Material.AIR);
@@ -49,7 +49,6 @@ public class Infusion implements Effect {
                     }
                 }
             }
-            IridiumEnchants.getInstance().getAntiCheatSupport().unExemptPlayer((Player) player);
         }
     }
 

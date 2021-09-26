@@ -1,7 +1,6 @@
 package com.iridium.iridiumenchants.effects;
 
-import com.iridium.iridiumenchants.IridiumEnchants;
-import org.bukkit.Bukkit;
+import com.iridium.iridiumenchants.listeners.EntityShootBowListener;
 import org.bukkit.Material;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
@@ -38,7 +37,6 @@ public class Multishot implements Effect {
 
         final double speed = velocity.length();
         final Vector direction = new Vector(velocity.getX() / speed, velocity.getY() / speed, velocity.getZ() / speed);
-        IridiumEnchants.getInstance().getAntiCheatSupport().exemptPlayer(player);
         for (int i = 0; i < amount; i++) {
             ItemStack item = new ItemStack(Material.ARROW);
             if (player.getInventory().containsAtLeast(item, 1) || !entityShootBowEvent.shouldConsumeItem()) {
@@ -54,9 +52,8 @@ public class Multishot implements Effect {
                 arrow.setPickupStatus(entityShootBowEvent.shouldConsumeItem() ? AbstractArrow.PickupStatus.ALLOWED : AbstractArrow.PickupStatus.CREATIVE_ONLY);
                 EntityShootBowEvent newEntityShootBowEvent = new EntityShootBowEvent(p, entityShootBowEvent.getBow(), item, arrow, entityShootBowEvent.getHand(), entityShootBowEvent.getForce(), entityShootBowEvent.shouldConsumeItem());
                 events.add(newEntityShootBowEvent);
-                Bukkit.getPluginManager().callEvent(newEntityShootBowEvent);
+                new EntityShootBowListener().onEntityShootBow(newEntityShootBowEvent);
             }
         }
-        IridiumEnchants.getInstance().getAntiCheatSupport().unExemptPlayer(player);
     }
 }

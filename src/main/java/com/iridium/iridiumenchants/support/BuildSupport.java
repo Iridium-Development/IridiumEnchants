@@ -4,6 +4,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public interface BuildSupport {
-    //TODO
+    boolean isInstalled();
     boolean canBuild(Player player, Location location);
 }

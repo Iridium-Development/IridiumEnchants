@@ -12,17 +12,18 @@ import com.iridium.iridiumenchants.listeners.*;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.GkitsManager;
 import com.iridium.iridiumenchants.managers.UserManager;
-import com.iridium.iridiumenchants.support.AntiCheatSupport;
-import com.iridium.iridiumenchants.support.BuildSupport;
-import com.iridium.iridiumenchants.support.FriendlySupport;
+import com.iridium.iridiumenchants.support.*;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.block.BlockState;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Getter
 public class IridiumEnchants extends IridiumCore {
@@ -45,9 +46,8 @@ public class IridiumEnchants extends IridiumCore {
     private Map<String, Effect> effects;
     private Map<String, Condition> conditions;
 
-    private BuildSupport buildSupport;
-    private FriendlySupport friendlySupport;
-    private AntiCheatSupport antiCheatSupport;
+    private List<BuildSupport> buildSupport;
+    private List<FriendlySupport> friendlySupport;
 
     @Override
     public void onEnable() {
@@ -143,17 +143,36 @@ public class IridiumEnchants extends IridiumCore {
     }
 
     public void registerSupport() {
-        this.buildSupport = (player, location) -> true;
-        this.friendlySupport = (player, livingEntity) -> false;
-        this.antiCheatSupport = new AntiCheatSupport() {
-            @Override
-            public void exemptPlayer(Player player) {
-            }
+        this.friendlySupport = Stream.of(
+                new ASkyblockSupport(),
+                new FactionsSupport(),
+                new FactionsUUIDSupport(),
+                new IridiumSkyblockSupport(),
+                new TownySupport()
+        ).filter(FriendlySupport::isInstalled).collect(Collectors.toList());
 
-            @Override
-            public void unExemptPlayer(Player player) {
-            }
-        };
+        this.buildSupport = Stream.of(
+                new ASkyblockSupport(),
+                new FactionsSupport(),
+                new FactionsUUIDSupport(),
+                new IridiumSkyblockSupport(),
+                new TownySupport(),
+                new WorldGuard7Support()
+        ).filter(BuildSupport::isInstalled).collect(Collectors.toList());
+    }
+
+    public boolean isFriendly(LivingEntity livingEntity, LivingEntity livingEntity2) {
+        for (FriendlySupport friendlySupport : friendlySupport) {
+            if (friendlySupport.isFriendly(livingEntity, livingEntity2)) return true;
+        }
+        return false;
+    }
+
+    public boolean canBuild(Player player, Location location) {
+        for (BuildSupport buildSupport : buildSupport) {
+            if (!buildSupport.canBuild(player, location)) return false;
+        }
+        return true;
     }
 
     public void registerEffects() {

@@ -22,7 +22,7 @@ public class Aura implements Effect {
         for (Entity entity : player.getNearbyEntities(range, range, range)) {
             if (!(entity instanceof LivingEntity)) continue;
             LivingEntity livingEntity = (LivingEntity) entity;
-            if (auraType.isValid(player, livingEntity, IridiumEnchants.getInstance().getFriendlySupport())) {
+            if (auraType.isValid(player, livingEntity)) {
                 Effect effect = IridiumEnchants.getInstance().getEffects().get(newArgs[0]);
                 if (effect != null) {
                     effect.apply(player, livingEntity, newArgs, event);
@@ -34,22 +34,22 @@ public class Aura implements Effect {
     public enum AuraType {
         ALLY {
             @Override
-            public boolean isValid(LivingEntity player, LivingEntity livingEntity, FriendlySupport friendlySupport) {
-                return friendlySupport.isFriendly(player, livingEntity);
+            public boolean isValid(LivingEntity player, LivingEntity livingEntity) {
+                return IridiumEnchants.getInstance().isFriendly(player, livingEntity);
             }
         }, ENEMY {
             @Override
-            public boolean isValid(LivingEntity player, LivingEntity livingEntity, FriendlySupport friendlySupport) {
-                return !friendlySupport.isFriendly(player, livingEntity);
+            public boolean isValid(LivingEntity player, LivingEntity livingEntity) {
+                return !IridiumEnchants.getInstance().isFriendly(player, livingEntity);
             }
         }, ALL {
             @Override
-            public boolean isValid(LivingEntity player, LivingEntity livingEntity, FriendlySupport friendlySupport) {
+            public boolean isValid(LivingEntity player, LivingEntity livingEntity) {
                 return true;
             }
         };
 
-        public abstract boolean isValid(LivingEntity player, LivingEntity livingEntity, FriendlySupport friendlySupport);
+        public abstract boolean isValid(LivingEntity player, LivingEntity livingEntity);
 
     }
 }
