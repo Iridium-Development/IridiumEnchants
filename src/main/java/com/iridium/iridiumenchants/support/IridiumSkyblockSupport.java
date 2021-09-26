@@ -12,11 +12,6 @@ import org.bukkit.entity.Player;
 
 public class IridiumSkyblockSupport implements BuildSupport, FriendlySupport {
     @Override
-    public boolean isInstalled() {
-        return Bukkit.getPluginManager().isPluginEnabled("IridiumSkyblock");
-    }
-
-    @Override
     public boolean canBuild(Player player, Location location) {
         User user = IridiumSkyblockAPI.getInstance().getUser(player);
         return IridiumSkyblockAPI.getInstance().getIslandViaLocation(location)

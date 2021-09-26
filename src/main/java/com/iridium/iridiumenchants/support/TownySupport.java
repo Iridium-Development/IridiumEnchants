@@ -13,11 +13,6 @@ import org.bukkit.entity.Player;
 
 public class TownySupport implements BuildSupport, FriendlySupport {
     @Override
-    public boolean isInstalled() {
-        return Bukkit.getPluginManager().isPluginEnabled("TownyAdvanced");
-    }
-
-    @Override
     public boolean canBuild(Player player, Location location) {
         TownyWorld world = TownyUniverse.getInstance().getWorldMap().get(location.getWorld().getName());
         if (world == null) {

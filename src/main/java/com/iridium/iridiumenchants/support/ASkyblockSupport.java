@@ -9,11 +9,6 @@ import org.bukkit.entity.Player;
 
 public class ASkyblockSupport implements BuildSupport, FriendlySupport {
     @Override
-    public boolean isInstalled() {
-        return Bukkit.getPluginManager().isPluginEnabled("ASkyBlock");
-    }
-
-    @Override
     public boolean canBuild(Player player, Location location) {
         Island island = ASkyBlockAPI.getInstance().getIslandAt(location);
         if (island == null) return false;

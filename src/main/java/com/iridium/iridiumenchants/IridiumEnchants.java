@@ -144,21 +144,21 @@ public class IridiumEnchants extends IridiumCore {
 
     public void registerSupport() {
         this.friendlySupport = Stream.of(
-                new ASkyblockSupport(),
-                new FactionsSupport(),
-                new FactionsUUIDSupport(),
-                new IridiumSkyblockSupport(),
-                new TownySupport()
-        ).filter(FriendlySupport::isInstalled).collect(Collectors.toList());
+                new ASkyblockSupportHolder(),
+                new FactionsSupportHolder(),
+                new FactionsUUIDSupportHolder(),
+                new IridiumSkyblockSupportHolder(),
+                new TownySupportHolder()
+        ).filter(FriendlySupportHolder::isInstalled).map(friendlySupport -> friendlySupport.friendlySupport().get()).collect(Collectors.toList());
 
         this.buildSupport = Stream.of(
-                new ASkyblockSupport(),
-                new FactionsSupport(),
-                new FactionsUUIDSupport(),
-                new IridiumSkyblockSupport(),
-                new TownySupport(),
-                new WorldGuard7Support()
-        ).filter(BuildSupport::isInstalled).collect(Collectors.toList());
+                new ASkyblockSupportHolder(),
+                new FactionsSupportHolder(),
+                new FactionsUUIDSupportHolder(),
+                new IridiumSkyblockSupportHolder(),
+                new TownySupportHolder(),
+                new WorldGuard7SupportHolder()
+        ).filter(BuildSupportHolder::isInstalled).map(buildSupportHolder -> buildSupportHolder.buildSupport().get()).collect(Collectors.toList());
     }
 
     public boolean isFriendly(LivingEntity livingEntity, LivingEntity livingEntity2) {

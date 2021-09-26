@@ -4,6 +4,12 @@ description: Custom Enchants for every gamemode
 main: com.iridium.iridiumenchants.IridiumEnchants
 api-version: '1.13'
 author: Peaches_MLG
+softdepend:
+  - ASkyBlock
+  - Factions
+  - IridiumSkyblock
+  - TownyAdvanced
+  - WorldGuard
 commands:
   iridiumenchants:
     aliases: [ "enchants", "ce", "customenchants" ]

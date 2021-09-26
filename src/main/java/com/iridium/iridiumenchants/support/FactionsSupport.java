@@ -15,12 +15,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class FactionsSupport implements BuildSupport, FriendlySupport {
     @Override
-    public boolean isInstalled() {
-        Plugin plugin = Bukkit.getPluginManager().getPlugin("Factions");
-        return plugin != null && !plugin.getDescription().getAuthors().contains("drtshock");
-    }
-
-    @Override
     public boolean canBuild(Player player, Location location) {
         Faction P = MPlayer.get(player).getFaction();
         Faction B = BoardColl.get().getFactionAt(PS.valueOf(location));
@@ -29,7 +23,7 @@ public class FactionsSupport implements BuildSupport, FriendlySupport {
 
     @Override
     public boolean isFriendly(LivingEntity player, LivingEntity livingEntity) {
-        if(player instanceof Player && livingEntity instanceof Player){
+        if (player instanceof Player && livingEntity instanceof Player) {
             Faction p = MPlayer.get(player).getFaction();
             Faction o = MPlayer.get(livingEntity).getFaction();
             Rel r = MPlayer.get(player).getRelationTo(MPlayer.get(livingEntity));

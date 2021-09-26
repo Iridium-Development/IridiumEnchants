@@ -12,13 +12,6 @@ import org.bukkit.plugin.Plugin;
 
 public class WorldGuard7Support implements BuildSupport {
     @Override
-    public boolean isInstalled() {
-        Plugin plugin = Bukkit.getPluginManager().getPlugin("WorldGuard");
-        if (plugin == null) return false;
-        return plugin.getDescription().getVersion().startsWith("7");
-    }
-
-    @Override
     public boolean canBuild(Player player, Location location) {
         LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(player);
         boolean canBuild = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery().testBuild(BukkitAdapter.adapt(location), localPlayer, Flags.BLOCK_BREAK);
