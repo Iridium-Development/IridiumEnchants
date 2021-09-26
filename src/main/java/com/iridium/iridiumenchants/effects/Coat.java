@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Coat implements Effect {
 
     @Override
     public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+        if (!(player instanceof Player)) return;
         int radius;
         try {
             radius = Integer.parseInt(args[2]);
@@ -34,26 +36,27 @@ public class Coat implements Effect {
         if (!material.isPresent()) return;
         if (args.length == 4 && args[3].equalsIgnoreCase("target")) {
             if (target == null) return;
-            coat(target, radius, material.get().parseMaterial());
+            coat((Player) player, target, radius, material.get().parseMaterial());
 
         } else {
-            if (player == null) return;
-            coat(player, radius, material.get().parseMaterial());
+            coat((Player) player, player, radius, material.get().parseMaterial());
         }
     }
 
-    public void coat(LivingEntity livingEntity, int radius, Material material) {
+    public void coat(Player player, LivingEntity livingEntity, int radius, Material material) {
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
                     Location location = livingEntity.getLocation().add(x, y, z).getBlock().getLocation();
                     Block block = location.getBlock();
-                    Block above = location.clone().add(0, 1, 0).getBlock();
-                    blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, 20));
-                    if (block.getType().isSolid() && above.getType() == Material.AIR) {
-                        BlockState blockState = above.getState();
-                        blockStates.put(blockState, 20);
-                        above.setType(material, false);
+                    if (IridiumEnchants.getInstance().canBuild((player), block.getLocation())) {
+                        Block above = location.clone().add(0, 1, 0).getBlock();
+                        blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, 20));
+                        if (block.getType().isSolid() && above.getType() == Material.AIR) {
+                            BlockState blockState = above.getState();
+                            blockStates.put(blockState, 20);
+                            above.setType(material, false);
+                        }
                     }
                 }
             }

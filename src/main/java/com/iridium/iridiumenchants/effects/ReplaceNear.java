@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ReplaceNear implements Effect {
 
     @Override
     public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+        if (!(player instanceof Player)) return;
         int radius;
         try {
             radius = Integer.parseInt(args[1]);
@@ -41,25 +43,26 @@ public class ReplaceNear implements Effect {
         if (!originalMaterial.isPresent() || !newMaterial.isPresent()) return;
         if (args.length == 6 && args[5].equalsIgnoreCase("target")) {
             if (target == null) return;
-            replaceNear(target, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
+            replaceNear((Player) player, target, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
 
         } else {
-            if (player == null) return;
-            replaceNear(player, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
+            replaceNear((Player) player, player, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
         }
     }
 
-    public void replaceNear(LivingEntity livingEntity, int radius, Material currentMaterial, Material newMaterial, int time) {
+    public void replaceNear(Player player, LivingEntity livingEntity, int radius, Material currentMaterial, Material newMaterial, int time) {
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
                     Location location = livingEntity.getLocation().add(x, y, z).getBlock().getLocation();
                     Block block = location.getBlock();
-                    blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, time));
-                    if (block.getType() == currentMaterial) {
-                        BlockState blockState = block.getState();
-                        blockStates.put(blockState, time);
-                        block.setType(newMaterial, false);
+                    if (IridiumEnchants.getInstance().canBuild((player), block.getLocation())) {
+                        blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, time));
+                        if (block.getType() == currentMaterial) {
+                            BlockState blockState = block.getState();
+                            blockStates.put(blockState, time);
+                            block.setType(newMaterial, false);
+                        }
                     }
                 }
             }
