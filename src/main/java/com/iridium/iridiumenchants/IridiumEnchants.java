@@ -148,7 +148,8 @@ public class IridiumEnchants extends IridiumCore {
                 new FactionsSupportHolder(),
                 new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
-                new TownySupportHolder()
+                new TownySupportHolder(),
+                new SuperiorSkyblockSupportHolder()
         ).filter(FriendlySupportHolder::isInstalled).map(friendlySupport -> friendlySupport.friendlySupport().get()).collect(Collectors.toList());
 
         this.buildSupport = Stream.of(
@@ -157,7 +158,8 @@ public class IridiumEnchants extends IridiumCore {
                 new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
                 new TownySupportHolder(),
-                new WorldGuard7SupportHolder()
+                new WorldGuard7SupportHolder(),
+                new SuperiorSkyblockSupportHolder()
         ).filter(BuildSupportHolder::isInstalled).map(buildSupportHolder -> buildSupportHolder.buildSupport().get()).collect(Collectors.toList());
     }
 

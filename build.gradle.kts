@@ -47,6 +47,8 @@ dependencies {
     compileOnly("com.github.TownyAdvanced", "Towny", "0.96.7.0")
     compileOnly("com.sk89q:WorldGuard:7.0.5")
     compileOnly("com.sk89q:WorldEdit:7.2.6")
+    compileOnly("com.bgsoftware:SuperiorSkyblock2:1.8")
+    compileOnly("world.bentobox:BSkyblock:1.17.3")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.20")
