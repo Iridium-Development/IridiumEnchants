@@ -4,7 +4,6 @@ import com.iridium.iridiumskyblock.PermissionType;
 import com.iridium.iridiumskyblock.api.IridiumSkyblockAPI;
 import com.iridium.iridiumskyblock.database.Island;
 import com.iridium.iridiumskyblock.database.User;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
@@ -16,7 +15,7 @@ public class IridiumSkyblockSupport implements BuildSupport, FriendlySupport {
         User user = IridiumSkyblockAPI.getInstance().getUser(player);
         return IridiumSkyblockAPI.getInstance().getIslandViaLocation(location)
                 .map(island -> IridiumSkyblockAPI.getInstance().getIslandPermission(island, user, PermissionType.BLOCK_BREAK))
-                .orElse(false);
+                .orElse(true);
     }
 
     @Override

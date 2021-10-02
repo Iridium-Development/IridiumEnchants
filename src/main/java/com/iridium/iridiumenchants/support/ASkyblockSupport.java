@@ -2,7 +2,6 @@ package com.iridium.iridiumenchants.support;
 
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import com.wasteofplastic.askyblock.Island;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -11,7 +10,7 @@ public class ASkyblockSupport implements BuildSupport, FriendlySupport {
     @Override
     public boolean canBuild(Player player, Location location) {
         Island island = ASkyBlockAPI.getInstance().getIslandAt(location);
-        if (island == null) return false;
+        if (island == null) return true;
         return island.getMembers().contains(player.getUniqueId());
     }
 

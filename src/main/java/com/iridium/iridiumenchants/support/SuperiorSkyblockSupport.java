@@ -3,7 +3,6 @@ package com.iridium.iridiumenchants.support;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
-import com.bgsoftware.superiorskyblock.api.island.PermissionNode;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
@@ -14,10 +13,8 @@ public class SuperiorSkyblockSupport implements BuildSupport, FriendlySupport {
     public boolean canBuild(Player player, Location location) {
         Island island = SuperiorSkyblockAPI.getIslandAt(location);
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
-        if (island != null) {
-            return island.hasPermission(superiorPlayer, IslandPrivilege.getByName("Break"));
-        }
-        return false;
+        if (island == null) return true;
+        return island.hasPermission(superiorPlayer, IslandPrivilege.getByName("Break"));
     }
 
     @Override
