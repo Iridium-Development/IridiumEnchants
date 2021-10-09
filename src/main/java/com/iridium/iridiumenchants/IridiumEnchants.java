@@ -21,7 +21,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -148,8 +150,7 @@ public class IridiumEnchants extends IridiumCore {
                 new FactionsSupportHolder(),
                 new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
-                new TownySupportHolder(),
-                new SuperiorSkyblockSupportHolder()
+                new TownySupportHolder()
         ).filter(FriendlySupportHolder::isInstalled).map(friendlySupport -> friendlySupport.friendlySupport().get()).collect(Collectors.toList());
 
         this.buildSupport = Stream.of(
@@ -158,8 +159,7 @@ public class IridiumEnchants extends IridiumCore {
                 new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
                 new TownySupportHolder(),
-                new WorldGuard7SupportHolder(),
-                new SuperiorSkyblockSupportHolder()
+                new WorldGuard7SupportHolder()
         ).filter(BuildSupportHolder::isInstalled).map(buildSupportHolder -> buildSupportHolder.buildSupport().get()).collect(Collectors.toList());
     }
 
