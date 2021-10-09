@@ -8,7 +8,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 public class BlockBreakListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void onBlockBreak(@NotNull BlockBreakEvent event) {
         ReplaceNear.blockStates.keySet().stream()
                 .filter(blockState -> blockState.getBlock().equals(event.getBlock()))
                 .findAny().ifPresent(blockState -> {
@@ -43,6 +45,11 @@ public class BlockBreakListener implements Listener {
         for (ItemStack itemStack : itemStackList) {
             IridiumEnchants.getInstance().getCustomEnchantManager().applyEffectsFromItem(itemStack, trigger -> trigger.equalsIgnoreCase("BLOCK_BREAK"), player, null, event);
         }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onBlockExplode(@NotNull BlockExplodeEvent event) {
+        event.blockList().removeIf(block -> Coat.blockStates.containsKey(block.getState()) || ReplaceNear.blockStates.containsKey(block.getState()));
     }
 
 }
