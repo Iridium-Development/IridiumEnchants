@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 public class Tier {
     public Item item;
     public int experienceCost;
+    public ExperienceType experienceType;
 }
+

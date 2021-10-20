@@ -21,11 +21,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.*;
 
 @Getter
 public class IridiumEnchants extends IridiumCore {
@@ -127,6 +123,11 @@ public class IridiumEnchants extends IridiumCore {
         this.customEnchants = getPersist().load(CustomEnchants.class);
         this.inventories = getPersist().load(Inventories.class);
         this.gKits = getPersist().load(GKits.class);
+        for (Tier tier : configuration.tiers.values()) {
+            if (tier.experienceType == null) {
+                tier.experienceType = ExperienceType.LEVEL;
+            }
+        }
     }
 
     @Override
@@ -145,22 +146,23 @@ public class IridiumEnchants extends IridiumCore {
     }
 
     public void registerSupport() {
-        this.friendlySupport = Stream.of(
-                new ASkyblockSupportHolder(),
-                new FactionsSupportHolder(),
-                new FactionsUUIDSupportHolder(),
-                new IridiumSkyblockSupportHolder(),
-                new TownySupportHolder()
-        ).filter(FriendlySupportHolder::isInstalled).map(friendlySupport -> friendlySupport.friendlySupport().get()).collect(Collectors.toList());
-
-        this.buildSupport = Stream.of(
+        this.friendlySupport = new ArrayList<>();
+        this.buildSupport = new ArrayList<>();
+        Arrays.asList(
                 new ASkyblockSupportHolder(),
                 new FactionsSupportHolder(),
                 new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
                 new TownySupportHolder(),
                 new WorldGuard7SupportHolder()
-        ).filter(BuildSupportHolder::isInstalled).map(buildSupportHolder -> buildSupportHolder.buildSupport().get()).collect(Collectors.toList());
+        ).forEach(supportHolder -> {
+            if (supportHolder.isInstalled()) {
+                if (supportHolder instanceof FriendlySupportHolder) {
+                    friendlySupport.add(((FriendlySupportHolder) supportHolder).friendlySupport().get());
+                }
+                buildSupport.add(supportHolder.buildSupport().get());
+            }
+        });
     }
 
     public boolean isFriendly(LivingEntity livingEntity, LivingEntity livingEntity2) {
