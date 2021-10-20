@@ -14,11 +14,11 @@ public class FactionsUUIDSupportHolder implements BuildSupportHolder, FriendlySu
 
     @Override
     public Supplier<FriendlySupport> friendlySupport() {
-        return FactionsSupport::new;
+        return FactionsUUIDSupport::new;
     }
 
     @Override
     public Supplier<BuildSupport> buildSupport() {
-        return FactionsSupport::new;
+        return FactionsUUIDSupport::new;
     }
 }
