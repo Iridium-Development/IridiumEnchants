@@ -6,11 +6,9 @@ import com.iridium.iridiumcore.utils.InventoryUtils;
 import com.iridium.iridiumcore.utils.ItemStackUtils;
 import com.iridium.iridiumcore.utils.Placeholder;
 import com.iridium.iridiumcore.utils.StringUtils;
-import com.iridium.iridiumenchants.CustomEnchant;
-import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.Level;
-import com.iridium.iridiumenchants.Tier;
+import com.iridium.iridiumenchants.*;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
+import com.iridium.iridiumskyblock.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -64,14 +62,13 @@ public class EnchantmentTierGUI implements GUI {
                 event.getWhoClicked().openInventory(new EnchantmentTierListGUI(1, tier.getKey()).getInventory());
                 return;
             }
-            if (player.getLevel() < tier.getValue().experienceCost) {
+            if (purchase(tier.getValue(), player)) {
                 player.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notEnoughExperience
                         .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
                         .replace("%tier%", tier.getKey())
                 ));
                 return;
             }
-            player.setLevel(player.getLevel() - tier.getValue().experienceCost);
             List<String[]> customEnchants = new ArrayList<>();
             for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
                 for (Map.Entry<Integer, Level> level : customEnchant.getValue().levels.entrySet()) {
@@ -91,5 +88,24 @@ public class EnchantmentTierGUI implements GUI {
             ));
             IridiumEnchants.getInstance().getConfiguration().tierPurchaseSound.play(player);
         });
+    }
+
+    public boolean purchase(Tier tier, Player player) {
+        if (tier.experienceType == ExperienceType.LEVEL) {
+            if (player.getLevel() < tier.experienceCost) {
+                return false;
+            } else {
+                player.setLevel(player.getLevel() - tier.experienceCost);
+                return true;
+            }
+        } else {
+            int playerExperience = PlayerUtils.getTotalExperience(player);
+            if (playerExperience < tier.experienceCost) {
+                return false;
+            } else {
+                PlayerUtils.setTotalExperience(player, playerExperience - tier.experienceCost);
+                return true;
+            }
+        }
     }
 }
