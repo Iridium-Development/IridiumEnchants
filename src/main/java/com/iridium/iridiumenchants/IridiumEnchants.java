@@ -20,7 +20,10 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPluginLoader;
 
+import java.io.File;
 import java.util.*;
 
 @Getter
@@ -46,6 +49,11 @@ public class IridiumEnchants extends IridiumCore {
 
     private List<BuildSupport> buildSupport;
     private List<FriendlySupport> friendlySupport;
+
+    public IridiumEnchants(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
+        super(loader, description, dataFolder, file);
+        instance = this;
+    }
 
     @Override
     public void onEnable() {

@@ -23,7 +23,7 @@ repositories {
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:21.0.1")
-    implementation("com.iridium:IridiumCore:1.3.1")
+    implementation("com.iridium:IridiumCore:1.3.6")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("com.github.j256:ormlite-core:master-SNAPSHOT")
     implementation("com.j256.ormlite:ormlite-jdbc:5.6")
@@ -36,7 +36,9 @@ dependencies {
     compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1-SNAPSHOT") {
         exclude("org.spigotmc")
     }
-    compileOnly("com.iridium:IridiumSkyblock:3.1.1")
+    compileOnly("com.iridium:IridiumSkyblock:3.1.1"){
+        exclude("com.iridium.iridiumcore")
+    }
     compileOnly("com.massivecraft.massivesuper:MassiveSuper:2.14.0")
     compileOnly("com.massivecraft.massivesuper:Factions:2.14.0")
     compileOnly("com.massivecraft:Factions:1.6.9.5-U0.5.23") {
@@ -51,6 +53,12 @@ dependencies {
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.20")
+
+    // Test dependencies
+    testImplementation(platform("org.junit:junit-bom:5.7.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.mockito:mockito-inline:4.0.0")
+    testImplementation("com.github.seeseemelk:MockBukkit-v1.16:1.5.2")
 }
 
 tasks {
@@ -88,6 +96,10 @@ tasks {
 
         // Always re-run this task
         outputs.upToDateWhen { false }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
 
