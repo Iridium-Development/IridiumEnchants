@@ -62,7 +62,7 @@ public class EnchantmentTierGUI implements GUI {
                 event.getWhoClicked().openInventory(new EnchantmentTierListGUI(1, tier.getKey()).getInventory());
                 return;
             }
-            if (purchase(tier.getValue(), player)) {
+            if (!purchase(tier.getValue(), player)) {
                 player.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notEnoughExperience
                         .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
                         .replace("%tier%", tier.getKey())
