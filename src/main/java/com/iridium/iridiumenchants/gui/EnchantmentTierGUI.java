@@ -8,7 +8,7 @@ import com.iridium.iridiumcore.utils.Placeholder;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.*;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
-import com.iridium.iridiumskyblock.utils.PlayerUtils;
+import com.iridium.iridiumenchants.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
