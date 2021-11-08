@@ -1,8 +1,6 @@
 package com.iridium.iridiumenchants;
 
 import com.iridium.iridiumcore.IridiumCore;
-import com.iridium.iridiumcore.dependencies.paperlib.PaperLib;
-import com.iridium.iridiumcore.gui.GUI;
 import com.iridium.iridiumenchants.commands.customenchants.CommandManager;
 import com.iridium.iridiumenchants.commands.gkits.GkitsCommandManager;
 import com.iridium.iridiumenchants.conditions.*;
@@ -19,7 +17,6 @@ import org.bukkit.Location;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPluginLoader;
 
@@ -58,28 +55,12 @@ public class IridiumEnchants extends IridiumCore {
     @Override
     public void onEnable() {
         instance = this;
+        super.onEnable();
         this.commandManager = new CommandManager("iridiumenchants");
         this.gkitsCommandManager = new GkitsCommandManager("gkits");
         this.customEnchantManager = new CustomEnchantManager();
         this.userManager = new UserManager();
         this.gkitsManager = new GkitsManager();
-
-        if (!PaperLib.isSpigot()) {
-            getLogger().warning("CraftBukkit isn't supported, please use spigot or one of its forks");
-            Bukkit.getPluginManager().disablePlugin(this);
-        } else {
-            Bukkit.getScheduler().runTaskTimerAsynchronously(this, this::saveData, 0L, 6000L);
-            this.registerListeners();
-            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
-                Bukkit.getServer().getOnlinePlayers().forEach((player) -> {
-                    InventoryHolder inventoryHolder = player.getOpenInventory().getTopInventory().getHolder();
-                    if (inventoryHolder instanceof GUI) {
-                        ((GUI) inventoryHolder).addContent(player.getOpenInventory().getTopInventory());
-                    }
-
-                });
-            }, 0L, 1L);
-        }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             userManager.getUser(player);
