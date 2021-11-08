@@ -36,9 +36,6 @@ dependencies {
     compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1-SNAPSHOT") {
         exclude("org.spigotmc")
     }
-    compileOnly("com.iridium:IridiumSkyblock:3.1.1"){
-        exclude("com.iridium.iridiumcore")
-    }
     compileOnly("com.massivecraft.massivesuper:MassiveSuper:2.14.0")
     compileOnly("com.massivecraft.massivesuper:Factions:2.14.0")
     compileOnly("com.massivecraft:Factions:1.6.9.5-U0.5.23") {
