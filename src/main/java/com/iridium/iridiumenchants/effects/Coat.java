@@ -10,6 +10,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class Coat implements Effect {
     }
 
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         if (!(player instanceof Player)) return;
         int radius;
         try {

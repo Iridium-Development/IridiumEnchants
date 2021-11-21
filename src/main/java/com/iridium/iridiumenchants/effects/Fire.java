@@ -2,10 +2,11 @@ package com.iridium.iridiumenchants.effects;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 
 public class Fire implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         int time;
         try {
             time = Integer.parseInt(args[1]);

@@ -1,16 +1,16 @@
 package com.iridium.iridiumenchants.effects;
 
 import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.support.FriendlySupport;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 
 public class Aura implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         AuraType auraType = AuraType.valueOf(args[1].toUpperCase());
         int range;
         try {
@@ -25,7 +25,7 @@ public class Aura implements Effect {
             if (auraType.isValid(player, livingEntity)) {
                 Effect effect = IridiumEnchants.getInstance().getEffects().get(newArgs[0]);
                 if (effect != null) {
-                    effect.apply(player, livingEntity, newArgs, event);
+                    effect.apply(player, livingEntity, newArgs, itemStack, event);
                 }
             }
         }

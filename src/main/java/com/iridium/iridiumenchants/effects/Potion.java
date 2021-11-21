@@ -2,11 +2,12 @@ package com.iridium.iridiumenchants.effects;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 public class Potion implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         if (args.length < 4) return;
         PotionEffectType potionEffectType = PotionEffectType.getByName(args[1]);
         if (potionEffectType == null) return;

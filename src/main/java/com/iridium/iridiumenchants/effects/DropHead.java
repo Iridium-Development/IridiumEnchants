@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class DropHead implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         if (args.length == 2 && args[1].equalsIgnoreCase("target")) {
             if (target == null) return;
             ItemStack head = XMaterial.PLAYER_HEAD.parseItem();

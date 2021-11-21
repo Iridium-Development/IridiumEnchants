@@ -19,7 +19,7 @@ public class Multishot implements Effect {
     private final List<EntityShootBowEvent> events = new ArrayList<>();
 
     @Override
-    public void apply(LivingEntity p, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity p, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         if (!(event instanceof EntityShootBowEvent) || !(p instanceof Player)) return;
         EntityShootBowEvent entityShootBowEvent = (EntityShootBowEvent) event;
         if (events.contains(entityShootBowEvent)) {
