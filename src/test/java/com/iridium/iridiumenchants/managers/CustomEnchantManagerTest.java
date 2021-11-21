@@ -41,28 +41,4 @@ class CustomEnchantManagerTest {
         assertEquals(IridiumEnchants.getInstance().getCustomEnchantManager().toRomanNumerals(10), "X");
         assertEquals(IridiumEnchants.getInstance().getCustomEnchantManager().toRomanNumerals(11), "11");
     }
-
-    @Test
-    public void applyEnchantment() {
-    }
-
-    @Test
-    public void getEnchantmentFromCrystal() {
-    }
-
-    @Test
-    public void getEnchantmentLevelFromCrystal() {
-    }
-
-    @Test
-    public void getEnchantmentCrystal() {
-    }
-
-    @Test
-    public void getEnchantmentsFromItem() {
-    }
-
-    @Test
-    public void applyEffectsFromItem() {
-    }
 }
