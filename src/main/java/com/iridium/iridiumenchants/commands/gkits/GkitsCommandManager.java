@@ -7,7 +7,6 @@ import com.iridium.iridiumenchants.commands.Command;
 import com.iridium.iridiumenchants.configs.Commands;
 import com.iridium.iridiumenchants.gui.GKitsGUI;
 import com.iridium.iridiumenchants.utils.TimeUtils;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -89,7 +88,7 @@ public class GkitsCommandManager implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender commandSender, org.bukkit.command.@NotNull Command cmd, @NotNull String label, String[] args) {
         if (args.length == 0) {
             if (commandSender instanceof Player && IridiumEnchants.getInstance().getConfiguration().tierGUI) {
-                ((Player) commandSender).openInventory(new GKitsGUI(IridiumEnchants.getInstance().getUserManager().getUser((OfflinePlayer) commandSender)).getInventory());
+                ((Player) commandSender).openInventory(new GKitsGUI(IridiumEnchants.getInstance().getUserManager().getUser((Player) commandSender)).getInventory());
             } else {
                 IridiumEnchants.getInstance().getCommands().helpCommand.execute(commandSender, args);
             }

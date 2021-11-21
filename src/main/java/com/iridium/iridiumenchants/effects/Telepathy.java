@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class Telepathy implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack i, Event event) {
         if (!(event instanceof BlockBreakEvent) || !(player instanceof Player)) return;
         Player p = (Player) player;
         BlockBreakEvent blockBreakEvent = (BlockBreakEvent) event;

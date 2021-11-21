@@ -198,7 +198,7 @@ public class CustomEnchantManager {
                     if (effectArgs.length == 0) continue;
                     Effect effect = IridiumEnchants.getInstance().getEffects().get(effectArgs[0]);
                     if (effect != null) {
-                        effect.apply(player, target, effectArgs, event);
+                        effect.apply(player, target, effectArgs, itemStack, event);
                     }
                 }
             }

@@ -12,16 +12,16 @@ import org.bukkit.inventory.ItemStack;
 
 public class Smelt implements Effect {
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         if (player instanceof Player && event instanceof BlockBreakEvent) {
             BlockBreakEvent blockBreakEvent = (BlockBreakEvent) event;
             blockBreakEvent.setCancelled(true);
             Block block = blockBreakEvent.getBlock();
             for (ItemStack drop : block.getDrops(((Player) player).getItemInHand())) {
                 XMaterial xMaterial = XMaterial.matchXMaterial(drop);
-                ItemStack itemStack = IridiumEnchants.getInstance().getConfiguration().smelt.getOrDefault(xMaterial, xMaterial).parseItem();
-                if (itemStack != null) {
-                    block.getLocation().getWorld().dropItem(block.getLocation(), itemStack);
+                ItemStack item = IridiumEnchants.getInstance().getConfiguration().smelt.getOrDefault(xMaterial, xMaterial).parseItem();
+                if (item != null) {
+                    block.getLocation().getWorld().dropItem(block.getLocation(), item);
                 }
             }
             block.setType(Material.AIR);

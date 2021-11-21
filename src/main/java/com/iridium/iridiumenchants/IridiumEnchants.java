@@ -197,6 +197,8 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("REPLACE_NEAR", new ReplaceNear());
         effects.put("COAT", new Coat());
         effects.put("TELEPATHY", new Telepathy());
+        effects.put("ADD_EXTRA_HEALTH", new AddExtraHealth());
+        effects.put("REMOVE_EXTRA_HEALTH", new RemoveExtraHealth());
     }
 
     public void registerConditions() {

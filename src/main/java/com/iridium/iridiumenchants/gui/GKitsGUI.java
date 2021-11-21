@@ -12,7 +12,6 @@ import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.User;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -104,7 +103,7 @@ public class GKitsGUI implements GUI {
                         ));
                         return;
                     }
-                    IridiumEnchants.getInstance().getUserManager().getUser((OfflinePlayer) event.getWhoClicked()).applyCooldown(gkit.getKey(), gkit.getValue().cooldown);
+                    IridiumEnchants.getInstance().getUserManager().getUser(event.getWhoClicked()).applyCooldown(gkit.getKey(), gkit.getValue().cooldown);
                     IridiumEnchants.getInstance().getGkitsManager().getItemsFromGkit(gkit.getValue()).forEach(itemStack ->
                             player.getInventory().addItem(itemStack).values().forEach(item ->
                                     player.getWorld().dropItem(player.getLocation(), item)));

@@ -3,7 +3,6 @@ package com.iridium.iridiumenchants.effects;
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.listeners.BlockBreakListener;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,6 +10,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Infusion implements Effect {
     private final List<BlockBreakEvent> events = new ArrayList<>();
 
     @Override
-    public void apply(LivingEntity player, LivingEntity target, String[] args, Event event) {
+    public void apply(LivingEntity player, LivingEntity target, String[] args, ItemStack itemStack, Event event) {
         if (player instanceof Player && event instanceof BlockBreakEvent) {
             BlockBreakEvent blockBreakEvent = (BlockBreakEvent) event;
             if (events.contains(blockBreakEvent)) {
