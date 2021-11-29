@@ -207,6 +207,7 @@ public class IridiumEnchants extends IridiumCore {
         conditions.put("TARGET_HEALTH", new TargetHealth());
         conditions.put("ISWEARING", new IsWearing());
         conditions.put("ISHOLDING", new IsHolding());
+        conditions.put("ISSNEAKING", new IsSneaking());
     }
 
     public static IridiumEnchants getInstance() {
