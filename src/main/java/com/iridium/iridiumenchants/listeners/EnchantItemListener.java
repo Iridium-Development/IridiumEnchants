@@ -26,7 +26,7 @@ public class EnchantItemListener implements Listener {
         ItemStack item = event.getItem();
         List<Map.Entry<String, CustomEnchant>> customEnchants = new ArrayList<>();
         for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
-            if (customEnchant.getValue().type.includes(item) && customEnchant.getValue().enchantmentTable) {
+            if (IridiumEnchants.getInstance().getTypes().types.get(customEnchant.getValue().type).includes(item.getType()) && customEnchant.getValue().enchantmentTable) {
                 customEnchants.add(customEnchant);
             }
         }

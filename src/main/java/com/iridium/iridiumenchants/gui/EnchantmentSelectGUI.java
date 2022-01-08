@@ -34,7 +34,7 @@ public class EnchantmentSelectGUI implements GUI {
         for (int i = 0; i < 36; i++) {
             ItemStack itemStack = player.getInventory().getContents()[i];
             if (itemStack != null) {
-                if (customEnchant.type.includes(itemStack)) {
+                if (IridiumEnchants.getInstance().getTypes().types.get(customEnchant.type).includes(itemStack.getType())) {
                     inventory.setItem(i, itemStack);
                 }
             }
@@ -44,7 +44,7 @@ public class EnchantmentSelectGUI implements GUI {
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
         ItemStack itemStack = player.getInventory().getContents()[event.getSlot()];
-        if (customEnchant.type.includes(itemStack)) {
+        if (IridiumEnchants.getInstance().getTypes().types.get(customEnchant.type).includes(itemStack.getType())) {
             //Double check they still have the enchantment crystal in their hand
             Optional<String> iridiumEnchant = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(event.getWhoClicked().getItemInHand());
             if (iridiumEnchant.isPresent() && iridiumEnchant.get().equals(enchantKey)) {
