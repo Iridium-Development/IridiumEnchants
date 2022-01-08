@@ -139,7 +139,7 @@ public class CustomEnchantManager {
         Item item = IridiumEnchants.getInstance().getConfiguration().enchantmentCrystal;
         NBTItem nbtItem = new NBTItem(ItemStackUtils.makeItem(item, Arrays.asList(
                 new Placeholder("enchant", WordUtils.capitalize(iridiumEnchant) + " " + toRomanNumerals(level)),
-                new Placeholder("type", WordUtils.capitalize(customEnchant.getType().name().toLowerCase())),
+                new Placeholder("type", WordUtils.capitalize(customEnchant.getType())),
                 new Placeholder("description", customEnchant.getDescription())
         )));
         NBTCompound nbtCompound = nbtItem.getOrCreateCompound("iridiumenchants");

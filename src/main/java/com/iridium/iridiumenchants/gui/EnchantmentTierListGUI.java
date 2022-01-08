@@ -42,7 +42,7 @@ public class EnchantmentTierListGUI extends PagedGUI<EnchantmentTierListGUI.Cust
     public ItemStack getItemStack(CustomEnchantLevel customEnchantLevel) {
         return ItemStackUtils.makeItem(IridiumEnchants.getInstance().getInventories().enchantsTierListGUI.item, Arrays.asList(
                 new Placeholder("enchant_name", WordUtils.capitalize(customEnchantLevel.customEnchant.getKey())),
-                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantLevel.customEnchant.getValue().type.name().toLowerCase())),
+                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantLevel.customEnchant.getValue().type)),
                 new Placeholder("enchant_description", customEnchantLevel.customEnchant.getValue().description),
                 new Placeholder("enchant_level", IridiumEnchants.getInstance().getCustomEnchantManager().toRomanNumerals(customEnchantLevel.level.getKey()))
         ));

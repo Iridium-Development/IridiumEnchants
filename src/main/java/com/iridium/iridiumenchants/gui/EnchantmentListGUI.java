@@ -40,7 +40,7 @@ public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant
     public ItemStack getItemStack(Map.Entry<String, CustomEnchant> customEnchantEntry) {
         return ItemStackUtils.makeItem(IridiumEnchants.getInstance().getInventories().enchantsListGUI.item, Arrays.asList(
                 new Placeholder("enchant_name", WordUtils.capitalize(customEnchantEntry.getKey())),
-                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantEntry.getValue().type.name().toLowerCase())),
+                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantEntry.getValue().type)),
                 new Placeholder("enchant_description", customEnchantEntry.getValue().description)
         ));
     }

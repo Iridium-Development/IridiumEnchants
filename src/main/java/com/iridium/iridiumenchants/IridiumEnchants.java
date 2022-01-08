@@ -40,6 +40,7 @@ public class IridiumEnchants extends IridiumCore {
     private CustomEnchants customEnchants;
     private Inventories inventories;
     private GKits gKits;
+    private Types types;
 
     private Map<String, Effect> effects;
     private Map<String, Condition> conditions;
@@ -123,6 +124,7 @@ public class IridiumEnchants extends IridiumCore {
         this.customEnchants = getPersist().load(CustomEnchants.class);
         this.inventories = getPersist().load(Inventories.class);
         this.gKits = getPersist().load(GKits.class);
+        this.types = getPersist().load(Types.class);
         for (Tier tier : configuration.tiers.values()) {
             if (tier.experienceType == null) {
                 tier.experienceType = ExperienceType.LEVEL;
@@ -138,6 +140,7 @@ public class IridiumEnchants extends IridiumCore {
         getPersist().save(customEnchants);
         getPersist().save(inventories);
         getPersist().save(gKits);
+        getPersist().save(types);
     }
 
     @Override

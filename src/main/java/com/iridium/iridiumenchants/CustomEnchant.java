@@ -12,7 +12,7 @@ import java.util.Map;
 public class CustomEnchant {
     public String displayName;
     public String description;
-    public Type type;
+    public String type;
     public String trigger;
     public Map<Integer, Level> levels;
     public Boolean enabled;
