@@ -1,11 +1,13 @@
 package com.iridium.iridiumenchants;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.bukkit.Material;
 
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 public class Type {
     public List<String> types;
 
