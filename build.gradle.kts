@@ -18,19 +18,18 @@ repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://repo.rosewooddev.io/repository/public/")
     maven("https://repo.jeff-media.de/maven2/")
+    mavenCentral()
 }
 
 dependencies {
     // Dependencies that we want to shade in
-    implementation("org.jetbrains:annotations:21.0.1")
-    implementation("com.iridium:IridiumCore:1.4.5")
+    implementation("org.jetbrains:annotations:22.0.0")
+    implementation("com.iridium:IridiumCore:1.5.1")
     implementation("org.bstats:bstats-bukkit:2.2.1")
-    implementation("com.j256.ormlite:ormlite-core:5.7")
-    implementation("com.j256.ormlite:ormlite-jdbc:5.7")
     implementation("de.jeff_media:SpigotUpdateChecker:1.2.4")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok:lombok:1.18.20")
+    compileOnly("org.projectlombok:lombok:1.18.22")
     compileOnly("org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.9.2")
     compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1-SNAPSHOT") {
@@ -50,7 +49,7 @@ dependencies {
     compileOnly("com.bgsoftware:SuperiorSkyblock2:1.8")
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok:lombok:1.18.20")
+    annotationProcessor("org.projectlombok:lombok:1.18.22")
 }
 
 tasks {
