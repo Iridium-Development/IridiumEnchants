@@ -34,11 +34,12 @@ public class EnchantmentSelectGUI implements GUI {
     @Override
     public void addContent(Inventory inventory) {
         Optional<Type> type = TypeUtils.getType(customEnchant.type);
+        int level = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentLevelFromCrystal(player.getItemInHand());
         if (!type.isPresent()) return;
         for (int i = 0; i < 36; i++) {
             ItemStack itemStack = player.getInventory().getContents()[i];
             if (itemStack != null) {
-                if (type.get().includes(itemStack.getType())) {
+                if (IridiumEnchants.getInstance().getCustomEnchantManager().canApply(itemStack, enchantKey, level, type.get())) {
                     inventory.setItem(i, itemStack);
                 }
             }
@@ -48,11 +49,14 @@ public class EnchantmentSelectGUI implements GUI {
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
         ItemStack itemStack = player.getInventory().getContents()[event.getSlot()];
-        if (TypeUtils.getType(customEnchant.type).map(type -> type.includes(itemStack.getType())).orElse(false)) {
+        Optional<Type> type = TypeUtils.getType(customEnchant.type);
+        int level = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentLevelFromCrystal(event.getWhoClicked().getItemInHand());
+        if (itemStack == null) return;
+        if (!type.isPresent()) return;
+        if (IridiumEnchants.getInstance().getCustomEnchantManager().canApply(itemStack, enchantKey, level, type.get())) {
             //Double check they still have the enchantment crystal in their hand
             Optional<String> iridiumEnchant = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(event.getWhoClicked().getItemInHand());
             if (iridiumEnchant.isPresent() && iridiumEnchant.get().equals(enchantKey)) {
-                int level = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentLevelFromCrystal(event.getWhoClicked().getItemInHand());
                 ItemStack item = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(itemStack, enchantKey, customEnchant, level);
                 player.getInventory().setItem(event.getSlot(), item);
                 event.getWhoClicked().closeInventory();

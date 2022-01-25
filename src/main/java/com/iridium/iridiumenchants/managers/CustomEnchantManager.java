@@ -6,10 +6,7 @@ import com.iridium.iridiumcore.dependencies.nbtapi.NBTItem;
 import com.iridium.iridiumcore.utils.ItemStackUtils;
 import com.iridium.iridiumcore.utils.Placeholder;
 import com.iridium.iridiumcore.utils.StringUtils;
-import com.iridium.iridiumenchants.CustomEnchant;
-import com.iridium.iridiumenchants.IridiumEnchants;
-import com.iridium.iridiumenchants.Level;
-import com.iridium.iridiumenchants.Trigger;
+import com.iridium.iridiumenchants.*;
 import com.iridium.iridiumenchants.conditions.Condition;
 import com.iridium.iridiumenchants.effects.Effect;
 import org.apache.commons.lang.WordUtils;
@@ -163,6 +160,15 @@ public class CustomEnchantManager {
             hashMap.put(key, nbtCompound.getInteger(key));
         }
         return hashMap;
+    }
+
+    public boolean canApply(ItemStack itemStack, String iridiumEnchant, int level) {
+        Map<String, Integer> enchantments = getEnchantmentsFromItem(itemStack);
+        return !enchantments.containsKey(iridiumEnchant) || enchantments.get(iridiumEnchant) < level;
+    }
+
+    public boolean canApply(ItemStack itemStack, String iridiumEnchant, int level, Type type) {
+        return canApply(itemStack, iridiumEnchant, level) && type.includes(itemStack.getType());
     }
 
     /**
