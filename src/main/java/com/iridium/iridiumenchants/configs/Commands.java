@@ -8,4 +8,5 @@ public class Commands {
     public GiveCommand giveCommand = new GiveCommand();
     public ListCommand listCommand = new ListCommand();
     public AboutCommand aboutCommand = new AboutCommand();
+    public com.iridium.iridiumenchants.commands.gkits.GiveCommand gkitsGiveCommand = new com.iridium.iridiumenchants.commands.gkits.GiveCommand();
 }
