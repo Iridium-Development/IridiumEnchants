@@ -5,7 +5,7 @@ public class Messages {
     public String noPermission = "%prefix% &7You don't have permission for that.";
     public String mustBeAPlayer = "%prefix% &7You must be a player to execute this command.";
     public String notAPlayer = "%prefix% &7That player doesn't exist.";
-    public String unknownCommand = "%prefix% &7Unknown Command, Try /is help.";
+    public String unknownCommand = "%prefix% &7Unknown Command, Try /ce help.";
     public String helpCommandHeader = "&8===== &e&lIridiumEnchants Help &r&8=====";
     public String helpCommandMessage = "&e/ce %command%&r: &7%description%";
     public String helpCommandFooter = " &7Page %page% of %max_page% ";
@@ -22,4 +22,7 @@ public class Messages {
     public String gavePlayerEnchantment = "%prefix% &7You gave %player% a &e%enchant% %level% &7crystal.";
     public String noTier = "%prefix% &7No tier by that name exists.";
     public String gkitOnCooldown = "%prefix% &7The %gkit% Gkit is on cooldown for %days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds";
+    public String noGkit = "%prefix% &7No GKit by that name exists.";
+    public String gaveGKit = "%prefix% &7You gave the %name% gkit to %player%.";
+    public String recievedGKit = "%prefix% &7You received a %name% gkit from %player%.";
 }

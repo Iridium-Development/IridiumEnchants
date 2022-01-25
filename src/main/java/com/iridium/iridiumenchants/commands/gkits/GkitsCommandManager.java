@@ -42,6 +42,7 @@ public class GkitsCommandManager implements CommandExecutor, TabCompleter {
      */
     public void registerCommands() {
         Commands commands = IridiumEnchants.getInstance().getCommands();
+        registerCommand(commands.gkitsGiveCommand);
     }
 
     /**
