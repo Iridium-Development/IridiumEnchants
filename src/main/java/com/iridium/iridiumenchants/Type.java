@@ -1,5 +1,6 @@
 package com.iridium.iridiumenchants;
 
+import com.iridium.iridiumenchants.utils.TypeUtils;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.bukkit.Material;
@@ -14,9 +15,7 @@ public class Type {
     public boolean includes(Material item) {
         for (String type : types) {
             if (item.name().equalsIgnoreCase(type)) return true;
-            if (IridiumEnchants.getInstance().getTypes().types.containsKey(type)) {
-                if (IridiumEnchants.getInstance().getTypes().types.get(type).includes(item)) return true;
-            }
+            if (TypeUtils.getType(type).map(t -> t.includes(item)).orElse(false)) return true;
         }
         return false;
     }

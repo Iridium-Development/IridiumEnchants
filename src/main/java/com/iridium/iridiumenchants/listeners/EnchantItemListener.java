@@ -2,6 +2,7 @@ package com.iridium.iridiumenchants.listeners;
 
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.utils.TypeUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
@@ -26,7 +27,7 @@ public class EnchantItemListener implements Listener {
         ItemStack item = event.getItem();
         List<Map.Entry<String, CustomEnchant>> customEnchants = new ArrayList<>();
         for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
-            if (IridiumEnchants.getInstance().getTypes().types.get(customEnchant.getValue().type).includes(item.getType()) && customEnchant.getValue().enchantmentTable) {
+            if (TypeUtils.getType(customEnchant.getValue().type).map(type -> type.includes(item.getType())).orElse(false) && customEnchant.getValue().enchantmentTable) {
                 customEnchants.add(customEnchant);
             }
         }
