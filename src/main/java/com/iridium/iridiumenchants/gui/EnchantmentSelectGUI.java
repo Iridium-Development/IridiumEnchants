@@ -4,6 +4,8 @@ import com.iridium.iridiumcore.gui.GUI;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
+import com.iridium.iridiumenchants.Type;
+import com.iridium.iridiumenchants.utils.TypeUtils;
 import lombok.AllArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -31,10 +33,12 @@ public class EnchantmentSelectGUI implements GUI {
 
     @Override
     public void addContent(Inventory inventory) {
+        Optional<Type> type = TypeUtils.getType(customEnchant.type);
+        if (!type.isPresent()) return;
         for (int i = 0; i < 36; i++) {
             ItemStack itemStack = player.getInventory().getContents()[i];
             if (itemStack != null) {
-                if (IridiumEnchants.getInstance().getTypes().types.get(customEnchant.type).includes(itemStack.getType())) {
+                if (type.get().includes(itemStack.getType())) {
                     inventory.setItem(i, itemStack);
                 }
             }
@@ -44,7 +48,7 @@ public class EnchantmentSelectGUI implements GUI {
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
         ItemStack itemStack = player.getInventory().getContents()[event.getSlot()];
-        if (IridiumEnchants.getInstance().getTypes().types.get(customEnchant.type).includes(itemStack.getType())) {
+        if (TypeUtils.getType(customEnchant.type).map(type -> type.includes(itemStack.getType())).orElse(false)) {
             //Double check they still have the enchantment crystal in their hand
             Optional<String> iridiumEnchant = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(event.getWhoClicked().getItemInHand());
             if (iridiumEnchant.isPresent() && iridiumEnchant.get().equals(enchantKey)) {
