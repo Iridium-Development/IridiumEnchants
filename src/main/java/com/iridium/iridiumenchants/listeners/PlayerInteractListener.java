@@ -1,6 +1,7 @@
 package com.iridium.iridiumenchants.listeners;
 
 import com.iridium.iridiumenchants.CustomEnchant;
+import com.iridium.iridiumenchants.EnchantMethod;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.gui.EnchantmentSelectGUI;
 import org.bukkit.entity.Player;
@@ -14,6 +15,7 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        if (IridiumEnchants.getInstance().getConfiguration().enchantMethod != EnchantMethod.INVENTORY) return;
         if (event.getAction() != Action.PHYSICAL) {
             Player player = event.getPlayer();
             ItemStack itemStack = player.getItemInHand();
