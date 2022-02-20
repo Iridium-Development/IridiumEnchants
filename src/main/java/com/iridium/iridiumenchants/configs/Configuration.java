@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.iridium.iridiumcore.Item;
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumcore.dependencies.xseries.XSound;
+import com.iridium.iridiumenchants.EnchantMethod;
 import com.iridium.iridiumenchants.ExperienceType;
 import com.iridium.iridiumenchants.Tier;
 
@@ -19,6 +20,8 @@ public class Configuration {
     public int enchantingTableMin = 1;
     public int enchantingTableMax = 3;
     public Item enchantmentCrystal = new Item(XMaterial.NETHER_STAR, 1, "&e&l%enchant%", Arrays.asList("&7Type: %type%", "&7Description: %description%"));
+
+    public EnchantMethod enchantMethod = EnchantMethod.INVENTORY;
 
     public Map<XMaterial, XMaterial> smelt = ImmutableMap.<XMaterial, XMaterial>builder()
             .put(XMaterial.IRON_ORE, XMaterial.IRON_INGOT)
