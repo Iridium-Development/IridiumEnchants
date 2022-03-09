@@ -3,7 +3,10 @@ package com.iridium.iridiumenchants.effects;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.Optional;
 
 public class Potion implements Effect {
     @Override
@@ -24,10 +27,29 @@ public class Potion implements Effect {
             duration = 1;
         }
         if (args.length == 5 && args[4].equalsIgnoreCase("target")) {
-            if(target==null)return;
+            if (target == null) return;
+            // This is dumb, but 1.8 doesnt include Player#getPotionEffect
+            Optional<PotionEffect> potionEffect = target.getActivePotionEffects().stream()
+                    .filter(effect -> effect.getType().equals(potionEffectType))
+                    .findFirst();
+            if (potionEffect.isPresent()) {
+                if (potionEffect.get().getAmplifier() <= amplifier && potionEffect.get().getDuration() <= duration * 20) {
+                    target.removePotionEffect(potionEffectType);
+                }
+            }
             target.addPotionEffect(potionEffectType.createEffect(duration * 20, amplifier));
         } else {
-            if(player==null)return;
+            if (player == null) return;
+            if (target == null) return;
+            // This is dumb, but 1.8 doesnt include Player#getPotionEffect
+            Optional<PotionEffect> potionEffect = player.getActivePotionEffects().stream()
+                    .filter(effect -> effect.getType().equals(potionEffectType))
+                    .findFirst();
+            if (potionEffect.isPresent()) {
+                if (potionEffect.get().getAmplifier() <= amplifier && potionEffect.get().getDuration() <= duration * 20) {
+                    player.removePotionEffect(potionEffectType);
+                }
+            }
             player.addPotionEffect(potionEffectType.createEffect(duration * 20, amplifier));
         }
     }
