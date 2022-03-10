@@ -40,7 +40,6 @@ public class Potion implements Effect {
             target.addPotionEffect(potionEffectType.createEffect(duration * 20, amplifier));
         } else {
             if (player == null) return;
-            if (target == null) return;
             // This is dumb, but 1.8 doesnt include Player#getPotionEffect
             Optional<PotionEffect> potionEffect = player.getActivePotionEffects().stream()
                     .filter(effect -> effect.getType().equals(potionEffectType))
