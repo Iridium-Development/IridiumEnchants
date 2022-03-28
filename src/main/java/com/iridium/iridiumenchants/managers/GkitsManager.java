@@ -21,19 +21,20 @@ public class GkitsManager {
                     if (itemStack == null) return null;
                     itemStack.setAmount(gKitItem.amount);
                     ItemMeta itemMeta = itemStack.getItemMeta();
-                    itemMeta.setDisplayName(StringUtils.color(gKitItem.title));
+                    if (gKitItem.title != null) itemMeta.setDisplayName(StringUtils.color(gKitItem.title));
                     itemStack.setItemMeta(itemMeta);
-                    for (Map.Entry<String, Integer> enchants : gKitItem.enchantments.entrySet()) {
-                        Enchantment enchantment = Enchantment.getByName(enchants.getKey());
-                        if (enchantment != null) {
-                            itemStack.addUnsafeEnchantment(enchantment, enchants.getValue());
-                        } else {
-                            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchants.getKey());
-                            if (customEnchant != null) {
-                                itemStack = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(itemStack, enchants.getKey(), customEnchant, enchants.getValue());
+                    if (gKitItem.enchantments != null)
+                        for (Map.Entry<String, Integer> enchants : gKitItem.enchantments.entrySet()) {
+                            Enchantment enchantment = Enchantment.getByName(enchants.getKey());
+                            if (enchantment != null) {
+                                itemStack.addUnsafeEnchantment(enchantment, enchants.getValue());
+                            } else {
+                                CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchants.getKey());
+                                if (customEnchant != null) {
+                                    itemStack = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(itemStack, enchants.getKey(), customEnchant, enchants.getValue());
+                                }
                             }
                         }
-                    }
                     return itemStack;
                 })
                 .filter(Objects::nonNull)
