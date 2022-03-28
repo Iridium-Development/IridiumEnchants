@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -20,12 +19,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class EnchantmentTierListGUI extends PagedGUI<EnchantmentTierListGUI.CustomEnchantLevel> {
-    private final int page;
     private final String tier;
 
     public EnchantmentTierListGUI(int page, String tier) {
-        super(page, IridiumEnchants.getInstance().getInventories().enchantsTierListGUI.background, IridiumEnchants.getInstance().getInventories().previousPage, IridiumEnchants.getInstance().getInventories().nextPage);
-        this.page = page;
+        super(page, IridiumEnchants.getInstance().getInventories().enchantsTierListGUI.size, IridiumEnchants.getInstance().getInventories().enchantsTierListGUI.background, IridiumEnchants.getInstance().getInventories().previousPage, IridiumEnchants.getInstance().getInventories().nextPage);
         this.tier = tier;
     }
 
@@ -33,7 +30,7 @@ public class EnchantmentTierListGUI extends PagedGUI<EnchantmentTierListGUI.Cust
     @Override
     public Inventory getInventory() {
         NoItemGUI noItemGUI = IridiumEnchants.getInstance().getInventories().enchantsTierListGUI;
-        Inventory inventory = Bukkit.createInventory(this, noItemGUI.size, StringUtils.color(noItemGUI.title.replace("%tier%", tier)));
+        Inventory inventory = Bukkit.createInventory(this, getSize(), StringUtils.color(noItemGUI.title.replace("%tier%", tier)));
         addContent(inventory);
         return inventory;
     }
@@ -46,19 +43,6 @@ public class EnchantmentTierListGUI extends PagedGUI<EnchantmentTierListGUI.Cust
                 new Placeholder("enchant_description", customEnchantLevel.customEnchant.getValue().description),
                 new Placeholder("enchant_level", IridiumEnchants.getInstance().getCustomEnchantManager().toRomanNumerals(customEnchantLevel.level.getKey()))
         ));
-    }
-
-    @Override
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getSlot() == getInventory().getSize() - 7) {
-            if (page > 1) {
-                event.getWhoClicked().openInventory(new EnchantmentTierListGUI(page - 1, tier).getInventory());
-            }
-        } else if (event.getSlot() == getInventory().getSize() - 3) {
-            if ((event.getInventory().getSize() - 9) * page < getPageObjects().size()) {
-                event.getWhoClicked().openInventory(new EnchantmentTierListGUI(page + 1, tier).getInventory());
-            }
-        }
     }
 
     @Override

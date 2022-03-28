@@ -86,7 +86,7 @@ public class Inventories {
     public AnimatedBackgroundGUI enchantsTierGUI = new AnimatedBackgroundGUI(27, "&7Iridium Enchants", animatedBackground, 5);
 
     public AnimatedBackgroundGUI gkitsGUI = new AnimatedBackgroundGUI(27, "&7GKits", plainAnimatedBackground, 5);
-    public NoItemGUI gkitsPreview = new NoItemGUI(9, "&7%gkit% Gkit Preview", background);
+    public NoItemGUI gkitsPreview = new NoItemGUI(0, "&7%gkit% Gkit Preview", background);
 
     public Item nextPage = new Item(XMaterial.LIME_STAINED_GLASS_PANE, 1, "&a&lNext Page", Collections.emptyList());
     public Item previousPage = new Item(XMaterial.RED_STAINED_GLASS_PANE, 1, "&c&lPrevious Page", Collections.emptyList());
