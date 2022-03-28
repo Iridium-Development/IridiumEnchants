@@ -12,7 +12,7 @@ public class Types {
             .put("Fishing Rod", new Type(Collections.singletonList("FISHING_ROD")))
             .put("Tool", new Type(Arrays.asList("Pickaxe", "Axe", "Shovel", "Hoe")))
             .put("Armor", new Type(Arrays.asList("Helmet", "Chestplate", "Leggings", "Boots")))
-            .put("Bow", new Type(Collections.singletonList("BOW")))
+            .put("Bows", new Type(Collections.singletonList("BOW")))
             .put("Sword", new Type(Arrays.asList("WOODEN_SWORD", "STONE_SWORD", "IRON_SWORD", "GOLDEN_SWORD", "DIAMOND_SWORD", "NETHERITE_SWORD")))
             .put("Helmet", new Type(Arrays.asList("LEATHER_HELMET", "CHAINMAIL_HELMET", "IRON_HELMET", "GOLDEN_HELMET", "DIAMOND_HELMET", "NETHERITE_HELMET")))
             .put("Chestplate", new Type(Arrays.asList("LEATHER_CHESTPLATE", "CHAINMAIL_CHESTPLATE", "IRON_CHESTPLATE", "GOLDEN_CHESTPLATE", "DIAMOND_CHESTPLATE", "NETHERITE_CHESTPLATE")))
