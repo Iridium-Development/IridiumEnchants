@@ -48,7 +48,7 @@ public class EntityDamageListener implements Listener {
             }
         }
 
-        if (event.getDamager() instanceof Projectile) {
+        if (event.getDamager() instanceof Projectile && (event.getEntity() instanceof LivingEntity)) {
             Projectile projectile = (Projectile) event.getDamager();
             if (projectile.getShooter() instanceof Player) {
                 Player player = (Player) projectile.getShooter();
