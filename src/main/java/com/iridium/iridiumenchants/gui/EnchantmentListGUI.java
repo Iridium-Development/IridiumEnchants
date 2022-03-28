@@ -9,7 +9,6 @@ import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.configs.inventories.NoItemGUI;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -20,18 +19,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant>> {
-    private final int page;
 
     public EnchantmentListGUI(int page) {
-        super(page, IridiumEnchants.getInstance().getInventories().enchantsListGUI.background, IridiumEnchants.getInstance().getInventories().previousPage, IridiumEnchants.getInstance().getInventories().nextPage);
-        this.page = page;
+        super(page, IridiumEnchants.getInstance().getInventories().enchantsListGUI.size, IridiumEnchants.getInstance().getInventories().enchantsListGUI.background, IridiumEnchants.getInstance().getInventories().previousPage, IridiumEnchants.getInstance().getInventories().nextPage);
     }
 
     @NotNull
     @Override
     public Inventory getInventory() {
         NoItemGUI noItemGUI = IridiumEnchants.getInstance().getInventories().enchantsListGUI;
-        Inventory inventory = Bukkit.createInventory(this, noItemGUI.size, StringUtils.color(noItemGUI.title));
+        Inventory inventory = Bukkit.createInventory(this, getSize(), StringUtils.color(noItemGUI.title));
         addContent(inventory);
         return inventory;
     }
@@ -43,19 +40,6 @@ public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant
                 new Placeholder("enchant_type", WordUtils.capitalize(customEnchantEntry.getValue().type)),
                 new Placeholder("enchant_description", customEnchantEntry.getValue().description)
         ));
-    }
-
-    @Override
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getSlot() == getInventory().getSize() - 7) {
-            if (page > 1) {
-                event.getWhoClicked().openInventory(new EnchantmentListGUI(page - 1).getInventory());
-            }
-        } else if (event.getSlot() == getInventory().getSize() - 3) {
-            if ((event.getInventory().getSize() - 9) * page < getPageObjects().size()) {
-                event.getWhoClicked().openInventory(new EnchantmentListGUI(page + 1).getInventory());
-            }
-        }
     }
 
     @Override
