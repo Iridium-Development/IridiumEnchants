@@ -6,12 +6,13 @@ import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.GKit;
 import org.bukkit.enchantments.Enchantment;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Map;
 
 public class GKits {
     public Map<String, GKit> gkits = ImmutableMap.<String, GKit>builder()
-            .put("Frosty", new GKit(259200, "iridiumenchants.gkits.frosty", new Item(XMaterial.SNOWBALL, 11, 1, "&b&lFrosty Kit", Arrays.asList("&bCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&b&l[!] &7Left click to redeem this Gkit", "&b&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
+            .put("Frosty", new GKit(Duration.ofSeconds(259200), "iridiumenchants.gkits.frosty", new Item(XMaterial.SNOWBALL, 11, 1, "&b&lFrosty Kit", Arrays.asList("&bCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&b&l[!] &7Left click to redeem this Gkit", "&b&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
                     .put(1, new GKit.GKitItem(XMaterial.DIAMOND_HELMET, 1, "&b&lFrosty Helmet", ImmutableMap.<String, Integer>builder()
                             .put(Enchantment.PROTECTION_ENVIRONMENTAL.getName(), 4)
                             .put(Enchantment.DURABILITY.getName(), 3)
@@ -43,7 +44,7 @@ public class GKits {
                             .put("Renewal", 3)
                             .build()))
                     .build()))
-            .put("Spooky", new GKit(259200, "iridiumenchants.gkits.spooky", new Item(XMaterial.PUMPKIN, 13, 1, "&c&lSpooky Kit", Arrays.asList("&cCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&c&l[!] &7Left click to redeem this Gkit", "&c&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
+            .put("Spooky", new GKit(Duration.ofSeconds(259200), "iridiumenchants.gkits.spooky", new Item(XMaterial.PUMPKIN, 13, 1, "&c&lSpooky Kit", Arrays.asList("&cCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&c&l[!] &7Left click to redeem this Gkit", "&c&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
                     .put(1, new GKit.GKitItem(XMaterial.DIAMOND_HELMET, 1, "&c&lSpooky Helmet", ImmutableMap.<String, Integer>builder()
                             .put(Enchantment.PROTECTION_ENVIRONMENTAL.getName(), 4)
                             .put(Enchantment.DURABILITY.getName(), 3)
@@ -76,7 +77,7 @@ public class GKits {
                             .put("Thunder", 1)
                             .build()))
                     .build()))
-            .put("Valentines", new GKit(259200, "iridiumenchants.gkits.valentines", new Item(XMaterial.BOW, 15, 1, "&d&lValentine's Kit", Arrays.asList("&dCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&d&l[!] &7Left click to redeem this Gkit", "&d&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
+            .put("Valentines", new GKit(Duration.ofSeconds(259200), "iridiumenchants.gkits.valentines", new Item(XMaterial.BOW, 15, 1, "&d&lValentine's Kit", Arrays.asList("&dCooldown: &7%days% Days %hours% Hours %minutes% Minutes and %seconds% Seconds", "", "&d&l[!] &7Left click to redeem this Gkit", "&d&l[!] &7Right click to preview this Gkit")), ImmutableMap.<Integer, GKit.GKitItem>builder()
                     .put(1, new GKit.GKitItem(XMaterial.DIAMOND_HELMET, 1, "&d&lValentine's Helmet", ImmutableMap.<String, Integer>builder()
                             .put(Enchantment.PROTECTION_ENVIRONMENTAL.getName(), 4)
                             .put(Enchantment.DURABILITY.getName(), 3)
