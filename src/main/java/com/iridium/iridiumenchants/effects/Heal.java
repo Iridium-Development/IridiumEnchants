@@ -17,7 +17,7 @@ public class Heal implements Effect {
         if (args.length == 3 && args[2].equalsIgnoreCase("target")) {
             target.setHealth(Math.min(target.getHealth() + amount, target.getMaxHealth()));
         } else {
-            player.setHealth(Math.min(player.getHealth() + amount, target.getMaxHealth()));
+            player.setHealth(Math.min(player.getHealth() + amount, player.getMaxHealth()));
         }
     }
 }
