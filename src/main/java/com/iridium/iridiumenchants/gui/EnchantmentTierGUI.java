@@ -48,7 +48,7 @@ public class EnchantmentTierGUI implements GUI {
         tickCount++;
         if (tickCount % IridiumEnchants.getInstance().getInventories().enchantsTierGUI.nextFrameInterval == 0) {
             frame++;
-            if (IridiumEnchants.getInstance().getInventories().enchantsTierGUI.background.backgroundFrames.get(frame) == null) {
+            if (!IridiumEnchants.getInstance().getInventories().enchantsTierGUI.background.backgroundFrames.containsKey(frame)) {
                 frame = 0;
             }
         }
