@@ -11,6 +11,7 @@ import com.iridium.iridiumenchants.GKit;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.User;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
+import com.iridium.iridiumskyblock.managers.CooldownProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -18,6 +19,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
@@ -50,11 +52,12 @@ public class GKitsGUI implements GUI {
         }
 
         for (Map.Entry<String, GKit> gkits : IridiumEnchants.getInstance().getGKits().gkits.entrySet()) {
-            LocalDateTime cooldown = user.getCooldown(gkits.getKey());
-            long days = LocalDateTime.now().until(cooldown, ChronoUnit.DAYS);
-            long hours = LocalDateTime.now().until(cooldown, ChronoUnit.HOURS) - (days * 24);
-            long minutes = LocalDateTime.now().until(cooldown, ChronoUnit.MINUTES) - ((hours + (days * 24)) * 60);
-            long seconds = LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) - ((minutes + (hours + (days * 24)) * 60) * 60);
+            CooldownProvider<Player> cooldown = gkits.getValue().getCooldownProvider();
+            Duration remainingTime = cooldown.getRemainingTime(user.getPlayer());
+            long days = remainingTime.toHours() / 24;
+            long hours = remainingTime.toHours() - days * 24;
+            long minutes = remainingTime.toMinutes() - ((hours + (days * 24)) * 60);
+            long seconds = remainingTime.getSeconds() - ((minutes + (hours + (days * 24)) * 60) * 60);
             Item item = gkits.getValue().guiItem;
             inventory.setItem(item.slot, ItemStackUtils.makeItem(item, Arrays.asList(
                     new Placeholder("days", String.valueOf((int) Math.max(days, 0))),
@@ -87,12 +90,13 @@ public class GKitsGUI implements GUI {
                         ));
                         return;
                     }
-                    LocalDateTime cooldown = user.getCooldown(gkit.getKey());
-                    if (LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) > 0) {
-                        long days = LocalDateTime.now().until(cooldown, ChronoUnit.DAYS);
-                        long hours = LocalDateTime.now().until(cooldown, ChronoUnit.HOURS) - (days * 24);
-                        long minutes = LocalDateTime.now().until(cooldown, ChronoUnit.MINUTES) - ((hours + (days * 24)) * 60);
-                        long seconds = LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) - ((minutes + (hours + (days * 24)) * 60) * 60);
+                    CooldownProvider<Player> cooldown = gkit.getValue().getCooldownProvider();
+                    if (cooldown.isOnCooldown(player)) {
+                        Duration remainingTime = cooldown.getRemainingTime(user.getPlayer());
+                        long days = remainingTime.toHours() / 24;
+                        long hours = remainingTime.toHours() - days * 24;
+                        long minutes = remainingTime.toMinutes() - ((hours + (days * 24)) * 60);
+                        long seconds = remainingTime.getSeconds() - ((minutes + (hours + (days * 24)) * 60) * 60);
                         event.getWhoClicked().sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().gkitOnCooldown
                                 .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
                                 .replace("%gkit%", gkit.getKey())
@@ -103,7 +107,7 @@ public class GKitsGUI implements GUI {
                         ));
                         return;
                     }
-                    IridiumEnchants.getInstance().getUserManager().getUser(event.getWhoClicked()).applyCooldown(gkit.getKey(), gkit.getValue().cooldown);
+                    cooldown.applyCooldown(player);
                     IridiumEnchants.getInstance().getGkitsManager().getItemsFromGkit(gkit.getValue()).forEach(itemStack ->
                             player.getInventory().addItem(itemStack).values().forEach(item ->
                                     player.getWorld().dropItem(player.getLocation(), item)));
