@@ -126,7 +126,7 @@ public class CustomEnchants {
                     .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("AURA:ALLY:10:POTION:REGENERATION:1:5:TARGET"), Collections.singletonList("ISWEARING")))
                     .build(), true, true))
             .put("Blaze", new CustomEnchant("&7Blaze", "Sets all enemies in a radius of 10 on fire", "Chestplate", "PASSIVE:20", ImmutableMap.<Integer, Level>builder()
-                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("AURA:ENEMY:10:FIRE:40"), Collections.singletonList("ISWEARING")))
+                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("AURA:ENEMY:10:FIRE:40:TARGET"), Collections.singletonList("ISWEARING")))
                     .build(), true, true))
             .put("Berserk", new CustomEnchant("&7Berserk", "Gives all enemies in a radius of 10 Wither", "Axe", "PLAYER_DAMAGE", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(10, Collections.singletonList("Common"), Collections.singletonList("AURA:ENEMY:10:POTION:WITHER:1:5:TARGET"), Collections.emptyList()))
