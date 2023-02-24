@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.iridium"
-version = "4.1.4"
+version = "4.1.5"
 description = "IridiumEnchants"
 
 repositories {
@@ -25,7 +25,7 @@ repositories {
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:23.0.0")
-    implementation("com.iridium:IridiumCore:1.6.7")
+    implementation("com.iridium:IridiumCore:1.6.8")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
