@@ -23,6 +23,11 @@ public class Potion implements Effect {
         int duration;
         try {
             duration = Integer.parseInt(args[3]);
+
+            //this is to prevent flashing
+            if(potionEffectType.toString().equals("NIGHT_VISION") && duration <= 10) {
+                duration = 15;
+            }
         } catch (NumberFormatException exception) {
             duration = 1;
         }
