@@ -156,6 +156,7 @@ public class IridiumEnchants extends IridiumCore {
                 new FactionsSupportHolder(),
                 new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
+                new LandsSupportHolder(),
                 new TownySupportHolder(),
                 new WorldGuard7SupportHolder()
         ).forEach(supportHolder -> {
