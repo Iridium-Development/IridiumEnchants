@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "com.iridium"
-version = "4.1.5"
 description = "IridiumEnchants"
 
 repositories {
@@ -19,13 +18,14 @@ repositories {
     maven("https://hub.jeff-media.com/nexus/repository/jeff-media-public/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://repo.bg-software.com/repository/api/")
     mavenCentral()
 }
 
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:23.0.0")
-    implementation("com.iridium:IridiumCore:1.7.4")
+    implementation("com.iridium:IridiumCore:1.8.9")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
@@ -33,21 +33,15 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.22")
     compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.9.2")
-    compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1") {
-        exclude("org.spigotmc")
-    }
-    compileOnly("com.iridium:IridiumSkyblock:3.2.8")
-    compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
-    compileOnly("com.massivecraft.massivesuper:Factions:2.14.0")
-    compileOnly("com.massivecraft:Factions:1.6.9.5-U0.6.8") {
-        exclude("com.darkblade12")
-        exclude("org.kitteh")
-    }
+
+    compileOnly("com.iridium:IridiumSkyblock:4.0.8")
+
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
     compileOnly("com.github.TownyAdvanced:Towny:0.96.7.0")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
-    compileOnly("com.bgsoftware:SuperiorSkyblock:1.10.2")
+    compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.10.2")
+    compileOnly("com.github.angeschossen:LandsAPI:6.44.14")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.22")
