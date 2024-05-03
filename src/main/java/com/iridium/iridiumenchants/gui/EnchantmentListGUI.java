@@ -7,7 +7,7 @@ import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.configs.inventories.NoItemGUI;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

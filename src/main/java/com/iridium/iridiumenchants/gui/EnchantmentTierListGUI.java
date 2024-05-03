@@ -10,7 +10,7 @@ import com.iridium.iridiumenchants.Level;
 import com.iridium.iridiumenchants.configs.inventories.NoItemGUI;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
