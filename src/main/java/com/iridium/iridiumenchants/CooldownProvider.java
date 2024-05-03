@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants;
 
-import com.iridium.iridiumcore.dependencies.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.time.Duration;
 import java.util.HashMap;

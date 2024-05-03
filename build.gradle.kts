@@ -1,11 +1,11 @@
 plugins {
     java
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.iridium"
-version = "4.1.7"
+version = "4.1.6"
 description = "IridiumEnchants"
 
 repositories {
@@ -25,27 +25,31 @@ repositories {
 
 dependencies {
     // Dependencies that we want to shade in
-    implementation("org.jetbrains:annotations:23.0.0")
-    implementation("com.iridium:IridiumCore:1.9.1.jar")
+    implementation("org.jetbrains:annotations:24.1.0")
+    implementation("com.iridium:IridiumCore:1.9.0")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok:lombok:1.18.22")
-    compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    compileOnly("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.9.2")
-
     compileOnly("com.iridium:IridiumSkyblock:4.0.8")
-
+    compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
+    compileOnly("com.massivecraft.factions:Factions:2.14.0")
+    compileOnly("com.massivecraft:Factions:1.6.9.5-4.1.4-STABLE") {
+        exclude("com.darkblade12")
+        exclude("org.kitteh")
+    }
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
-    compileOnly("com.github.TownyAdvanced:Towny:0.96.7.0")
+    compileOnly("com.github.TownyAdvanced:Towny:0.100.2.7")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.10.2")
-    compileOnly("com.github.angeschossen:LandsAPI:6.44.14")
+    compileOnly("com.github.angeschossen:LandsAPI:7.0.2")
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
 tasks {
@@ -84,13 +88,15 @@ tasks {
         // Always re-run this task
         outputs.upToDateWhen { false }
     }
-}
 
-// Set the Java version and vendor
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-        vendor.set(JvmVendorSpec.ADOPTOPENJDK)
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    }
+
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 }
 

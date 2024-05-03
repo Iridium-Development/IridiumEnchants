@@ -5,15 +5,12 @@ import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.EnchantMethod;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.Type;
+import com.iridium.iridiumenchants.utils.EnchantmentUtils;
 import com.iridium.iridiumenchants.utils.TypeUtils;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Optional;
 
@@ -39,26 +36,17 @@ public class InventoryClickListener implements Listener {
                     if (IridiumEnchants.getInstance().getCustomEnchantManager().canApply(currentItem, iridiumEnchant, level, type.get())) {
                         event.setCancelled(true);
                         event.getClickedInventory().setItem(event.getSlot(), IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(currentItem, iridiumEnchant, customEnchant, level));
-                        if(event.getCursor().getAmount() > 1){
-                           event.getCursor().setAmount(event.getCursor().getAmount() - 1);
-                        }else{
+                        if (event.getCursor().getAmount() > 1) {
+                            event.getCursor().setAmount(event.getCursor().getAmount() - 1);
+                        } else {
                             event.setCursor(null);
                         }
                     }
                 });
             }
 
-            if (currentItem != null && currentItem.getItemMeta() != null) {
-                ItemMeta itemMeta = currentItem.getItemMeta();
-                if (itemMeta.getEnchants().size() > 1) {
-                    itemMeta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    if (currentItem.getType().equals(Material.FISHING_ROD)) {
-                        itemMeta.removeEnchant(Enchantment.ARROW_FIRE);
-                    } else {
-                        itemMeta.removeEnchant(Enchantment.LURE);
-                    }
-                    currentItem.setItemMeta(itemMeta);
-                }
+            if (currentItem != null) {
+                EnchantmentUtils.removeEnchantmentEffect(currentItem);
             }
         }
     }

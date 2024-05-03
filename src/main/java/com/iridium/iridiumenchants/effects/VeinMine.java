@@ -1,10 +1,10 @@
 package com.iridium.iridiumenchants.effects;
 
-import com.iridium.iridiumcore.dependencies.commons.lang3.text.WordUtils;
 import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.IridiumEnchants;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
