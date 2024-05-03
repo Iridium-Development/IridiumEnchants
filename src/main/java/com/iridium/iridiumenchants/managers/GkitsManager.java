@@ -1,5 +1,6 @@
 package com.iridium.iridiumenchants.managers;
 
+import com.iridium.iridiumcore.dependencies.xseries.XEnchantment;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.GKit;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class GkitsManager {
@@ -21,13 +23,17 @@ public class GkitsManager {
                     if (itemStack == null) return null;
                     itemStack.setAmount(gKitItem.amount);
                     ItemMeta itemMeta = itemStack.getItemMeta();
+                    if (itemMeta == null) return itemStack;
                     if (gKitItem.title != null) itemMeta.setDisplayName(StringUtils.color(gKitItem.title));
                     itemStack.setItemMeta(itemMeta);
                     if (gKitItem.enchantments != null)
                         for (Map.Entry<String, Integer> enchants : gKitItem.enchantments.entrySet()) {
-                            Enchantment enchantment = Enchantment.getByName(enchants.getKey());
-                            if (enchantment != null) {
-                                itemStack.addUnsafeEnchantment(enchantment, enchants.getValue());
+                            Optional<XEnchantment> xEnchantment = XEnchantment.matchXEnchantment(enchants.getKey());
+                            if (xEnchantment.isPresent()) {
+                                Enchantment enchantment = xEnchantment.get().getEnchant();
+                                if (enchantment != null) {
+                                    itemStack.addUnsafeEnchantment(enchantment, enchants.getValue());
+                                }
                             } else {
                                 CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchants.getKey());
                                 if (customEnchant != null) {
