@@ -25,4 +25,6 @@ public class Messages {
     public String noGkit = "%prefix% &7No GKit by that name exists.";
     public String gaveGKit = "%prefix% &7You gave the %name% gkit to %player%.";
     public String recievedGKit = "%prefix% &7You received a %name% gkit from %player%.";
+    public String cannotVeinMine = "%prefix% &7Your &e%tool% &7is low on durability, so you cannot break the block(s).";
+    public String veinMineWrongTool = "%prefix% &7Your %tool% is not capable of getting drops from this block, so it will not be mined.";
 }

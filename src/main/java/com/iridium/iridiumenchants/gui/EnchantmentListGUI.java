@@ -7,7 +7,7 @@ import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.configs.inventories.NoItemGUI;
-import org.apache.commons.lang.WordUtils;
+import com.iridium.iridiumcore.dependencies.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -36,8 +36,8 @@ public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant
     @Override
     public ItemStack getItemStack(Map.Entry<String, CustomEnchant> customEnchantEntry) {
         return ItemStackUtils.makeItem(IridiumEnchants.getInstance().getInventories().enchantsListGUI.item, Arrays.asList(
-                new Placeholder("enchant_name", WordUtils.capitalize(customEnchantEntry.getKey())),
-                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantEntry.getValue().type)),
+                new Placeholder("enchant_name", WordUtils.capitalize(customEnchantEntry.getValue().displayName)),
+                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantEntry.getKey())),
                 new Placeholder("enchant_description", customEnchantEntry.getValue().description)
         ));
     }

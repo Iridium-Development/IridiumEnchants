@@ -201,6 +201,7 @@ public class IridiumEnchants extends IridiumCore {
         effects.put("TELEPATHY", new Telepathy());
         effects.put("ADD_EXTRA_HEALTH", new AddExtraHealth());
         effects.put("REMOVE_EXTRA_HEALTH", new RemoveExtraHealth());
+        effects.put("VEINMINE", new VeinMine());
     }
 
     public void registerConditions() {

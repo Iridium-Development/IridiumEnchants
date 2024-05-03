@@ -238,5 +238,10 @@ public class CustomEnchants {
             .put("Telepathy", new CustomEnchant("&7Telepathy", "Puts all blocks you break into your inventory", "Tool", "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
                     .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("TELEPATHY"), Collections.emptyList()))
                     .build(), true, true))
+            .put("OreSiphon", new CustomEnchant("&7Ore Siphon", "Breaks adjacent ores of the same type", "Tool", "BLOCK_BREAK", ImmutableMap.<Integer, Level>builder()
+                    .put(1, new Level(100, Collections.singletonList("Common"), Collections.singletonList("VEINMINE:15"), Collections.emptyList()))
+                    .put(2, new Level(100, Collections.singletonList("Elite"), Collections.singletonList("VEINMINE:35"), Collections.emptyList()))
+                    .put(3, new Level(100, Collections.singletonList("Legendary"), Collections.singletonList("VEINMINE:65"), Collections.emptyList()))
+                    .build(), true, true))
             .build();
 }

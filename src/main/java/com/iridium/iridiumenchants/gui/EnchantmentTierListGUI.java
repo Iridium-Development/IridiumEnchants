@@ -10,7 +10,7 @@ import com.iridium.iridiumenchants.Level;
 import com.iridium.iridiumenchants.configs.inventories.NoItemGUI;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang.WordUtils;
+import com.iridium.iridiumcore.dependencies.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -38,8 +38,8 @@ public class EnchantmentTierListGUI extends PagedGUI<EnchantmentTierListGUI.Cust
     @Override
     public ItemStack getItemStack(CustomEnchantLevel customEnchantLevel) {
         return ItemStackUtils.makeItem(IridiumEnchants.getInstance().getInventories().enchantsTierListGUI.item, Arrays.asList(
-                new Placeholder("enchant_name", WordUtils.capitalize(customEnchantLevel.customEnchant.getKey())),
-                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantLevel.customEnchant.getValue().type)),
+                new Placeholder("enchant_name", WordUtils.capitalize(customEnchantLevel.customEnchant.getValue().displayName)),
+                new Placeholder("enchant_type", WordUtils.capitalize(customEnchantLevel.customEnchant.getKey())),
                 new Placeholder("enchant_description", customEnchantLevel.customEnchant.getValue().description),
                 new Placeholder("enchant_level", IridiumEnchants.getInstance().getCustomEnchantManager().toRomanNumerals(customEnchantLevel.level.getKey()))
         ));

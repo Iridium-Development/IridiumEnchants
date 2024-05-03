@@ -9,7 +9,7 @@ import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.*;
 import com.iridium.iridiumenchants.conditions.Condition;
 import com.iridium.iridiumenchants.effects.Effect;
-import org.apache.commons.lang.WordUtils;
+import com.iridium.iridiumcore.dependencies.commons.lang3.text.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

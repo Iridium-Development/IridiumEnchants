@@ -33,6 +33,34 @@ public class Configuration {
             .put(XMaterial.DEEPSLATE_GOLD_ORE, XMaterial.GOLD_INGOT)
             .put(XMaterial.SAND, XMaterial.GLASS)
             .build();
+
+    public List<XMaterial> veinMiner = Arrays.asList(
+            XMaterial.COAL_ORE,
+            XMaterial.DEEPSLATE_COAL_ORE,
+            XMaterial.COPPER_ORE,
+            XMaterial.DEEPSLATE_COPPER_ORE,
+            XMaterial.IRON_ORE,
+            XMaterial.DEEPSLATE_IRON_ORE,
+            XMaterial.LAPIS_ORE,
+            XMaterial.DEEPSLATE_LAPIS_ORE,
+            XMaterial.REDSTONE_ORE,
+            XMaterial.DEEPSLATE_REDSTONE_ORE,
+            XMaterial.GOLD_ORE,
+            XMaterial.DEEPSLATE_GOLD_ORE,
+            XMaterial.NETHER_GOLD_ORE,
+            XMaterial.EMERALD_ORE,
+            XMaterial.DEEPSLATE_EMERALD_ORE,
+            XMaterial.DIAMOND_ORE,
+            XMaterial.DEEPSLATE_DIAMOND_ORE,
+            XMaterial.NETHER_QUARTZ_ORE,
+            XMaterial.ANCIENT_DEBRIS
+    );
+
+    public boolean veinMinerDropsAtBreakLocation = true;
+    public boolean veinMinerBreaksTools = false;
+    public int veinMinerCap = 25;
+    public boolean veinMineWithWrongTool = false;
+
     public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST, XMaterial.WATER, XMaterial.LAVA);
     public Map<String, Tier> tiers = ImmutableMap.<String, Tier>builder()
             .put("Common", new Tier(new Item(XMaterial.ENCHANTED_BOOK, 11, 1, "&b&lCOMMON ENCHANTMENT", Arrays.asList("&e&lCOST: &7%cost% levels", "", "&e&l[!] &7Left Click to purchase a random common enchantment", "&e&l[!] &7Right Click to view all common enchantments")), 20, ExperienceType.LEVEL))
