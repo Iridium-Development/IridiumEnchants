@@ -27,7 +27,7 @@ dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:24.1.0")
     implementation("com.iridium:IridiumCore:1.9.0")
-    implementation("org.bstats:bstats-bukkit:3.0.0")
+    implementation("org.bstats:bstats-bukkit:3.0.2")
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
     // Other dependencies that are not required or already available at runtime
