@@ -30,7 +30,7 @@ dependencies {
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok:lombok:1.18.22")
+    compileOnly("org.projectlombok:lombok:1.18.32")
     compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.9.2")
     compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1") {
@@ -50,7 +50,7 @@ dependencies {
     compileOnly("com.bgsoftware:SuperiorSkyblock:1.10.2")
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
 tasks {
