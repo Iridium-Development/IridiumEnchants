@@ -19,13 +19,14 @@ repositories {
     maven("https://hub.jeff-media.com/nexus/repository/jeff-media-public/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://repo.bg-software.com/repository/api/")
     mavenCentral()
 }
 
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:24.1.0")
-    implementation("com.iridium:IridiumCore:1.7.4")
+    implementation("com.iridium:IridiumCore:1.9.0")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
@@ -33,12 +34,9 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.32")
     compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.9.2")
-    compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1") {
-        exclude("org.spigotmc")
-    }
     compileOnly("com.iridium:IridiumSkyblock:4.0.8")
     compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
-    compileOnly("com.massivecraft.massivesuper:Factions:2.14.0")
+    compileOnly("com.massivecraft.factions:Factions:2.14.0")
     compileOnly("com.massivecraft:Factions:1.6.9.5-4.1.4-STABLE") {
         exclude("com.darkblade12")
         exclude("org.kitteh")
@@ -47,7 +45,8 @@ dependencies {
     compileOnly("com.github.TownyAdvanced:Towny:0.100.2.7")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
-    compileOnly("com.bgsoftware:SuperiorSkyblock:1.10.2")
+    compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.10.2")
+    compileOnly("com.github.angeschossen:LandsAPI:7.0.2")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.32")
@@ -89,13 +88,15 @@ tasks {
         // Always re-run this task
         outputs.upToDateWhen { false }
     }
-}
 
-// Set the Java version and vendor
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-        vendor.set(JvmVendorSpec.ADOPTOPENJDK)
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    }
+
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 }
 
