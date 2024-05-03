@@ -153,6 +153,8 @@ public class IridiumEnchants extends IridiumCore {
         this.buildSupport = new ArrayList<>();
         Arrays.asList(
                 new ASkyblockSupportHolder(),
+                new FactionsSupportHolder(),
+                new FactionsUUIDSupportHolder(),
                 new IridiumSkyblockSupportHolder(),
                 new LandsSupportHolder(),
                 new TownySupportHolder(),
