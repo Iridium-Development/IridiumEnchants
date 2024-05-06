@@ -44,7 +44,7 @@ dependencies {
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
     compileOnly("com.github.TownyAdvanced:Towny:0.100.2.7")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
-    compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
+    compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.4.0-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.10.2")
     compileOnly("com.github.angeschossen:LandsAPI:7.0.2")
 
