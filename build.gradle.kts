@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.iridium"
-version = "4.1.5"
+version = "4.1.6"
 description = "IridiumEnchants"
 
 repositories {
