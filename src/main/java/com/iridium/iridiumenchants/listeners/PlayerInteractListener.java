@@ -20,7 +20,7 @@ public class PlayerInteractListener implements Listener {
             Player player = event.getPlayer();
             ItemStack itemStack = player.getItemInHand();
             IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(itemStack).ifPresent(iridiumEnchant -> {
-                        CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(iridiumEnchant);
+                        CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().get(iridiumEnchant);
                         if (customEnchant == null) return;
                         player.openInventory(new EnchantmentSelectGUI(player, customEnchant, iridiumEnchant).getInventory());
                     }

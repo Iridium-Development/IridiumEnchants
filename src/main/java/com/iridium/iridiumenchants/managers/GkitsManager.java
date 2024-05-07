@@ -35,7 +35,7 @@ public class GkitsManager {
                                     itemStack.addUnsafeEnchantment(enchantment, enchants.getValue());
                                 }
                             } else {
-                                CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchants.getKey());
+                                CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().get(enchants.getKey());
                                 if (customEnchant != null) {
                                     itemStack = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(itemStack, enchants.getKey(), customEnchant, enchants.getValue());
                                 }

@@ -27,7 +27,7 @@ public class InventoryClickListener implements Listener {
             ItemStack currentItem = event.getCurrentItem();
             if (IridiumEnchants.getInstance().getConfiguration().enchantMethod == EnchantMethod.DRAGNDROP) {
                 IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentFromCrystal(event.getCursor()).ifPresent(iridiumEnchant -> {
-                    CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(iridiumEnchant);
+                    CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().get(iridiumEnchant);
                     if (customEnchant == null) return;
                     if (currentItem == null) return;
                     Optional<Type> type = TypeUtils.getType(customEnchant.type);

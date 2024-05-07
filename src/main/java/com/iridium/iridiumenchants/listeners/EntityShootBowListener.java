@@ -18,7 +18,7 @@ public class EntityShootBowListener implements Listener {
             Player player = (Player) event.getEntity();
 
             List<ItemStack> itemStackList = Arrays.asList(
-                    player.getItemInHand(),
+                    event.getBow(),
                     player.getInventory().getBoots(),
                     player.getInventory().getLeggings(),
                     player.getInventory().getChestplate(),
