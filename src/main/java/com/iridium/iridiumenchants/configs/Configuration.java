@@ -56,10 +56,7 @@ public class Configuration {
             XMaterial.ANCIENT_DEBRIS
     );
 
-    public boolean veinMinerDropsAtBreakLocation = true;
-    public boolean veinMinerBreaksTools = false;
-    public int veinMinerCap = 25;
-    public boolean veinMineWithWrongTool = false;
+    public int veinMineExpPenaltyAmount = 5;
 
     public List<XMaterial> infusionBlacklist = Arrays.asList(XMaterial.BEDROCK, XMaterial.SPAWNER, XMaterial.CHEST, XMaterial.TRAPPED_CHEST, XMaterial.WATER, XMaterial.LAVA);
     public Map<String, Tier> tiers = ImmutableMap.<String, Tier>builder()
