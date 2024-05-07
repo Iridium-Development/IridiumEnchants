@@ -18,7 +18,7 @@ public class EnchantmentUtils {
 
     public static ItemMeta addEnchantmentEffect(ItemMeta itemMeta, Material material) {
         if (!itemMeta.hasEnchants()) {
-            itemMeta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             if (material.equals(Material.FISHING_ROD)) {
                 Optional.ofNullable(XEnchantment.ARROW_FIRE.getEnchant()).ifPresent(enchantment -> itemMeta.addEnchant(enchantment, 1, false));
             } else {

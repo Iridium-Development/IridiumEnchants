@@ -44,6 +44,6 @@ public class EnchantmentListGUI extends PagedGUI<Map.Entry<String, CustomEnchant
 
     @Override
     public Collection<Map.Entry<String, CustomEnchant>> getPageObjects() {
-        return IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
+        return IridiumEnchants.getInstance().getCustomEnchantments().entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
     }
 }

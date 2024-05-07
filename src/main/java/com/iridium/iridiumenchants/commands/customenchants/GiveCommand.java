@@ -45,7 +45,7 @@ public class GiveCommand extends Command {
             sender.sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().notAPlayer.replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)));
             return false;
         }
-        Optional<Map.Entry<String, CustomEnchant>> customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet().stream()
+        Optional<Map.Entry<String, CustomEnchant>> customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().entrySet().stream()
                 .filter(stringCustomEnchantEntry ->
                         stringCustomEnchantEntry.getKey().equalsIgnoreCase(args[2])
                 ).findFirst();
@@ -97,12 +97,12 @@ public class GiveCommand extends Command {
                     .collect(Collectors.toList());
         }
         if (args.length == 3) {
-            return IridiumEnchants.getInstance().getCustomEnchants().customEnchants.keySet().stream()
+            return IridiumEnchants.getInstance().getCustomEnchantments().keySet().stream()
                     .filter(s -> s.toLowerCase().contains(args[2].toLowerCase()))
                     .collect(Collectors.toList());
         }
         if (args.length == 4) {
-            Optional<Map.Entry<String, CustomEnchant>> customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet().stream()
+            Optional<Map.Entry<String, CustomEnchant>> customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().entrySet().stream()
                     .filter(stringCustomEnchantEntry ->
                             stringCustomEnchantEntry.getKey().equalsIgnoreCase(args[2])
                     ).findFirst();

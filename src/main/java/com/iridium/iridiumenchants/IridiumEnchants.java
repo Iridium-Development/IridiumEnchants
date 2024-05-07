@@ -26,6 +26,7 @@ import java.util.*;
 @Getter
 public class IridiumEnchants extends IridiumCore {
 
+    @Getter
     private static IridiumEnchants instance;
 
     private CommandManager commandManager;
@@ -215,7 +216,13 @@ public class IridiumEnchants extends IridiumCore {
         conditions.put("ISSNEAKING", new IsSneaking());
     }
 
-    public static IridiumEnchants getInstance() {
-        return instance;
+    public Map<String, CustomEnchant> getCustomEnchantments(){
+        HashMap<String, CustomEnchant> customEnchants = new HashMap<>(getCustomEnchants().customEnchants);
+        getCustomEnchants().customEnchants.forEach((s, customEnchant) -> {
+            if(!customEnchant.enabled) customEnchants.remove(s);
+        });
+
+        return customEnchants;
     }
+
 }
