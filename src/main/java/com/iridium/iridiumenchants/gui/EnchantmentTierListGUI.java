@@ -48,7 +48,7 @@ public class EnchantmentTierListGUI extends PagedGUI<EnchantmentTierListGUI.Cust
     @Override
     public Collection<CustomEnchantLevel> getPageObjects() {
         List<CustomEnchantLevel> customEnchantLevelList = new ArrayList<>();
-        for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
+        for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchantments().entrySet()) {
             for (Map.Entry<Integer, Level> level : customEnchant.getValue().levels.entrySet()) {
                 if (level.getValue().tiers.contains(tier)) {
                     customEnchantLevelList.add(new CustomEnchantLevel(customEnchant, level));

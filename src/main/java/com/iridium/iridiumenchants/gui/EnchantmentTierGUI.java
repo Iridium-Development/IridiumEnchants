@@ -70,7 +70,7 @@ public class EnchantmentTierGUI implements GUI {
                 return;
             }
             List<String[]> customEnchants = new ArrayList<>();
-            for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
+            for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchantments().entrySet()) {
                 for (Map.Entry<Integer, Level> level : customEnchant.getValue().levels.entrySet()) {
                     if (level.getValue().tiers.contains(tier.getKey())) {
                         customEnchants.add(new String[]{"give", player.getName(), customEnchant.getKey(), String.valueOf(level.getKey())});

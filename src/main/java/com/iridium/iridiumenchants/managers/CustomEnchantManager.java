@@ -173,7 +173,7 @@ public class CustomEnchantManager {
     public void applyEffectsFromItem(ItemStack itemStack, Trigger trigger, LivingEntity player, LivingEntity target, Event event) {
         Map<String, Integer> enchants = IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(itemStack);
         for (Map.Entry<String, Integer> enchant : enchants.entrySet()) {
-            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
+            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().get(enchant.getKey());
             if (customEnchant == null) continue;
             if (!trigger.isTrigger(customEnchant.trigger)) continue;
             Level level = customEnchant.levels.get(enchant.getValue());

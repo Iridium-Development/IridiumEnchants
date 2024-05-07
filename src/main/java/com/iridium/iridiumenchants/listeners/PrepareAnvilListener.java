@@ -19,13 +19,13 @@ public class PrepareAnvilListener implements Listener {
         ItemStack slot2 = event.getInventory().getItem(1);
         if (slot1 == null || slot2 == null) return;
         for (Map.Entry<String, Integer> enchant : IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(slot1).entrySet()) {
-            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
+            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().get(enchant.getKey());
             if (customEnchant != null) {
                 result = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(result, enchant.getKey(), customEnchant, enchant.getValue());
             }
         }
         for (Map.Entry<String, Integer> enchant : IridiumEnchants.getInstance().getCustomEnchantManager().getEnchantmentsFromItem(slot2).entrySet()) {
-            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchants().customEnchants.get(enchant.getKey());
+            CustomEnchant customEnchant = IridiumEnchants.getInstance().getCustomEnchantments().get(enchant.getKey());
             if (customEnchant != null) {
                 result = IridiumEnchants.getInstance().getCustomEnchantManager().applyEnchantment(result, enchant.getKey(), customEnchant, enchant.getValue());
             }

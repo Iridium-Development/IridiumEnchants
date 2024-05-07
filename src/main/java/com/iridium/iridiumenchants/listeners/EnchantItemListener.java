@@ -23,7 +23,7 @@ public class EnchantItemListener implements Listener {
         if (event.getExpLevelCost() != 30) return;
         ItemStack item = event.getItem();
         List<Map.Entry<String, CustomEnchant>> customEnchants = new ArrayList<>();
-        for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchants().customEnchants.entrySet()) {
+        for (Map.Entry<String, CustomEnchant> customEnchant : IridiumEnchants.getInstance().getCustomEnchantments().entrySet()) {
             if (TypeUtils.getType(customEnchant.getValue().type).map(type -> type.includes(item.getType())).orElse(false) && customEnchant.getValue().enchantmentTable) {
                 customEnchants.add(customEnchant);
             }
