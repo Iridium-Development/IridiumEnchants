@@ -33,7 +33,7 @@ dependencies {
     // Other dependencies that are not required or already available at runtime
     compileOnly("org.projectlombok:lombok:1.18.32")
     compileOnly("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.11.5")
+    compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.iridium:IridiumSkyblock:4.0.9.1")
     compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
     compileOnly("com.massivecraft.factions:Factions:3.3.0")
