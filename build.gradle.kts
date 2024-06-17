@@ -32,8 +32,8 @@ dependencies {
 
     // Other dependencies that are not required or already available at runtime
     compileOnly("org.projectlombok:lombok:1.18.32")
-    compileOnly("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.11.5")
+    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.iridium:IridiumSkyblock:4.0.9.1")
     compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
     compileOnly("com.massivecraft.factions:Factions:3.3.0")
@@ -42,7 +42,7 @@ dependencies {
         exclude("org.kitteh")
     }
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
-    compileOnly("com.github.TownyAdvanced:Towny:0.100.2.9")
+    compileOnly("com.github.TownyAdvanced:Towny:0.100.3.1")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.11.1")
