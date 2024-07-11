@@ -46,7 +46,7 @@ dependencies {
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.11.1")
-    compileOnly("com.github.angeschossen:LandsAPI:7.6.1")
+    compileOnly("com.github.angeschossen:LandsAPI:7.8.5")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.34")
