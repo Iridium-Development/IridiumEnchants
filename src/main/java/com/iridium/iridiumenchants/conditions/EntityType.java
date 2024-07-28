@@ -7,12 +7,12 @@ public class EntityType implements Condition {
     @Override
     public boolean apply(LivingEntity player, LivingEntity target, String[] args, ItemStack item) {
         String operator = args[1];
-        String[] entities = args[2].split(",");
+        String[] entities = args[2].trim().split(",");
 
-        for (String entityType : entities) {
-            if (checkEntityType(target, entityType, operator)) {
-                return true;
-            }
+        if (operator.equals("==")) {
+            return Arrays.stream(entities).anyMatch(entityType -> checkEntityType(target, entityType, operator));
+        } else if (operator.equals("!=")) {
+            return Arrays.stream(entities).allMatch(entityType -> checkEntityType(target, entityType, operator));
         }
 
         return false;
