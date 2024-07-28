@@ -2,6 +2,7 @@ package com.iridium.iridiumenchants.conditions;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import java.util.Arrays;
 
 public class EntityType implements Condition {
     @Override
