@@ -213,6 +213,7 @@ public class IridiumEnchants extends IridiumCore {
         conditions.put("ISWEARING", new IsWearing());
         conditions.put("ISHOLDING", new IsHolding());
         conditions.put("ISSNEAKING", new IsSneaking());
+        conditions.put("ENTITY_TYPE", new EntityType());
     }
 
     public Map<String, CustomEnchant> getCustomEnchantments(){
