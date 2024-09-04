@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants.effects;
 
-import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
+import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

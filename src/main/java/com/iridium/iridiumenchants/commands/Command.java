@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants.commands;
 
-import com.iridium.iridiumcore.dependencies.fasterxml.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iridium.iridiumenchants.CooldownProvider;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
