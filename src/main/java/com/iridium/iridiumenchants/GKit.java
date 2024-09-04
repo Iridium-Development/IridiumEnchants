@@ -1,7 +1,7 @@
 package com.iridium.iridiumenchants;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumcore.Item;
-import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
