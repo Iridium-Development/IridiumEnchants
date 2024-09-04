@@ -1,8 +1,6 @@
 package com.iridium.iridiumenchants.managers;
 
 import com.iridium.iridiumcore.Item;
-import com.iridium.iridiumcore.dependencies.nbtapi.NBTCompound;
-import com.iridium.iridiumcore.dependencies.nbtapi.NBTItem;
 import com.iridium.iridiumcore.utils.ItemStackUtils;
 import com.iridium.iridiumcore.utils.Placeholder;
 import com.iridium.iridiumcore.utils.StringUtils;
@@ -10,6 +8,8 @@ import com.iridium.iridiumenchants.*;
 import com.iridium.iridiumenchants.conditions.Condition;
 import com.iridium.iridiumenchants.effects.Effect;
 import com.iridium.iridiumenchants.utils.EnchantmentUtils;
+import de.tr7zw.changeme.nbtapi.NBTCompound;
+import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

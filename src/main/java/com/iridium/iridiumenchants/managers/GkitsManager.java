@@ -1,6 +1,6 @@
 package com.iridium.iridiumenchants.managers;
 
-import com.iridium.iridiumcore.dependencies.xseries.XEnchantment;
+import com.cryptomorin.xseries.XEnchantment;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiumenchants.CustomEnchant;
 import com.iridium.iridiumenchants.GKit;

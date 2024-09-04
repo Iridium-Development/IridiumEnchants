@@ -16,7 +16,7 @@ repositories {
     maven("https://nexus.iridiumdevelopment.net/repository/maven-releases/")
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://repo.rosewooddev.io/repository/public/")
-    maven("https://hub.jeff-media.com/nexus/repository/jeff-media-public/")
+    maven("https://repo.jeff-media.com/public/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.bg-software.com/repository/api/")
@@ -26,14 +26,14 @@ repositories {
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:24.1.0")
-    implementation("com.iridium:IridiumCore:1.9.5")
-    implementation("org.bstats:bstats-bukkit:3.0.2")
+    implementation("com.iridium:IridiumCore:2.0.6")
+    implementation("org.bstats:bstats-bukkit:3.0.3")
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok:lombok:1.18.32")
-    compileOnly("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.11.5")
+    compileOnly("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.iridium:IridiumSkyblock:4.0.9.1")
     compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
     compileOnly("com.massivecraft.factions:Factions:3.3.0")
@@ -42,14 +42,14 @@ dependencies {
         exclude("org.kitteh")
     }
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
-    compileOnly("com.github.TownyAdvanced:Towny:0.100.2.8")
+    compileOnly("com.github.TownyAdvanced:Towny:0.100.3.13")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:1.11.1")
-    compileOnly("com.github.angeschossen:LandsAPI:7.0.2")
+    compileOnly("com.github.angeschossen:LandsAPI:7.8.5")
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.34")
 }
 
 tasks {
