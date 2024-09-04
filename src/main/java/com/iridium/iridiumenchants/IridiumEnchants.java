@@ -1,7 +1,6 @@
 package com.iridium.iridiumenchants;
 
 import com.iridium.iridiumcore.IridiumCore;
-import com.iridium.iridiumcore.dependencies.paperlib.PaperLib;
 import com.iridium.iridiumcore.gui.GUI;
 import com.iridium.iridiumenchants.commands.customenchants.CommandManager;
 import com.iridium.iridiumenchants.commands.gkits.GkitsCommandManager;
@@ -13,6 +12,7 @@ import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.GkitsManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import com.iridium.iridiumenchants.support.*;
+import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
