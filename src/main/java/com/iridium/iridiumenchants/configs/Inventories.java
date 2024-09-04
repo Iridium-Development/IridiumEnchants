@@ -1,10 +1,10 @@
 package com.iridium.iridiumenchants.configs;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableMap;
 import com.iridium.iridiumcore.Background;
 import com.iridium.iridiumcore.Item;
-import com.iridium.iridiumcore.dependencies.fasterxml.annotation.JsonIgnore;
-import com.iridium.iridiumcore.dependencies.xseries.XMaterial;
 import com.iridium.iridiumenchants.AnimatedBackground;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
 import com.iridium.iridiumenchants.configs.inventories.NoItemGUI;
