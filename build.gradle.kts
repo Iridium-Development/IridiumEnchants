@@ -31,7 +31,7 @@ dependencies {
     implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.projectlombok:lombok:1.18.36")
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("com.iridium:IridiumSkyblock:4.0.9.1")
@@ -49,7 +49,7 @@ dependencies {
     compileOnly("com.github.angeschossen:LandsAPI:7.10.2")
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok:lombok:1.18.34")
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
 }
 
 tasks {
