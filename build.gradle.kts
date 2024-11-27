@@ -66,9 +66,21 @@ tasks {
         archiveClassifier.set("")
 
         // Relocate dependencies
+        relocate("com.iridium.iridiumcolorapi")
+        relocate("com.iridium.iridiumcore")
         relocate("com.j256.ormlite")
-        relocate("org.bstats")
         relocate("de.jeff_media")
+        relocate("org.bstats")
+
+        // Relocate IridiumCore dependencies
+        relocate("com.cryptomorin.xseries")
+        relocate("com.fasterxml.jackson")
+        relocate("de.tr7zw.changeme.nbtapi")
+        relocate("io.papermc")
+        relocate("org.apache.commons")
+        relocate("org.intellij")
+        relocate("org.jetbrains")
+        relocate("org.yaml.snakeyaml")
 
         // Remove unnecessary files from the jar
         minimize()
