@@ -16,7 +16,6 @@ repositories {
     maven("https://nexus.iridiumdevelopment.net/repository/maven-releases/")
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://repo.rosewooddev.io/repository/public/")
-    maven("https://repo.jeff-media.com/public/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.bg-software.com/repository/api/")
@@ -28,7 +27,7 @@ dependencies {
     implementation("org.jetbrains:annotations:26.0.1")
     implementation("com.iridium:IridiumCore:2.0.6")
     implementation("org.bstats:bstats-bukkit:3.1.0")
-    implementation("de.jeff_media:SpigotUpdateChecker:1.3.2")
+    implementation("com.jeff_media:SpigotUpdateChecker:3.0.4")
 
     // Other dependencies that are not required or already available at runtime
     compileOnly("org.projectlombok:lombok:1.18.36")
@@ -42,11 +41,10 @@ dependencies {
         exclude("org.kitteh")
     }
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
-    compileOnly("com.github.TownyAdvanced:Towny:0.100.4.0")
+    compileOnly("com.github.TownyAdvanced:Towny:0.102.0.0")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2024.4")
-    compileOnly("com.github.angeschossen:LandsAPI:7.10.13")
 
     // Enable lombok annotation processing
     annotationProcessor("org.projectlombok:lombok:1.18.36")
