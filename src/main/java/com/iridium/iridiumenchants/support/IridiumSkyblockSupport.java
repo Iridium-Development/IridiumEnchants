@@ -3,7 +3,7 @@ package com.iridium.iridiumenchants.support;
 import com.iridium.iridiumskyblock.api.IridiumSkyblockAPI;
 import com.iridium.iridiumskyblock.database.Island;
 import com.iridium.iridiumskyblock.database.User;
-import com.iridium.iridiumteams.PermissionType;
+import com.iridium.iridiumskyblock.dependencies.iridiumteams.PermissionType;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
