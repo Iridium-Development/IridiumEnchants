@@ -1,7 +1,7 @@
 plugins {
     java
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = "com.iridium"
@@ -9,6 +9,8 @@ version = "4.1.7"
 description = "IridiumEnchants"
 
 repositories {
+    mavenCentral()
+    mavenLocal()
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     maven("https://ci.ender.zone/plugin/repository/everything/")
@@ -19,13 +21,12 @@ repositories {
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.bg-software.com/repository/api/")
-    mavenCentral()
 }
 
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:26.0.2-1")
-    implementation("com.iridium:IridiumCore:2.0.6")
+    implementation("com.iridium:IridiumCore:2.0.11")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("com.jeff_media:SpigotUpdateChecker:3.0.4")
 
@@ -51,10 +52,9 @@ dependencies {
 }
 
 tasks {
-    // "Replace" the build task with the shadowJar task (probably bad but who cares)
-    jar {
-        dependsOn("shadowJar")
-        enabled = false
+    // Add the shadowJar task to the build task
+    build {
+        dependsOn(shadowJar)
     }
 
     shadowJar {
@@ -67,7 +67,7 @@ tasks {
         relocate("com.iridium.iridiumcolorapi")
         relocate("com.iridium.iridiumcore")
         relocate("com.j256.ormlite")
-        relocate("de.jeff_media")
+        relocate("com.jeff_media.updatechecker")
         relocate("org.bstats")
 
         // Relocate IridiumCore dependencies
