@@ -12,8 +12,11 @@ import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.GkitsManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import com.iridium.iridiumenchants.support.*;
+import com.jeff_media.updatechecker.UpdateCheckSource;
+import com.jeff_media.updatechecker.UpdateChecker;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
@@ -58,22 +61,7 @@ public class IridiumEnchants extends IridiumCore {
         this.userManager = new UserManager();
         this.gkitsManager = new GkitsManager();
 
-        if (!PaperLib.isSpigot()) {
-            getLogger().warning("CraftBukkit isn't supported, please use spigot or one of its forks");
-            Bukkit.getPluginManager().disablePlugin(this);
-        } else {
-            Bukkit.getScheduler().runTaskTimerAsynchronously(this, this::saveData, 0L, 6000L);
-            this.registerListeners();
-            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
-                Bukkit.getServer().getOnlinePlayers().forEach((player) -> {
-                    InventoryHolder inventoryHolder = player.getOpenInventory().getTopInventory().getHolder();
-                    if (inventoryHolder instanceof GUI) {
-                        ((GUI) inventoryHolder).addContent(player.getOpenInventory().getTopInventory());
-                    }
-
-                });
-            }, 0L, 1L);
-        }
+        super.onEnable();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             userManager.getUser(player);
@@ -82,6 +70,9 @@ public class IridiumEnchants extends IridiumCore {
         registerEffects();
         registerConditions();
         registerSupport();
+
+        addBstats(9649);
+        startUpdateChecker(116574);
 
         getLogger().info("----------------------------------------");
         getLogger().info("");
@@ -221,6 +212,24 @@ public class IridiumEnchants extends IridiumCore {
         });
 
         return customEnchants;
+    }
+
+    public void addBstats(int pluginId) {
+        new Metrics(this, pluginId);
+    }
+
+    public void startUpdateChecker(int pluginId) {
+        this.startUpdateChecker(String.valueOf(pluginId));
+    }
+
+    public void startUpdateChecker(String pluginId) {
+        if (getConfiguration().updateChecks) {
+            new UpdateChecker(this, UpdateCheckSource.SPIGOT, pluginId)
+                    .checkEveryXHours(24)
+                    .setDownloadLink(pluginId)
+                    .setColoredConsoleOutput(true)
+                    .checkNow();
+        }
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Configuration {
+    public boolean updateChecks = true;
     public String prefix = "&e&lIridiumEnchants &8»";
     public XSound tierPurchaseSound = XSound.ENTITY_PLAYER_LEVELUP;
     public boolean tierGUI = true;
