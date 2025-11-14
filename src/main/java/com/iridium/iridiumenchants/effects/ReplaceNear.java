@@ -44,14 +44,14 @@ public class ReplaceNear implements Effect {
         if (!originalMaterial.isPresent() || !newMaterial.isPresent()) return;
         if (args.length == 6 && args[5].equalsIgnoreCase("target")) {
             if (target == null) return;
-            replaceNear((Player) player, target, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
+            replaceNear((Player) player, target, radius, originalMaterial.get(), newMaterial.get(), time);
 
         } else {
-            replaceNear((Player) player, player, radius, originalMaterial.get().parseMaterial(), newMaterial.get().parseMaterial(), time);
+            replaceNear((Player) player, player, radius, originalMaterial.get(), newMaterial.get(), time);
         }
     }
 
-    public void replaceNear(Player player, LivingEntity livingEntity, int radius, Material currentMaterial, Material newMaterial, int time) {
+    public void replaceNear(Player player, LivingEntity livingEntity, int radius, XMaterial currentMaterial, XMaterial newMaterial, int time) {
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
@@ -59,10 +59,13 @@ public class ReplaceNear implements Effect {
                     Block block = location.getBlock();
                     if (IridiumEnchants.getInstance().canBuild((player), block.getLocation())) {
                         blockStates.keySet().stream().filter(blockState -> blockState.getLocation().equals(location)).findAny().ifPresent(blockState -> blockStates.put(blockState, time));
-                        if (block.getType() == currentMaterial) {
-                            BlockState blockState = block.getState();
-                            blockStates.put(blockState, time);
-                            block.setType(newMaterial, false);
+                        if (XMaterial.matchXMaterial(block.getType()) == currentMaterial) {
+                            Material m = newMaterial.get();
+                            if(m != null){
+                                BlockState blockState = block.getState();
+                                blockStates.put(blockState, time);
+                                block.setType(newMaterial.get(), false);
+                            }
                         }
                     }
                 }
