@@ -11,6 +11,8 @@ import com.iridium.iridiumenchants.GKit;
 import com.iridium.iridiumenchants.IridiumEnchants;
 import com.iridium.iridiumenchants.User;
 import com.iridium.iridiumenchants.configs.inventories.AnimatedBackgroundGUI;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -20,8 +22,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class GKitsGUI implements GUI {
 
@@ -42,35 +47,48 @@ public class GKitsGUI implements GUI {
         return inventory;
     }
 
+    private CompletableFuture<List<GkitCooldownData>> GetGkitsCooldowns() {
+        return CompletableFuture.supplyAsync(() -> {
+            List<GkitCooldownData> gkitCooldownData = new ArrayList<>();
+            for (Map.Entry<String, GKit> gkits : IridiumEnchants.getInstance().getGKits().gkits.entrySet()) {
+                LocalDateTime cooldown = IridiumEnchants.getInstance().getCooldownManager().getCooldown(user.getUuid(), gkits.getKey()).join();
+                gkitCooldownData.add(new GkitCooldownData(gkits.getValue(), cooldown));
+            }
+            return gkitCooldownData;
+        });
+    }
+
     @Override
     public void addContent(Inventory inventory) {
-        Background background = IridiumEnchants.getInstance().getInventories().gkitsGUI.background.backgroundFrames.get(frame);
-        if (background != null) {
-            InventoryUtils.fillInventory(inventory, background);
-        }
-
-        for (Map.Entry<String, GKit> gkits : IridiumEnchants.getInstance().getGKits().gkits.entrySet()) {
-            LocalDateTime cooldown = user.getCooldown(gkits.getKey());
-            long days = LocalDateTime.now().until(cooldown, ChronoUnit.DAYS);
-            long hours = LocalDateTime.now().until(cooldown, ChronoUnit.HOURS) - (days * 24);
-            long minutes = LocalDateTime.now().until(cooldown, ChronoUnit.MINUTES) - ((hours + (days * 24)) * 60);
-            long seconds = LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) - ((minutes + (hours + (days * 24)) * 60) * 60);
-            Item item = gkits.getValue().guiItem;
-            inventory.setItem(item.slot, ItemStackUtils.makeItem(item, Arrays.asList(
-                    new Placeholder("days", String.valueOf((int) Math.max(days, 0))),
-                    new Placeholder("hours", String.valueOf((int) Math.max(hours, 0))),
-                    new Placeholder("minutes", String.valueOf((int) Math.max(minutes, 0))),
-                    new Placeholder("seconds", String.valueOf((int) Math.max(seconds, 0)))
-            )));
-        }
-
-        tickCount++;
-        if (tickCount % IridiumEnchants.getInstance().getInventories().gkitsGUI.nextFrameInterval == 0) {
-            frame++;
-            if (IridiumEnchants.getInstance().getInventories().gkitsGUI.background.backgroundFrames.get(frame) == null) {
-                frame = 0;
+        GetGkitsCooldowns().thenAccept(gkitCooldownData -> Bukkit.getScheduler().runTask(IridiumEnchants.getInstance(), () -> {
+            Background background = IridiumEnchants.getInstance().getInventories().gkitsGUI.background.backgroundFrames.get(frame);
+            if (background != null) {
+                InventoryUtils.fillInventory(inventory, background);
             }
-        }
+
+            for (GkitCooldownData cooldownData : gkitCooldownData){
+                long days = LocalDateTime.now().until(cooldownData.expirationTime, ChronoUnit.DAYS);
+                long hours = LocalDateTime.now().until(cooldownData.expirationTime, ChronoUnit.HOURS) - (days * 24);
+                long minutes = LocalDateTime.now().until(cooldownData.expirationTime, ChronoUnit.MINUTES) - ((hours + (days * 24)) * 60);
+                long seconds = LocalDateTime.now().until(cooldownData.expirationTime, ChronoUnit.SECONDS) - ((minutes + (hours + (days * 24)) * 60) * 60);
+                Item item = cooldownData.gkit.guiItem;
+                inventory.setItem(item.slot, ItemStackUtils.makeItem(item, Arrays.asList(
+                        new Placeholder("days", String.valueOf((int) Math.max(days, 0))),
+                        new Placeholder("hours", String.valueOf((int) Math.max(hours, 0))),
+                        new Placeholder("minutes", String.valueOf((int) Math.max(minutes, 0))),
+                        new Placeholder("seconds", String.valueOf((int) Math.max(seconds, 0)))
+                )));
+            }
+
+            tickCount++;
+            if (tickCount % IridiumEnchants.getInstance().getInventories().gkitsGUI.nextFrameInterval == 0) {
+                frame++;
+                if (IridiumEnchants.getInstance().getInventories().gkitsGUI.background.backgroundFrames.get(frame) == null) {
+                    frame = 0;
+                }
+            }
+
+        }));
     }
 
     @Override
@@ -87,28 +105,16 @@ public class GKitsGUI implements GUI {
                         ));
                         return;
                     }
-                    LocalDateTime cooldown = user.getCooldown(gkit.getKey());
-                    if (LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) > 0) {
-                        long days = LocalDateTime.now().until(cooldown, ChronoUnit.DAYS);
-                        long hours = LocalDateTime.now().until(cooldown, ChronoUnit.HOURS) - (days * 24);
-                        long minutes = LocalDateTime.now().until(cooldown, ChronoUnit.MINUTES) - ((hours + (days * 24)) * 60);
-                        long seconds = LocalDateTime.now().until(cooldown, ChronoUnit.SECONDS) - ((minutes + (hours + (days * 24)) * 60) * 60);
-                        event.getWhoClicked().sendMessage(StringUtils.color(IridiumEnchants.getInstance().getMessages().gkitOnCooldown
-                                .replace("%prefix%", IridiumEnchants.getInstance().getConfiguration().prefix)
-                                .replace("%gkit%", gkit.getKey())
-                                .replace("%days%", String.valueOf((int) Math.max(days, 0)))
-                                .replace("%hours%", String.valueOf((int) Math.max(hours, 0)))
-                                .replace("%minutes%", String.valueOf((int) Math.max(minutes, 0)))
-                                .replace("%seconds%", String.valueOf((int) Math.max(seconds, 0)))
-                        ));
-                        return;
-                    }
-                    IridiumEnchants.getInstance().getUserManager().getUser(event.getWhoClicked()).applyCooldown(gkit.getKey(), gkit.getValue().cooldown);
-                    IridiumEnchants.getInstance().getGkitsManager().getItemsFromGkit(gkit.getValue()).forEach(itemStack ->
-                            player.getInventory().addItem(itemStack).values().forEach(item ->
-                                    player.getWorld().dropItem(player.getLocation(), item)));
+                    IridiumEnchants.getInstance().getGkitsManager().giveUserGkit(event.getWhoClicked(), gkit.getKey(), gkit.getValue());
                 }
             }
         }
+    }
+
+    @AllArgsConstructor
+    @Getter
+    private class GkitCooldownData {
+        GKit gkit;
+        LocalDateTime expirationTime;
     }
 }

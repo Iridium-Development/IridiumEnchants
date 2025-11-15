@@ -8,12 +8,14 @@ import com.iridium.iridiumenchants.conditions.*;
 import com.iridium.iridiumenchants.configs.*;
 import com.iridium.iridiumenchants.effects.*;
 import com.iridium.iridiumenchants.listeners.*;
+import com.iridium.iridiumenchants.managers.CooldownManager;
 import com.iridium.iridiumenchants.managers.CustomEnchantManager;
 import com.iridium.iridiumenchants.managers.GkitsManager;
 import com.iridium.iridiumenchants.managers.UserManager;
 import com.iridium.iridiumenchants.support.*;
 import com.jeff_media.updatechecker.UpdateCheckSource;
 import com.jeff_media.updatechecker.UpdateChecker;
+import com.massivecraft.factions.util.Cooldown;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import org.bstats.bukkit.Metrics;
@@ -24,6 +26,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryHolder;
 
+import java.sql.SQLException;
 import java.util.*;
 
 @Getter
@@ -37,6 +40,7 @@ public class IridiumEnchants extends IridiumCore {
     private CustomEnchantManager customEnchantManager;
     private UserManager userManager;
     private GkitsManager gkitsManager;
+    private CooldownManager cooldownManager;
 
     private Configuration configuration;
     private Messages messages;
@@ -60,6 +64,15 @@ public class IridiumEnchants extends IridiumCore {
         this.customEnchantManager = new CustomEnchantManager();
         this.userManager = new UserManager();
         this.gkitsManager = new GkitsManager();
+
+        try {
+            this.cooldownManager = new CooldownManager(new SQL());
+        } catch (SQLException exception) {
+            // We don't want the plugin to start if the connection fails
+            exception.printStackTrace();
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
 
         super.onEnable();
 
@@ -205,10 +218,10 @@ public class IridiumEnchants extends IridiumCore {
         conditions.put("ISSNEAKING", new IsSneaking());
     }
 
-    public Map<String, CustomEnchant> getCustomEnchantments(){
+    public Map<String, CustomEnchant> getCustomEnchantments() {
         HashMap<String, CustomEnchant> customEnchants = new HashMap<>(getCustomEnchants().customEnchants);
         getCustomEnchants().customEnchants.forEach((s, customEnchant) -> {
-            if(!customEnchant.enabled) customEnchants.remove(s);
+            if (!customEnchant.enabled) customEnchants.remove(s);
         });
 
         return customEnchants;
