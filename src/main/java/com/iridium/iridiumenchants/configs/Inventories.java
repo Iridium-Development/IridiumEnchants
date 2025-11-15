@@ -18,7 +18,7 @@ public class Inventories {
     private final Background background = new Background(ImmutableMap.<Integer, Item>builder().build());
     @JsonIgnore
     private final AnimatedBackground plainAnimatedBackground = new AnimatedBackground(ImmutableMap.<Integer, Background>builder()
-            .put(1, background)
+            .put(0, background)
             .build());
     @JsonIgnore
     private final AnimatedBackground animatedBackground = new AnimatedBackground(ImmutableMap.<Integer, Background>builder()
