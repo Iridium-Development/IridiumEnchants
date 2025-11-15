@@ -15,6 +15,8 @@ public class CooldownManager {
 
     private final Connection connection;
 
+    private final ConcurrentMap<String, LocalDateTime> cache = new ConcurrentHashMap<>();
+
     public CooldownManager(SQL sqlConfig) throws SQLException {
         this.connection = DriverManager.getConnection(getDatabaseURL(sqlConfig));
         initTable();
@@ -27,20 +29,38 @@ public class CooldownManager {
         }
     }
 
+    private String buildKey(UUID uuid, String cooldownKey) {
+        return uuid.toString() + ":" + cooldownKey;
+    }
+
     public CompletableFuture<Void> applyCooldown(UUID uuid, String cooldownKey, LocalDateTime expiresAt) {
-        return CompletableFuture.runAsync(() -> saveCooldown(uuid, cooldownKey, expiresAt), executor);
+        return CompletableFuture.runAsync(() -> {
+            saveCooldown(uuid, cooldownKey, expiresAt);
+            cache.put(buildKey(uuid, cooldownKey), expiresAt);
+        }, executor);
     }
 
     public CompletableFuture<LocalDateTime> getCooldown(UUID uuid, String cooldownKey) {
         return CompletableFuture.supplyAsync(() -> {
+            String cacheKey = buildKey(uuid, cooldownKey);
+
+            LocalDateTime cachedExpiry = cache.get(cacheKey);
+            if(cachedExpiry != null){
+                return cachedExpiry;
+            }
+
+            IridiumEnchants.getInstance().getLogger().info("Getting cooldown from SQL");
             String sql = "SELECT expires_at FROM cooldowns WHERE player_uuid = ? AND cooldown_key = ?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, uuid.toString());
                 ps.setString(2, cooldownKey);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
-                        return LocalDateTime.parse(rs.getString("expires_at"));
+                        LocalDateTime expiresAt = LocalDateTime.parse(rs.getString("expires_at"));
+                        cache.put(cacheKey, expiresAt);
+                        return expiresAt;
                     } else {
+                        cache.put(cacheKey, LocalDateTime.MIN);
                         return LocalDateTime.MIN;
                     }
                 }
