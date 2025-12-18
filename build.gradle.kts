@@ -26,7 +26,7 @@ repositories {
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains:annotations:26.0.2-1")
-    implementation("com.iridium:IridiumCore:2.0.11")
+    implementation("com.iridium:IridiumCore:2.0.13")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("com.jeff_media:SpigotUpdateChecker:3.0.4")
 
