@@ -42,7 +42,7 @@ dependencies {
         exclude("org.kitteh")
     }
     compileOnly("com.wasteofplastic:askyblock:3.0.9.4")
-    compileOnly("com.github.TownyAdvanced:Towny:0.102.0.3")
+    compileOnly("com.github.TownyAdvanced:Towny:0.102.0.4")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.5-SNAPSHOT")
     compileOnly("com.sk89q.worldedit:worldedit-bukkit:7.2.6-SNAPSHOT")
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2025.2.1")
