@@ -34,7 +34,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.44")
     compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.12.2")
-    compileOnly("com.iridium:IridiumSkyblock:4.1.2")
+    compileOnly("com.iridium:IridiumSkyblock:4.1.4")
     compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
     compileOnly("com.massivecraft.factions:Factions:3.3.0")
     compileOnly("com.massivecraft:Factions:1.6.9.5-4.1.4-STABLE") {
