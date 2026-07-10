@@ -37,7 +37,7 @@ dependencies {
     compileOnly("com.iridium:IridiumSkyblock:4.1.4")
     compileOnly("com.massivecraft.massivesuper:MassiveCore:2.14.0")
     compileOnly("com.massivecraft.factions:Factions:3.3.0")
-    compileOnly("com.massivecraft:Factions:1.6.9.5-4.1.4-STABLE") {
+    compileOnly("com.massivecraft:Factions:1.6.9.5-4.2.5") {
         exclude("com.darkblade12")
         exclude("org.kitteh")
     }
